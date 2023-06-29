@@ -5,7 +5,7 @@ module.exports = {
     content: [
         './assets/**/*.js',
         './templates/**/*.{html,html.twig}',
-        './vendor/whatwedo/**/*.{html,html.twig,js}',
+        './vendor/araise/**/*.{html,html.twig,js}',
         './var/cache/twig/**/*.php',
         './src/Definition/*.php',
     ],

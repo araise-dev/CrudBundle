@@ -1,7 +1,7 @@
 # Footer
 
 In CRUD Bundle we have a footer in the side navigation, which can be customized as follows:
-1. Create a file in `templates/whatwedoCrudBundle/includes/sidebar/_footer.html.twig` or you can copy it from the CRUD bundle.
+1. Create a file in `templates/araiseCrudBundle/includes/sidebar/_footer.html.twig` or you can copy it from the CRUD bundle.
    The file should look like this:
 
 ```twig
@@ -31,7 +31,7 @@ You can now delete all the content and insert your own HTML.
 If you only want to customize the profile image and logout link, you can do it as follows:
 
 ```twig
-{% extends '@!whatwedoCrud/includes/sidebar/_footer.html.twig' %}
+{% extends '@!araiseCrud/includes/sidebar/_footer.html.twig' %}
 
 {% block profile_picture %}https://example.ch/example.jpg{% endblock %}
 

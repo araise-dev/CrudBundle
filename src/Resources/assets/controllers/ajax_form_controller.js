@@ -20,7 +20,7 @@ export default class extends Controller {
             }
 
             if (!found) {
-                console.warn('could not whatwedo ajaxifiy this field:');
+                console.warn('could not araise ajaxifiy this field:');
                 console.warn(target);
             }
         });

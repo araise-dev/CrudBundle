@@ -4,16 +4,6 @@ declare(strict_types=1);
 
 namespace araise\CrudBundle\View;
 
-use Doctrine\Common\Annotations\Reader;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormFactoryInterface;
-use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Form\FormRegistryInterface;
-use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\Routing\RouterInterface;
-use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
-use Symfony\Component\Security\Core\Security;
 use araise\CoreBundle\Action\Action;
 use araise\CrudBundle\Block\Block;
 use araise\CrudBundle\Block\BlockBlock;
@@ -28,6 +18,16 @@ use araise\CrudBundle\Form\Type\EntityAjaxType;
 use araise\CrudBundle\Form\Type\EntityHiddenType;
 use araise\CrudBundle\Form\Type\EntityPreselectType;
 use araise\CrudBundle\Manager\DefinitionManager;
+use Doctrine\Common\Annotations\Reader;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\FormRegistryInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Symfony\Component\Security\Core\Security;
 
 class DefinitionView
 {

@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace araise\CrudBundle\Content;
 
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
-use Symfony\Component\Form\FormTypeInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 use araise\CoreBundle\Formatter\FormatterInterface;
 use araise\CoreBundle\Manager\FormatterManager;
 use araise\CrudBundle\Definition\DefinitionInterface;
 use araise\CrudBundle\Form\Type\EntityHiddenType;
 use araise\CrudBundle\Formatter\CrudDefaultFormatter;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\FormTypeInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class Content extends AbstractContent
 {

@@ -29,10 +29,10 @@ declare(strict_types=1);
 
 namespace araise\CrudBundle\Menu;
 
-use Knp\Menu\ItemInterface;
 use araise\CrudBundle\Builder\DefinitionMenuBuilder;
 use araise\CrudBundle\Definition\FilterDefinition;
 use araise\CrudBundle\Enums\Page;
+use Knp\Menu\ItemInterface;
 
 class MenuBuilder extends DefinitionMenuBuilder
 {
@@ -40,8 +40,8 @@ class MenuBuilder extends DefinitionMenuBuilder
     {
         $menu = $this->factory->createItem('');
         $menu->addChild('Dashboard', [
-            self::OPT_LABEL => 'whatwedo_crud.dashboard',
-            self::OPT_ROUTE => 'whatwedo_crud_dashboard',
+            self::OPT_LABEL => 'araise_crud.dashboard',
+            self::OPT_ROUTE => 'araise_crud_dashboard',
             self::OPT_ATTR => [
                 self::OPT_ATTR_ICON => 'house-door',
             ],

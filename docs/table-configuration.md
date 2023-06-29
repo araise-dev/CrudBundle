@@ -1,6 +1,6 @@
 # Table Configuration
 
-For a basic table configuration refer to the [WhatwedoTableBundle Documentations](https://whatwedo.github.io/TableBundle/#/)
+For a basic table configuration refer to the [araiseTableBundle Documentations](https://araise-dev.github.io/TableBundle/#/)
 
 ```php
 class LocationDefinition extends AbstractDefinition

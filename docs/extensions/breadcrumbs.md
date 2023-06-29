@@ -11,7 +11,7 @@ This extension requires the [mhujer/breadcrumbs-bundle](https://github.com/mhuje
 - 2. configure the bundle:
 
 ```yml
-whatwedo_crud:
+araise_crud:
     breadcrumbs:
         home_text: Dashboard
         home_route: my_project_dashboard_start

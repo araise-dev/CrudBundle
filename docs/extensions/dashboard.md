@@ -4,7 +4,7 @@ In the CRUD bundle there is a dashboard page which is also displayed by default 
 
 ## Custom HTML
 If you want to use your own HTML on the dashboard page, you can do it like this:
-1. Create a file in `templates/whatwedoCrudBundle/dashboard.html.twig` or you can copy it from the CRUD bundle.
+1. Create a file in `templates/araiseCrudBundle/dashboard.html.twig` or you can copy it from the CRUD bundle.
    The file should look like this:
 
 ```twig
@@ -43,29 +43,29 @@ class DashboardController extends AbstractController
 }
 ```
 
-Create a new file in `templates/dashboard.html.twig`. The file should no longer be in the `whatwedoCrudBundle` folder.
+Create a new file in `templates/dashboard.html.twig`. The file should no longer be in the `araiseCrudBundle` folder.
 
 ## Keep the /dashboard route
 If you want to use your own dashboard logic and it should be callable with /dashboard, you can do it like this:
-1. Adjust the `config/routes/whatwedo_crud.yaml` like this:
+1. Adjust the `config/routes/araise_crud.yaml` like this:
 
 ```yaml
-whatwedo_crud:
+araise_crud:
     resource: .
-    type: whatwedo_crud
+    type: araise_crud
 
-whatwedo_crud_crud_select_ajax:
-    path: /whatwedo/crud/select/ajax
-    defaults: { _controller: whatwedo\CrudBundle\Controller\RelationController::ajaxAction }
+araise_crud_crud_select_ajax:
+    path: /araise/crud/select/ajax
+    defaults: { _controller: araise\CrudBundle\Controller\RelationController::ajaxAction }
 ```
 
-The entry with the key `whatwedo_crud_dashboard` should no longer exist in the file.
+The entry with the key `araise_crud_dashboard` should no longer exist in the file.
 
 2. Create the file `templates/base.html.twig`, if it does not exist yet. Overwrite the `logo` block with the `dashboard` route.
    The file should look like this:
 
 ```twig
-{% extends '@whatwedoCrud/base.html.twig' %}
+{% extends '@araiseCrud/base.html.twig' %}
 
 {% block logo %}
     <a href="{{ path('dashboard') }}">

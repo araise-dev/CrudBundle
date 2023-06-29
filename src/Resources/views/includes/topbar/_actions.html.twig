@@ -10,12 +10,12 @@
             {% endfor %}
         {% elseif view.actions|length > 2 %}
             <div
-                {{ stimulus_controller('whatwedo/core-bundle/dropdown') }}
+                {{ stimulus_controller('araise/core-bundle/dropdown') }}
                 class="whatwedo-crud-topbar-actions relative"
             >
                 <button
                     class="whatwedo-crud-button--action-neutral"
-                    {{ stimulus_action('whatwedo/core-bundle/dropdown', 'toggle') }}
+                    {{ stimulus_action('araise/core-bundle/dropdown', 'toggle') }}
                 >
                     {{ bootstrap_icon('info-circle', {
                         class: 'inline mr-2 h-4 w-4'
@@ -25,7 +25,7 @@
 
                 <div
                     class="whatwedo-crud-topbar-actions__submenu hidden absolute right-0 top-full flex flex-col mt-2 bg-white py-1 rounded-md shadow-lg z-10"
-                    {{ stimulus_target('whatwedo/core-bundle/dropdown', 'menu') }}
+                    {{ stimulus_target('araise/core-bundle/dropdown', 'menu') }}
                 >
                     {% for action in view.actions|slice(2, view.actions|length) %}
                         {{ wwd_crud_render_action(action, view) }}
@@ -36,12 +36,12 @@
     </div>
 
     <div
-        {{ stimulus_controller('whatwedo/core-bundle/dropdown') }}
+        {{ stimulus_controller('araise/core-bundle/dropdown') }}
         class="whatwedo-crud-topbar-actions whatwedo-crud-topbar-actions--mobile relative ml-auto md:hidden"
     >
         <button
             class="whatwedo-crud-button--action-neutral"
-            {{ stimulus_action('whatwedo/core-bundle/dropdown', 'toggle') }}
+            {{ stimulus_action('araise/core-bundle/dropdown', 'toggle') }}
         >
             {{ bootstrap_icon('info-circle', {
                 class: 'inline mr-2 h-4 w-4'
@@ -51,7 +51,7 @@
 
         <div
             class="whatwedo-crud-topbar-actions__submenu hidden absolute right-0 top-full flex flex-col mt-2 bg-white py-1 rounded-md shadow-lg z-10"
-            {{ stimulus_target('whatwedo/core-bundle/dropdown', 'menu') }}
+            {{ stimulus_target('araise/core-bundle/dropdown', 'menu') }}
         >
             {% for action in view.actions %}
                 {{ wwd_crud_render_action(action, view) }}

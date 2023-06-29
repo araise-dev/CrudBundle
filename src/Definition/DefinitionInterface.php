@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace araise\CrudBundle\Definition;
 
-use Doctrine\ORM\QueryBuilder;
-use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use araise\CrudBundle\Builder\DefinitionBuilder;
 use araise\CrudBundle\Enums\PageInterface;
 use araise\CrudBundle\Enums\PageModeInterface;
 use araise\CrudBundle\Extension\ExtensionInterface;
 use araise\CrudBundle\View\DefinitionView;
 use araise\TableBundle\Table\Table;
+use Doctrine\ORM\QueryBuilder;
+use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
-#[Autoconfigure(tags: ['whatwedo_crud.definition'])]
+#[Autoconfigure(tags: ['araise_crud.definition'])]
 interface DefinitionInterface
 {
     public static function supports(mixed $entity): bool;

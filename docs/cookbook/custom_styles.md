@@ -19,8 +19,8 @@ Below the imports you can target our style hooks and adjust stylings accordingly
 Here's an example:
 
 ```scss
-@import "~@whatwedo/core-bundle/styles/_tailwind.scss";
-@import "~@whatwedo/table-bundle/styles/_tailwind.scss";
+@import "~@araise/core-bundle/styles/_tailwind.scss";
+@import "~@araise/table-bundle/styles/_tailwind.scss";
 
 // CUSTOM STYLINGS
 .whatwedo_table-header {

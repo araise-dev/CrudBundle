@@ -29,12 +29,12 @@ declare(strict_types=1);
 
 namespace araise\CrudBundle\Security\Voter;
 
-use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use Symfony\Component\Security\Core\Authorization\Voter\TraceableVoter;
-use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
 use araise\CrudBundle\Definition\DefinitionInterface;
 use araise\CrudBundle\Enums\PageInterface;
 use araise\CrudBundle\Manager\DefinitionManager;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Authorization\Voter\TraceableVoter;
+use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
 
 class DefaultDefinitionVoter implements VoterInterface
 {

@@ -4,21 +4,6 @@ declare(strict_types=1);
 
 namespace araise\CrudBundle\Definition;
 
-use Doctrine\Common\Util\ClassUtils;
-use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\QueryBuilder;
-use Doctrine\Persistence\ObjectRepository;
-use Psr\Container\ContainerInterface;
-use Psr\Log\LoggerInterface;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\PropertyAccess\PropertyAccess;
-use Symfony\Component\Routing\RouterInterface;
-use Symfony\Contracts\Service\Attribute\Required;
-use Symfony\Contracts\Service\ServiceSubscriberInterface;
-use Symfony\Contracts\Translation\TranslatorInterface;
 use araise\CrudBundle\Action\Action;
 use araise\CrudBundle\Action\PostAction;
 use araise\CrudBundle\Action\SubmitAction;
@@ -41,6 +26,21 @@ use araise\TableBundle\Extension\FilterExtension;
 use araise\TableBundle\Extension\SortExtension;
 use araise\TableBundle\Factory\TableFactory;
 use araise\TableBundle\Table\Table;
+use Doctrine\Common\Util\ClassUtils;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\QueryBuilder;
+use Doctrine\Persistence\ObjectRepository;
+use Psr\Container\ContainerInterface;
+use Psr\Log\LoggerInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PropertyAccess\PropertyAccess;
+use Symfony\Component\Routing\RouterInterface;
+use Symfony\Contracts\Service\Attribute\Required;
+use Symfony\Contracts\Service\ServiceSubscriberInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use WhiteOctober\BreadcrumbsBundle\Model\Breadcrumbs;
 
 abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscriberInterface
@@ -190,9 +190,9 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
 
     public function getTitle(mixed $entity = null, ?PageInterface $route = null): string
     {
-        $add = $this->translator->trans('whatwedo_crud.add');
-        $delete = $this->translator->trans('whatwedo_crud.delete');
-        $edit = $this->translator->trans('whatwedo_crud.edit');
+        $add = $this->translator->trans('araise_crud.add');
+        $delete = $this->translator->trans('araise_crud.delete');
+        $edit = $this->translator->trans('araise_crud.edit');
 
         return match ($route) {
             Page::INDEX => static::getEntityTitlePlural(),
@@ -254,12 +254,12 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
 
     public function getTemplateDirectory(): string
     {
-        return '@whatwedoCrud/Crud/';
+        return '@araiseCrud/Crud/';
     }
 
     public function getLayout(): string
     {
-        return '@whatwedoCrud/layout.html.twig';
+        return '@araiseCrud/layout.html.twig';
     }
 
     public function getBuilder(): DefinitionBuilder
@@ -375,7 +375,7 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
     public function jsonSearch(string $q): iterable
     {
         if (! $this->hasExtension(JsonSearchExtension::class)) {
-            throw new \Exception('either install whatwedo search bundle or override your jsonSearch function in the definition.');
+            throw new \Exception('either install araise search bundle or override your jsonSearch function in the definition.');
         }
         $ids = $this->container->get(IndexRepository::class)->search($q, static::getEntity());
 
@@ -582,7 +582,7 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
             $definition = $definitionManager->getDefinitionByClassName($subTableDefinitions[$i]);
             $table->setOption(Table::OPT_DEFINITION, $definition);
             $table->setOption(Table::OPT_TITLE, $definition->getTitle(entity: $entity, route: Page::INDEX));
-            $table->setOption(Table::OPT_THEME, '@whatwedoTable/tailwind_2_layout_sub_table.html.twig');
+            $table->setOption(Table::OPT_THEME, '@araiseTable/tailwind_2_layout_sub_table.html.twig');
             $table->removeExtension(SortExtension::class);
             $table->getPaginationExtension()->setLimit(0);
 
@@ -606,7 +606,7 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
     {
         if ($this::hasCapability(Page::INDEX)) {
             $this->addAction('index', [
-                'label' => 'whatwedo_crud.index',
+                'label' => 'araise_crud.index',
                 'icon' => 'list',
                 'visibility' => [Page::CREATE, Page::SHOW, Page::EDIT],
                 'route' => static::getRoute(Page::INDEX),
@@ -620,7 +620,7 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
 
         if ($this::hasCapability(Page::CREATE)) {
             $this->addAction('create', [
-                'label' => 'whatwedo_crud.add',
+                'label' => 'araise_crud.add',
                 'icon' => 'plus',
                 'visibility' => [Page::INDEX],
                 'route' => static::getRoute(Page::CREATE),
@@ -632,7 +632,7 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
         if ($data) {
             if ($this::hasCapability(Page::SHOW)) {
                 $this->addAction('view', [
-                    'label' => 'whatwedo_crud.view',
+                    'label' => 'araise_crud.view',
                     'icon' => 'eye',
                     'visibility' => [Page::EDIT],
                     'route' => static::getRoute(Page::SHOW),
@@ -645,7 +645,7 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
             }
             if ($this::hasCapability(Page::EDIT)) {
                 $this->addAction('edit', [
-                    'label' => 'whatwedo_crud.edit',
+                    'label' => 'araise_crud.edit',
                     'icon' => 'pencil',
                     'visibility' => [Page::SHOW],
                     'route' => static::getRoute(Page::EDIT),
@@ -659,7 +659,7 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
 
             if ($this::hasCapability(Page::DELETE)) {
                 $this->addAction('delete', [
-                    'label' => 'whatwedo_crud.delete',
+                    'label' => 'araise_crud.delete',
                     'icon' => 'trash',
                     'visibility' => [Page::SHOW, Page::EDIT],
                     'route' => static::getRoute(Page::DELETE),
@@ -676,7 +676,7 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
 
             if ($this::hasCapability(Page::EDIT)) {
                 $this->addAction('edit_submit', [
-                    'label' => 'whatwedo_crud.save',
+                    'label' => 'araise_crud.save',
                     'icon' => 'check-lg',
                     'visibility' => [Page::EDIT],
                     'priority' => 20,
@@ -689,7 +689,7 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
 
             if ($this::hasCapability(Page::CREATE)) {
                 $this->addAction('create_submit', [
-                    'label' => 'whatwedo_crud.add',
+                    'label' => 'araise_crud.add',
                     'icon' => 'check-lg',
                     'visibility' => [Page::CREATE],
                     'priority' => 20,
@@ -719,7 +719,7 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
 
         if ($this::hasCapability(Page::SHOW)) {
             $table->addAction('show', [
-                'label' => 'whatwedo_crud.view',
+                'label' => 'araise_crud.view',
                 'icon' => 'eye',
                 'route' => static::getRoute(Page::SHOW),
                 'route_parameters' => fn ($row) => [
@@ -732,7 +732,7 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
 
         if ($this::hasCapability(Page::EDIT)) {
             $table->addAction('edit', [
-                'label' => 'whatwedo_crud.edit',
+                'label' => 'araise_crud.edit',
                 'icon' => 'pencil',
                 'route' => static::getRoute(Page::EDIT),
                 'route_parameters' => fn ($row) => [
@@ -745,7 +745,7 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
 
         if ($this::hasCapability(Page::DELETE)) {
             $table->addAction('delete', [
-                'label' => 'whatwedo_crud.delete',
+                'label' => 'araise_crud.delete',
                 'icon' => 'trash',
                 'route' => static::getRoute(Page::DELETE),
                 'route_parameters' => fn ($row) => [

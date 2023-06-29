@@ -81,4 +81,4 @@ It is now possible to open http://[domain].[tld]/[your-site-with-the-table]?[tab
 
 ---
 
-🔗 For more infos on filters or the TableBundle, take a look into the [documentation](https://whatwedo.github.io/TableBundle).
+🔗 For more infos on filters or the TableBundle, take a look into the [documentation](https://araise-dev.github.io/TableBundle).

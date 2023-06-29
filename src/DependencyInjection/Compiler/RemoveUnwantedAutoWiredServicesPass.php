@@ -29,9 +29,9 @@ declare(strict_types=1);
 
 namespace araise\CrudBundle\DependencyInjection\Compiler;
 
+use araise\CrudBundle\DependencyInjection\IgnoreAutowire;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use araise\CrudBundle\DependencyInjection\IgnoreAutowire;
 
 class RemoveUnwantedAutoWiredServicesPass implements CompilerPassInterface
 {

@@ -29,10 +29,6 @@ declare(strict_types=1);
 
 namespace araise\CrudBundle\Test;
 
-use Symfony\Bundle\FrameworkBundle\KernelBrowser;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\DomCrawler\Form;
-use Symfony\Component\Routing\RouterInterface;
 use araise\CrudBundle\Definition\DefinitionInterface;
 use araise\CrudBundle\Enums\Page;
 use araise\CrudBundle\Manager\DefinitionManager;
@@ -48,6 +44,10 @@ use araise\TableBundle\DataLoader\DoctrineTreeDataLoader;
 use araise\TableBundle\Entity\TreeInterface;
 use araise\TableBundle\Factory\TableFactory;
 use araise\TableBundle\Table\Column;
+use Symfony\Bundle\FrameworkBundle\KernelBrowser;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\DomCrawler\Form;
+use Symfony\Component\Routing\RouterInterface;
 
 abstract class AbstractCrudTest extends WebTestCase
 {

@@ -11,7 +11,7 @@ LoginController.php
 #[Route('/login', name: 'app_login')]
 public function login(AuthenticationUtils $authenticationUtils): Response
 {
-    return $this->render('@whatwedoCrud/Login/login.html.twig', [
+    return $this->render('@araiseCrud/Login/login.html.twig', [
         'error' => $authenticationUtils->getLastAuthenticationError(),
         'last_username' => $authenticationUtils->getLastUsername(),
     ]);

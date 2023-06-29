@@ -8,7 +8,7 @@
 {% block main %}
     <div class="-m-4">
         <div class="bg-neutral-900 text-neutral-200 p-4 md:hidden">
-            <button {{ stimulus_action('whatwedo/crud-bundle/offcanvas', 'showContent') }} type="button" class="inline-flex items-center justify-center rounded-md text-neutral-500 hover:text-neutral-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500">
+            <button {{ stimulus_action('araise/crud-bundle/offcanvas', 'showContent') }} type="button" class="inline-flex items-center justify-center rounded-md text-neutral-500 hover:text-neutral-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500">
                 <span class="sr-only">Open sidebar</span>
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" viewBox="0 0 39.632 39.632">
                     <g id="Group_520" data-name="Group 520" transform="translate(-18.184 -67.5)">
@@ -22,13 +22,13 @@
         </div>
 
         <div class="bg-neutral-900 text-neutral-200 p-4 md:p-8 !pb-24 !pt-16">
-            <h2 class="whatwedo-utility-heading-2 text-neutral-400 mb-1">{{ 'whatwedo_crud.dashboard' | trans }}</h2>
-            <h1 class="whatwedo-utility-heading-1 text-neutral-100 mb-0">{{ 'whatwedo_crud.hello' | trans }} {{ (username|default(''))|capitalize }} 👋</h1>
+            <h2 class="whatwedo-utility-heading-2 text-neutral-400 mb-1">{{ 'araise_crud.dashboard' | trans }}</h2>
+            <h1 class="whatwedo-utility-heading-1 text-neutral-100 mb-0">{{ 'araise_crud.hello' | trans }} {{ (username|default(''))|capitalize }} 👋</h1>
         </div>
 
         <div class="m-4 md:m-8 !-mt-12 grid grid-cols-1 gap-4 overflow-hidden sm:grid-cols-2 lg:grid-cols-4">
             {% for card in cards|default([]) %}
-                {{ include('@whatwedoCrud/dashboard/cards.html.twig', card) }}
+                {{ include('@araiseCrud/dashboard/cards.html.twig', card) }}
             {% endfor %}
         </div>
 

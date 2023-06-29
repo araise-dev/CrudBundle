@@ -6,16 +6,16 @@ services:
         autowire: true
         autoconfigure: true
 
-    whatwedo\CrudBundle\Tests\App\Repository\:
+    araise\CrudBundle\Tests\App\Repository\:
         resource: '../Repository'
 
-    whatwedo\CrudBundle\Tests\App\Definition\:
+    araise\CrudBundle\Tests\App\Definition\:
         resource: '../Definition'
 
-    whatwedo\CrudBundle\Tests\App\Factory\:
+    araise\CrudBundle\Tests\App\Factory\:
         resource: '../Factory'
 
-    whatwedo\CrudBundle\Tests\App\Manager\:
+    araise\CrudBundle\Tests\App\Manager\:
         resource: '../Manager'
         public: true
 

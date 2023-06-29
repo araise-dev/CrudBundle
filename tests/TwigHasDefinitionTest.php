@@ -29,10 +29,10 @@ declare(strict_types=1);
 
 namespace araise\CrudBundle\Tests;
 
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use Twig\Environment;
 use araise\CrudBundle\Tests\App\Entity\Person;
 use araise\CrudBundle\Tests\App\Factory\PersonFactory;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Twig\Environment;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 

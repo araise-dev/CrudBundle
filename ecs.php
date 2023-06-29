@@ -27,8 +27,8 @@ return static function (ECSConfig $containerConfigurator): void {
         ClassCommentSniff::class,
         FunctionCommentThrowTagSniff::class,
         ValidClassNameSniff::class => [
-            __DIR__ . '/src/whatwedoCrudBundle.php',
-            __DIR__ . '/src/DependencyInjection/whatwedoCrudExtension.php',
+            __DIR__ . '/src/araiseCrudBundle.php',
+            __DIR__ . '/src/DependencyInjection/araiseCrudExtension.php',
         ],
         TrailingCommaInMultilineFixer::class => [
             __DIR__ . '/tests/App/config/bundles.php',

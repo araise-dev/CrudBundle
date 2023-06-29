@@ -6,7 +6,7 @@
                 "fetch": "eager"
             }
         },
-        "@whatwedo/core-bundle": {
+        "@araise/core-bundle": {
             "select": {
                 "enabled": true,
                 "fetch": "eager"
@@ -28,7 +28,7 @@
                 "fetch": "eager"
             }
         },
-        "@whatwedo/crud-bundle": {
+        "@araise/crud-bundle": {
             "notification": {
                 "enabled": true,
                 "fetch": "eager"
@@ -58,7 +58,7 @@
                 "fetch": "eager"
             }
         },
-        "@whatwedo/table-bundle": {
+        "@araise/table-bundle": {
             "table": {
                 "enabled": true,
                 "fetch": "eager"

@@ -29,6 +29,8 @@ declare(strict_types=1);
 
 namespace araise\CrudBundle\Maker;
 
+use araise\CoreBundle\Formatter\DefaultFormatter;
+use araise\CoreBundle\Manager\FormatterManager;
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
 use Doctrine\Inflector\InflectorFactory;
 use Doctrine\ORM\Mapping\ClassMetadata;
@@ -53,8 +55,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Util\StringUtil;
 use Symfony\Component\Security\Csrf\CsrfTokenManager;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use araise\CoreBundle\Formatter\DefaultFormatter;
-use araise\CoreBundle\Manager\FormatterManager;
 
 final class MakeDefinition extends AbstractMaker
 {
@@ -250,7 +250,7 @@ final class MakeDefinition extends AbstractMaker
         string $entityVarSingular,
         array $fieldFormatters
     ): void {
-        $templatePath = $this->rootPath . '/vendor/whatwedo/crud-bundle/src/Resources/skeleton/definition/Definition.tpl.php';
+        $templatePath = $this->rootPath . '/vendor/araise/crud-bundle/src/Resources/skeleton/definition/Definition.tpl.php';
         $fieldNames = $entityDetails->fieldNames;
         foreach ($entityDetails->getIdentifierFieldNames() as $idField) {
             unset($fieldNames[$idField]);

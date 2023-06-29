@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace araise\CrudBundle\Routing;
 
+use araise\CrudBundle\Enums\Page;
+use araise\CrudBundle\Manager\DefinitionManager;
 use Symfony\Component\Config\Loader\Loader;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
-use araise\CrudBundle\Enums\Page;
-use araise\CrudBundle\Manager\DefinitionManager;
 
 class CrudLoader extends Loader
 {
@@ -23,7 +23,7 @@ class CrudLoader extends Loader
     public function load(mixed $resource, mixed $type = null): RouteCollection
     {
         if ($this->isLoaded) {
-            throw new \RuntimeException('Do not add the "whatwedo_crud" loader twice');
+            throw new \RuntimeException('Do not add the "araise_crud" loader twice');
         }
 
         $routes = new RouteCollection();
@@ -103,6 +103,6 @@ class CrudLoader extends Loader
      */
     public function supports(mixed $resource, mixed $type = null)
     {
-        return $type === 'whatwedo_crud';
+        return $type === 'araise_crud';
     }
 }

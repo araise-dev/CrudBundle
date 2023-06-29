@@ -29,10 +29,10 @@ declare(strict_types=1);
 
 namespace araise\CrudBundle\Security\Voter;
 
-use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use araise\CrudBundle\Definition\DefinitionInterface;
 use araise\CrudBundle\Exception\DefinitionNotFoundException;
 use araise\CrudBundle\Manager\DefinitionManager;
+use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
 abstract class AbstractDefinitionVoter extends Voter
 {

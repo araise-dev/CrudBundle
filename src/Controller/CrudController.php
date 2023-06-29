@@ -4,6 +4,20 @@ declare(strict_types=1);
 
 namespace araise\CrudBundle\Controller;
 
+use araise\CrudBundle\Definition\DefinitionInterface;
+use araise\CrudBundle\Enums\Page;
+use araise\CrudBundle\Enums\PageInterface;
+use araise\CrudBundle\Enums\PageMode;
+use araise\CrudBundle\Event\CrudEvent;
+use araise\CrudBundle\Manager\DefinitionManager;
+use araise\CrudBundle\View\DefinitionView;
+use araise\TableBundle\DataLoader\DoctrineDataLoader;
+use araise\TableBundle\DataLoader\DoctrineTreeDataLoader;
+use araise\TableBundle\Entity\TreeInterface;
+use araise\TableBundle\Extension\PaginationExtension;
+use araise\TableBundle\Factory\TableFactory;
+use araise\TableBundle\Manager\ExportManager;
+use araise\TableBundle\Table\Table;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
@@ -21,20 +35,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Contracts\Service\Attribute\Required;
 use Twig\Environment;
-use araise\CrudBundle\Definition\DefinitionInterface;
-use araise\CrudBundle\Enums\Page;
-use araise\CrudBundle\Enums\PageInterface;
-use araise\CrudBundle\Enums\PageMode;
-use araise\CrudBundle\Event\CrudEvent;
-use araise\CrudBundle\Manager\DefinitionManager;
-use araise\CrudBundle\View\DefinitionView;
-use araise\TableBundle\DataLoader\DoctrineDataLoader;
-use araise\TableBundle\DataLoader\DoctrineTreeDataLoader;
-use araise\TableBundle\Entity\TreeInterface;
-use araise\TableBundle\Extension\PaginationExtension;
-use araise\TableBundle\Factory\TableFactory;
-use araise\TableBundle\Manager\ExportManager;
-use araise\TableBundle\Table\Table;
 
 #[AsController]
 class CrudController extends AbstractController implements CrudDefinitionControllerInterface
@@ -162,7 +162,7 @@ class CrudController extends AbstractController implements CrudDefinitionControl
             if ($form->isValid()) {
                 return $this->formSubmittedAndValid($entity, $mode, Page::EDIT);
             }
-            $this->addFlash('error', 'whatwedo_crud.save_error');
+            $this->addFlash('error', 'araise_crud.save_error');
         }
 
         $this->definition->buildBreadcrumbs($entity, Page::EDIT);
@@ -211,7 +211,7 @@ class CrudController extends AbstractController implements CrudDefinitionControl
             if ($form->isValid()) {
                 return $this->formSubmittedAndValid($entity, $mode, Page::CREATE);
             }
-            $this->addFlash('error', 'whatwedo_crud.save_error');
+            $this->addFlash('error', 'araise_crud.save_error');
         }
 
         $this->definition->buildBreadcrumbs($entity, Page::CREATE);
@@ -243,9 +243,9 @@ class CrudController extends AbstractController implements CrudDefinitionControl
             $this->dispatchEvent(CrudEvent::PRE_DELETE_PREFIX, $entity);
             $this->entityManager->flush();
             $this->dispatchEvent(CrudEvent::POST_DELETE_PREFIX, $entity);
-            $this->addFlash('success', 'whatwedo_crud.delete_success');
+            $this->addFlash('success', 'araise_crud.delete_success');
         } catch (\Exception $e) {
-            $this->addFlash('error', 'whatwedo_crud.delete_error');
+            $this->addFlash('error', 'araise_crud.delete_error');
             $this->container->get(LoggerInterface::class)->warning('Error while deleting: ' . $e->getMessage(), [
                 'entity' => get_class($entity),
                 'id' => $entity->getId(),
@@ -438,7 +438,7 @@ class CrudController extends AbstractController implements CrudDefinitionControl
             return $this->getDefinition()->getTemplateDirectory() . '/' . $filename;
         }
 
-        return '@whatwedoCrud/Crud/' . $filename;
+        return '@araiseCrud/Crud/' . $filename;
     }
 
     protected function getDefinition(): DefinitionInterface
@@ -534,7 +534,7 @@ class CrudController extends AbstractController implements CrudDefinitionControl
             return new Response('', 200);
         }
 
-        $this->addFlash('success', 'whatwedo_crud.save_success');
+        $this->addFlash('success', 'araise_crud.save_success');
 
         return $this->getDefinition()->getRedirect($page, $entity);
     }

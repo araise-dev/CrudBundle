@@ -1,7 +1,7 @@
 # Search
 
-The CrudBundle uses the whatwedo/search-bundle to enable fulltext search without dependencies.
-The search bundle is documented in the [SearchBundle](https://whatwedo.github.io/SearchBundle/#/).
+The CrudBundle uses the araise/search-bundle to enable fulltext search without dependencies.
+The search bundle is documented in the [SearchBundle](https://araise-dev.github.io/SearchBundle/#/).
 
 ## Prerequisites
 
@@ -14,7 +14,7 @@ doctrine:
     orm:
         dql:
             string_functions:
-                MATCH_AGAINST: whatwedo\SearchBundle\Extension\Doctrine\Query\Mysql\MatchAgainst
+                MATCH_AGAINST: araise\SearchBundle\Extension\Doctrine\Query\Mysql\MatchAgainst
 ```
 
 Next, update your database schema.
@@ -34,7 +34,7 @@ Use the ```#[Index]``` annotation in order to enable a field for indexing.
 
 ```php
 use Doctrine\ORM\Mapping as ORM;
-use whatwedo\SearchBundle\Annotation\Index;
+use araise\SearchBundle\Annotation\Index;
 
 #[ORM\Entity]
 class Post
@@ -59,7 +59,7 @@ class Post
 After that you have to update your index
 
 ```sh
-php bin/console whatwedo:search:populate
+php bin/console araise:search:populate
 ```
 
 ## Global Search
@@ -118,10 +118,10 @@ Global search form is found here:  ```templates/base.html.twig```
 {% endblock %}
 ```
 
-To customize the search results create a file ```index.html.twig``` in ```templates/bundles/whatwedoSearchBundle```
+To customize the search results create a file ```index.html.twig``` in ```templates/bundles/araiseSearchBundle```
 
 ```twig
-{% extends '@!whatwedoSearch/index.html.twig' %}
+{% extends '@!araiseSearch/index.html.twig' %}
 
 {% block results %}
     <h1>This is a custom heading</h1>
@@ -159,4 +159,4 @@ You can use custom formatters, pre and post search hooks.
 
 Please check out the SearchBundle documentation for more information. 
 
-https://whatwedo.github.io/SearchBundle/#/configuration
+https://araise-dev.github.io/SearchBundle/#/configuration

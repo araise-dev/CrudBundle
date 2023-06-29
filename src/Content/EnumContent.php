@@ -29,10 +29,10 @@ declare(strict_types=1);
 
 namespace araise\CrudBundle\Content;
 
+use araise\CoreBundle\Formatter\EnumFormatter;
 use Symfony\Component\Form\Extension\Core\Type\EnumType;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use araise\CoreBundle\Formatter\EnumFormatter;
 
 class EnumContent extends Content
 {

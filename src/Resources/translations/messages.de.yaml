@@ -1,4 +1,4 @@
-whatwedo_crud:
+araise_crud:
     dashboard: Dashboard
     hello: Hallo
     add: Hinzufügen
@@ -22,7 +22,7 @@ whatwedo_crud:
             no: Nein
 
 wwd:
-    whatwedo_table_entity_filter:
+    araise_table_entity_filter:
         title: Filter
         title_plural: Filters
         block:

@@ -21,7 +21,7 @@ export default class extends Controller {
     resetContent() {
         this.tabTargets.forEach(tab => {
             tab.classList.remove('active');
-            tab.querySelector('[data-whatwedo--crud-bundle--tab-target]').classList.remove('bg-primary-500');
+            tab.querySelector('[data-araise--crud-bundle--tab-target]').classList.remove('bg-primary-500');
         });
         this.contentTargets.forEach(content => {
             content.classList.remove('block');
@@ -32,7 +32,7 @@ export default class extends Controller {
     activeTab(element) {
         const tabId = element.dataset.tabId;
         const activeContent = this.element.querySelector(`[data-tab-content="${tabId}"]`);
-        const underline = element.querySelector('[data-whatwedo--crud-bundle--tab-target]');
+        const underline = element.querySelector('[data-araise--crud-bundle--tab-target]');
 
         element.classList.remove('text-neutral-500');
         element.classList.add('text-neutral-900');

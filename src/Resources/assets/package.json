@@ -1,5 +1,5 @@
 {
-    "name": "@whatwedo/crud-bundle",
+    "name": "@araise/crud-bundle",
     "version": "1.0.0",
     "symfony": {
         "controllers": {

@@ -1,7 +1,7 @@
-{% if (wwd_crud_enable_breadcrumbs is defined and wwd_crud_enable_breadcrumbs) or (view is defined and view.definition.hasExtension('whatwedo\\CrudBundle\\Extension\\BreadcrumbsExtension')) %}
+{% if (wwd_crud_enable_breadcrumbs is defined and wwd_crud_enable_breadcrumbs) or (view is defined and view.definition.hasExtension('araise\\CrudBundle\\Extension\\BreadcrumbsExtension')) %}
     {{ wwd_crud_render_breadcrumbs({
         separator: null,
-        viewTemplate: '@whatwedoCrud/extensions/white_october_breadcrumbs.html.twig'
+        viewTemplate: '@araiseCrud/extensions/white_october_breadcrumbs.html.twig'
     }) }}
 {% endif %}
 

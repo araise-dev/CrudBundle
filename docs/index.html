@@ -12,8 +12,8 @@
     <div id="app"></div>
     <script>
         window.$docsify = {
-            name: 'whatwedoCrudBundle',
-            repo: 'whatwedo/CrudBundle',
+            name: 'araiseCrudBundle',
+            repo: 'araise/CrudBundle',
             loadSidebar: true,
             alias: {
                 '/.*/_sidebar.md': '/_sidebar.md'
@@ -23,7 +23,7 @@
             }
         };
         window.whatwedoOptions = {
-            githubBase: 'https://raw.githubusercontent.com/%repo%/1.0-dev/%file%',
+            githubBase: 'https://raw.githubusercontent.com/%repo%/main/%file%',
             fullPath: (repo, file) => {
                 return window.whatwedoOptions.githubBase.replace('%repo%', repo).replace('%file%', file);
             }

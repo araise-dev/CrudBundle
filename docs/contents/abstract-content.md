@@ -11,4 +11,4 @@ The bundle ships 4 content types:
  - [EnumContent](contents/enum-content.md) - a content type for enums
 
 ## Options
-[php-doc-parser(whatwedo/CrudBundle:src/Content/AbstractContent.php:public const OPT_)]
+[php-doc-parser(araise-dev/CrudBundle:src/Content/AbstractContent.php:public const OPT_)]

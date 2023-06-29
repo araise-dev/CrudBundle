@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace araise\CrudBundle\DataCollector;
 
-use Symfony\Bundle\FrameworkBundle\DataCollector\AbstractDataCollector;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use araise\CoreBundle\Action\Action;
 use araise\CrudBundle\Definition\DefinitionInterface;
 use araise\CrudBundle\Enums\Page;
 use araise\CrudBundle\Manager\DefinitionManager;
+use Symfony\Bundle\FrameworkBundle\DataCollector\AbstractDataCollector;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class CrudDataCollector extends AbstractDataCollector
 {
@@ -71,7 +71,7 @@ class CrudDataCollector extends AbstractDataCollector
 
     public static function getTemplate(): ?string
     {
-        return '@whatwedoCrud/data_collector/template.html.twig';
+        return '@araiseCrud/data_collector/template.html.twig';
     }
 
     public function getLayout(): string

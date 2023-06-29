@@ -1,5 +1,5 @@
 # Block
 
 ## Options
-[php-doc-parser(whatwedo/CrudBundle:src/Block/Block.php:public const OPT_)]
+[php-doc-parser(araise-dev/CrudBundle:src/Block/Block.php:public const OPT_)]
 

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace araise\CrudBundle\Formatter;
 
-use Symfony\Component\Routing\RouterInterface;
 use araise\CoreBundle\Formatter\DefaultFormatter;
 use araise\CrudBundle\Enums\Page;
 use araise\CrudBundle\Manager\DefinitionManager;
+use Symfony\Component\Routing\RouterInterface;
 
 class CrudDefaultFormatter extends DefaultFormatter
 {

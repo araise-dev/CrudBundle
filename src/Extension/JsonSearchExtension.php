@@ -29,14 +29,14 @@ declare(strict_types=1);
 
 namespace araise\CrudBundle\Extension;
 
-use araise\SearchBundle\whatwedoSearchBundle;
+use araise\SearchBundle\araiseSearchBundle;
 
 class JsonSearchExtension implements ExtensionInterface
 {
     public static function isEnabled(array $enabledBundles)
     {
         foreach ($enabledBundles as $bundles) {
-            if (in_array(whatwedoSearchBundle::class, $bundles, true)) {
+            if (in_array(araiseSearchBundle::class, $bundles, true)) {
                 return true;
             }
         }

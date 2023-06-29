@@ -4,7 +4,7 @@
         <div class="w-full flex flex-col items-center space-y-4 sm:items-end">
             {% for message in messages %}
             <div
-                {{ stimulus_controller('whatwedo/crud-bundle/notification') }}
+                {{ stimulus_controller('araise/crud-bundle/notification') }}
                 data-notification-delay-value="2000"
                 class="whatwedo_crud-message transition transform duration-1000 hidden max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden"
                 data-transition-enter-from="opacity-0 translate-x-6 sm:translate-y-0 sm:translate-x-2"
@@ -31,7 +31,7 @@
                             </div>
                             <div class="ml-4 flex-shrink-0 flex">
                                 <button
-                                    {{ stimulus_action('whatwedo/crud-bundle/notification', 'hide') }}
+                                    {{ stimulus_action('araise/crud-bundle/notification', 'hide') }}
                                     class="bg-white rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
                                 >
                                     <span class="sr-only">Close</span>

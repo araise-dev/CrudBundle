@@ -23,7 +23,7 @@ doctrine:
                         is_bundle: false
                         type: attribute
                         dir: '%kernel.project_dir%/Entity'
-                        prefix: 'whatwedo\CrudBundle\Tests\App\Entity'
+                        prefix: 'araise\CrudBundle\Tests\App\Entity'
                         alias: App
 
                     tree:

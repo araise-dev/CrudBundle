@@ -16,7 +16,7 @@ class Configuration implements ConfigurationInterface
 {
     public function getConfigTreeBuilder(): TreeBuilder
     {
-        $treeBuilder = new TreeBuilder('whatwedo_crud');
+        $treeBuilder = new TreeBuilder('araise_crud');
         $rootNode = $treeBuilder->getRootNode();
 
         $rootNode
@@ -34,21 +34,21 @@ class Configuration implements ConfigurationInterface
             ->arrayNode('templates')
             ->children()
             ->scalarNode('show')
-            ->defaultValue('whatwedoCrudBundle:Crud/_boxes:show.html.twig')
+            ->defaultValue('araiseCrudBundle:Crud/_boxes:show.html.twig')
             ->end()
             ->scalarNode('create')
-            ->defaultValue('whatwedoCrudBundle:Crud/_boxes:create.html.twig')
+            ->defaultValue('araiseCrudBundle:Crud/_boxes:create.html.twig')
             ->end()
             ->scalarNode('edit')
-            ->defaultValue('whatwedoCrudBundle:Crud/_boxes:edit.html.twig')
+            ->defaultValue('araiseCrudBundle:Crud/_boxes:edit.html.twig')
             ->end()
             ->end()
             ->end() // end templates
             ->scalarNode('templateDirectory')
-            ->defaultValue('@whatwedoCrud/Crud')
+            ->defaultValue('@araiseCrud/Crud')
             ->end()
             ->scalarNode('layout')
-            ->defaultValue('@whatwedoCrud/layout/adminlte_layout.html.twig')
+            ->defaultValue('@araiseCrud/layout/adminlte_layout.html.twig')
             ->end()
             ->end();
 

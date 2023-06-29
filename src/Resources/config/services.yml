@@ -1,5 +1,5 @@
 parameters:
-    whatwedo_crud.menu_builder.class: 'whatwedo\CrudBundle\Menu\MenuBuilder'
+    araise_crud.menu_builder.class: 'araise\CrudBundle\Menu\MenuBuilder'
     env(HTML5_VALIDATION): "false"
 
 services:
@@ -9,65 +9,65 @@ services:
         bind:
             $html5Validation: '%env(bool:HTML5_VALIDATION)%'
 
-    whatwedo\CrudBundle\:
+    araise\CrudBundle\:
         resource: '../../*'
         exclude:
             - '../../Normalizer/'
             - '../../Test/'
 
 
-    whatwedo\CrudBundle\Builder\DefinitionBuilder:
+    araise\CrudBundle\Builder\DefinitionBuilder:
         shared: false
 
-    whatwedo\CrudBundle\View\DefinitionView:
+    araise\CrudBundle\View\DefinitionView:
         shared: false
 
-    whatwedo\CrudBundle\Block\:
+    araise\CrudBundle\Block\:
         resource: '*'
         shared: false
 
-    whatwedo\CrudBundle\Content\:
+    araise\CrudBundle\Content\:
         resource: '*'
         shared: false
 
-    whatwedo\CrudBundle\Routing\CrudLoader:
+    araise\CrudBundle\Routing\CrudLoader:
         tags:
             - { name: routing.loader }
 
-    whatwedo\CrudBundle\EventListener\CrudDefinitionListener:
+    araise\CrudBundle\EventListener\CrudDefinitionListener:
         tags:
             - { name: kernel.event_listener, event: kernel.controller }
 
-    whatwedo\CrudBundle\Extension\BreadcrumbsExtension:
+    araise\CrudBundle\Extension\BreadcrumbsExtension:
         arguments:
             - '@white_october_breadcrumbs'
-            - '%whatwedo_crud.config.breadcrumbs.home.text%'
-            - '%whatwedo_crud.config.breadcrumbs.home.route%'
+            - '%araise_crud.config.breadcrumbs.home.text%'
+            - '%araise_crud.config.breadcrumbs.home.route%'
 
-    whatwedo\CrudBundle\Manager\BlockManager:
+    araise\CrudBundle\Manager\BlockManager:
         arguments:
-            - !tagged_iterator 'whatwedo_crud.block'
+            - !tagged_iterator 'araise_crud.block'
 
-    whatwedo\CrudBundle\Manager\ContentManager:
+    araise\CrudBundle\Manager\ContentManager:
         arguments:
-            - !tagged_iterator 'whatwedo_crud.content'
+            - !tagged_iterator 'araise_crud.content'
 
-    whatwedo\CrudBundle\Manager\DefinitionManager:
+    araise\CrudBundle\Manager\DefinitionManager:
         arguments:
-            - !tagged_iterator 'whatwedo_crud.definition'
+            - !tagged_iterator 'araise_crud.definition'
 
 
-    whatwedo\CrudBundle\Maker\MakeDefinition:
+    araise\CrudBundle\Maker\MakeDefinition:
         arguments:
             - '@maker.doctrine_helper'
             - '@maker.renderer.form_type_renderer'
             - '%kernel.project_dir%'
-            - '@whatwedo\CoreBundle\Manager\FormatterManager'
+            - '@araise\CoreBundle\Manager\FormatterManager'
         tags:
             - { name: maker.command }
 
-    whatwedo_crud.menu_builder:
-        class: '%whatwedo_crud.menu_builder.class%'
+    araise_crud.menu_builder:
+        class: '%araise_crud.menu_builder.class%'
         tags:
             - { name: knp_menu.menu_builder, method: createMainMenu, alias: main }
             - { name: knp_menu.menu_builder, method: createSubMenu, alias: sub }

@@ -29,13 +29,13 @@ declare(strict_types=1);
 
 namespace araise\CrudBundle\Builder;
 
+use araise\CrudBundle\Enums\Page;
+use araise\CrudBundle\Manager\DefinitionManager;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
-use araise\CrudBundle\Enums\Page;
-use araise\CrudBundle\Manager\DefinitionManager;
 
 class DefinitionMenuBuilder
 {

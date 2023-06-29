@@ -1,17 +1,17 @@
-whatwedo_crud:
+araise_crud:
     resource: .
-    type: whatwedo_crud
+    type: araise_crud
 
-whatwedo_crud_crud_select_ajax:
-    path: /whatwedo/crud/select/ajax
-    defaults: { _controller: whatwedo\CrudBundle\Controller\RelationController::ajaxAction }
+araise_crud_crud_select_ajax:
+    path: /araise/crud/select/ajax
+    defaults: { _controller: araise\CrudBundle\Controller\RelationController::ajaxAction }
 
-whatwedo_crud_dashboard:
+araise_crud_dashboard:
     path: /dashboard
     controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController
     defaults:
-        template: '@whatwedoCrud/dashboard.html.twig'
+        template: '@araiseCrud/dashboard.html.twig'
 
-whatwedo_crud_search:
-    path: /whatwedo_crud_search
-    controller: whatwedo\CrudBundle\Controller\SearchController::searchAction
+araise_crud_search:
+    path: /araise_crud_search
+    controller: araise\CrudBundle\Controller\SearchController::searchAction

@@ -8,7 +8,7 @@
         {# root element attributes #}
         {% set attributes = attributes|merge({
             class: (attributes.class|default(''))|trim,
-            'data-controller': 'whatwedo--crud-bundle--navigation',
+            'data-controller': 'araise--crud-bundle--navigation',
         }) %}
         {% set htmlElement = 'nav' %}
     {% else %}
@@ -20,7 +20,7 @@
 
         {% set attributes = attributes|merge({
             class: (attributes.class|default('') ~ classes)|trim,
-            'data-whatwedo--crud-bundle--navigation-target': 'navigation',
+            'data-araise--crud-bundle--navigation-target': 'navigation',
         }) %}
     {% endif %}
 
@@ -37,7 +37,7 @@
 
             <h3
                 class="{{ classes }}"
-                {{ stimulus_action('whatwedo/crud-bundle/navigation', 'toggle', 'click') }}
+                {{ stimulus_action('araise/crud-bundle/navigation', 'toggle', 'click') }}
             >
                 {{ bootstrap_icon('gear-fill', { 'class': 'text-neutral-600 mr-3 h-4 w-4' }) }}
 
@@ -51,7 +51,7 @@
                     }) %}
                 {% endif %}
                 <svg
-                    {{ stimulus_target('whatwedo/crud-bundle/navigation', 'arrow') }}
+                    {{ stimulus_target('araise/crud-bundle/navigation', 'arrow') }}
                     class="flex-shrink-0 h-3 w-3 text-neutral-600 {{ classes }}"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 8.836 14.036"
@@ -69,7 +69,7 @@
         {% if not item.parent %}
             <div
                 class="{{ classes }}"
-                {{ stimulus_target('whatwedo/crud-bundle/navigation', 'navigation') }}
+                {{ stimulus_target('araise/crud-bundle/navigation', 'navigation') }}
             >
         {% endif %}
 
@@ -104,7 +104,7 @@
         {%- if item.hasChildren() %}
             {% set htmlElement = 'button' %}
             {% set attributes = attributes|merge({
-                'data-action': 'whatwedo--crud-bundle--navigation#toggle',
+                'data-action': 'araise--crud-bundle--navigation#toggle',
                 type: 'button',
             }) %}
         {%- else %}
@@ -123,7 +123,7 @@
         {% if item.children|length > 0 %}
             {% set containerAttributes = containerAttributes|merge({
                 class: 'space-y-0.5',
-                'data-controller': 'whatwedo--crud-bundle--navigation'
+                'data-controller': 'araise--crud-bundle--navigation'
             }) %}
         {% endif %}
 
@@ -159,7 +159,7 @@
                             }) %}
                         {% endif %}
                         <svg
-                            {{ stimulus_target('whatwedo/crud-bundle/navigation', 'arrow') }}
+                            {{ stimulus_target('araise/crud-bundle/navigation', 'arrow') }}
                             class="flex-shrink-0 h-3 w-3 text-neutral-600 {{ classes }}"
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 8.836 14.036"

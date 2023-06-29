@@ -30,12 +30,12 @@ declare(strict_types=1);
 
 namespace araise\CrudBundle\EventSubscriber;
 
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\Security\Core\Security;
 use araise\CrudBundle\Definition\FilterDefinition;
 use araise\CrudBundle\Event\CrudEvent;
 use araise\TableBundle\Entity\Filter;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\Security\Core\Security;
 
 class FilterSubscriber implements EventSubscriberInterface
 {

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace araise\CrudBundle\EventListener;
 
-use Symfony\Component\HttpKernel\Event\ControllerEvent;
 use araise\CrudBundle\Controller\CrudDefinitionControllerInterface;
 use araise\CrudBundle\Definition\DefinitionInterface;
 use araise\CrudBundle\Manager\DefinitionManager;
+use Symfony\Component\HttpKernel\Event\ControllerEvent;
 
 class CrudDefinitionListener
 {

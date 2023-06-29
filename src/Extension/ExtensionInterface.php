@@ -31,7 +31,7 @@ namespace araise\CrudBundle\Extension;
 
 use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 
-#[Autoconfigure(tags: ['whatwedo_crud.extension'])]
+#[Autoconfigure(tags: ['araise_crud.extension'])]
 interface ExtensionInterface
 {
     /**

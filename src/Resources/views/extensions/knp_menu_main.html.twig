@@ -19,7 +19,7 @@
 
         {% set attributes = attributes|merge({
             class: (attributes.class|default('') ~ classes)|trim,
-            'data-whatwedo--crud-bundle--navigation-target': 'navigation',
+            'data-araise--crud-bundle--navigation-target': 'navigation',
         }) %}
     {% endif %}
 
@@ -55,7 +55,7 @@
         {%- if item.hasChildren() %}
             {% set htmlElement = 'button' %}
             {% set attributes = attributes|merge({
-                'data-action': 'whatwedo--crud-bundle--navigation#toggle',
+                'data-action': 'araise--crud-bundle--navigation#toggle',
                 type: 'button',
             }) %}
         {%- else %}
@@ -74,7 +74,7 @@
         {% if item.children|length > 0 %}
             {% set containerAttributes = containerAttributes|merge({
                 class: 'space-y-0.5',
-                'data-controller': 'whatwedo--crud-bundle--navigation'
+                'data-controller': 'araise--crud-bundle--navigation'
             }) %}
         {% endif %}
 
@@ -110,7 +110,7 @@
                             }) %}
                         {% endif %}
                         <svg
-                            {{ stimulus_target('whatwedo/crud-bundle/navigation', 'arrow') }}
+                            {{ stimulus_target('araise/crud-bundle/navigation', 'arrow') }}
                             class="flex-shrink-0 h-3 w-3 text-neutral-600 {{ classes }}"
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 8.836 14.036"

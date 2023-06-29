@@ -1,4 +1,4 @@
-{# @var view \whatwedo\CrudBundle\View\DefinitionView #}
+{# @var view \araise\CrudBundle\View\DefinitionView #}
 {{ form_start(form, { attr: { id: 'crud_main_form', class: 'whatwedo_crud-form whatwedo_crud-form--create flex-grow mt-5' } }) }}
 <h2 class="whatwedo-utility-heading-3 mb-5">{{ title|default('')|trans }}</h2>
 
@@ -9,25 +9,25 @@
     {% endif %}
 
 <div
-    {% if view.definition.hasCapability(constant('whatwedo\\CrudBundle\\Enums\\Page::AJAXFORM')) %}
-        {{ stimulus_controller('whatwedo/crud-bundle/ajax-form') }}
-        data-ajax-url="{{ path(view.definition.getRoute(constant('whatwedo\\CrudBundle\\Enums\\Page::AJAXFORM')), {
+    {% if view.definition.hasCapability(constant('araise\\CrudBundle\\Enums\\Page::AJAXFORM')) %}
+        {{ stimulus_controller('araise/crud-bundle/ajax-form') }}
+        data-ajax-url="{{ path(view.definition.getRoute(constant('araise\\CrudBundle\\Enums\\Page::AJAXFORM')), {
             'case' : 'createmodal',
             'mode' : 'modal'
         }) }}"
     {% endif %}x
     class="whatwedo_crud-blocks whatwedo_crud-blocks--create h-full flex flex-wrap items-baseline"
 >
-    {% for block in view.blocks(constant('whatwedo\\CrudBundle\\Enums\\Page::CREATE')) %}
-        {{ wwd_crud_render_block(block, view, constant('whatwedo\\CrudBundle\\Enums\\Page::CREATE'), form) }}
+    {% for block in view.blocks(constant('araise\\CrudBundle\\Enums\\Page::CREATE')) %}
+        {{ wwd_crud_render_block(block, view, constant('araise\\CrudBundle\\Enums\\Page::CREATE'), form) }}
     {% endfor %}
 </div>
 
 <button type="submit"
         class="whatwedo-crud-button--action mt-5"
-    {{ stimulus_action('whatwedo/core-bundle/modal-form', 'submitForm') }}
+    {{ stimulus_action('araise/core-bundle/modal-form', 'submitForm') }}
 >
-    {{ 'whatwedo_crud.add' | trans }}
+    {{ 'araise_crud.add' | trans }}
 </button>
 
 {{ form_end(form) }}

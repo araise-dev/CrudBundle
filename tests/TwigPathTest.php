@@ -29,10 +29,10 @@ declare(strict_types=1);
 
 namespace araise\CrudBundle\Tests;
 
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use Twig\Environment;
 use araise\CrudBundle\Enums\Page;
 use araise\CrudBundle\Tests\App\Factory\PersonFactory;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Twig\Environment;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
@@ -47,35 +47,35 @@ class TwigPathTest extends KernelTestCase
         $twigEnvironment = self::getContainer()->get(Environment::class);
 
         $person = PersonFactory::createOne()->object();
-        $this->assertStringContainsString('#/whatwedo_crud_tests_app_person/1#', $twigEnvironment->render(
+        $this->assertStringContainsString('#/araise_crud_tests_app_person/1#', $twigEnvironment->render(
             'twig/wwd_crud_entity_path.html.twig',
             [
                 'person' => $person,
                 'page' => Page::SHOW,
             ]
         ));
-        $this->assertStringContainsString('#/whatwedo_crud_tests_app_person/1/edit#', $twigEnvironment->render(
+        $this->assertStringContainsString('#/araise_crud_tests_app_person/1/edit#', $twigEnvironment->render(
             'twig/wwd_crud_entity_path.html.twig',
             [
                 'person' => $person,
                 'page' => Page::EDIT,
             ]
         ));
-        $this->assertStringContainsString('#/whatwedo_crud_tests_app_person/1/delete#', $twigEnvironment->render(
+        $this->assertStringContainsString('#/araise_crud_tests_app_person/1/delete#', $twigEnvironment->render(
             'twig/wwd_crud_entity_path.html.twig',
             [
                 'person' => $person,
                 'page' => Page::DELETE,
             ]
         ));
-        $this->assertStringContainsString('#/whatwedo_crud_tests_app_person/create#', $twigEnvironment->render(
+        $this->assertStringContainsString('#/araise_crud_tests_app_person/create#', $twigEnvironment->render(
             'twig/wwd_crud_entity_path.html.twig',
             [
                 'person' => $person,
                 'page' => Page::CREATE,
             ]
         ));
-        $this->assertStringContainsString('#/whatwedo_crud_tests_app_person/#', $twigEnvironment->render(
+        $this->assertStringContainsString('#/araise_crud_tests_app_person/#', $twigEnvironment->render(
             'twig/wwd_crud_entity_path.html.twig',
             [
                 'person' => $person,

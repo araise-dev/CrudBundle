@@ -41,12 +41,12 @@ use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Process\Process;
 
 #[AsCommand(
-    name: 'whatwedo:crud:setup',
+    name: 'araise:crud:setup',
     description: 'Setup the CRUD bundle',
 )]
 class SetupCommand extends Command
 {
-    protected const SETUP_SKELETON = '/vendor/whatwedo/crud-bundle/src/Resources/skeleton/setup';
+    protected const SETUP_SKELETON = '/vendor/araise/crud-bundle/src/Resources/skeleton/setup';
 
     protected InputInterface $input;
 
@@ -105,16 +105,16 @@ class SetupCommand extends Command
 
     protected function setupRouting(): void
     {
-        if ($this->filesystem->exists($this->projectRoot . '/config/routes/whatwedo_crud.yaml')
-            && ! $this->confirm('Do you want to override the existing routing? (whatwedo_crud.yaml) [NO/yes] ')) {
+        if ($this->filesystem->exists($this->projectRoot . '/config/routes/araise_crud.yaml')
+            && ! $this->confirm('Do you want to override the existing routing? (araise_crud.yaml) [NO/yes] ')) {
             return;
         }
 
         $prefix = $this->ask('What is the prefix for the CRUD routes? [default: ""] ');
-        $content = file_get_contents($this->projectRoot . self::SETUP_SKELETON . '/whatwedo_crud.yaml');
+        $content = file_get_contents($this->projectRoot . self::SETUP_SKELETON . '/araise_crud.yaml');
         $content = str_replace('%%prefix%%', $prefix, $content);
-        file_put_contents($this->projectRoot . '/config/routes/whatwedo_crud.yaml', $content);
-        $this->output->writeln('created "config/routes/whatwedo_crud.yaml"');
+        file_put_contents($this->projectRoot . '/config/routes/araise_crud.yaml', $content);
+        $this->output->writeln('created "config/routes/araise_crud.yaml"');
         $this->newLine();
     }
 

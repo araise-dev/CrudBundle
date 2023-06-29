@@ -25,9 +25,9 @@
         "symfony/process":          "^5.4|^6.0",
         "symfony/ux-turbo": "^2.0",
         "symfony/webpack-encore-bundle": "^1.14",
-        "whatwedo/core-bundle":     "1.0",
-        "whatwedo/table-bundle":    "1.0",
-        "whatwedo/search-bundle":    "3.0",
+        "araise/core-bundle":     "1.0",
+        "araise/table-bundle":    "1.0",
+        "araise/search-bundle":    "3.0",
         "knplabs/knp-menu-bundle":  "~v3.2.0",
         "doctrine/inflector": "^2.0",
         "symfony/maker-bundle": "^1.0.0",
@@ -56,9 +56,9 @@
         "phpstan/phpstan": "^1.5",
         "mhujer/breadcrumbs-bundle": "^1.5",
         "whatwedo/twig-bootstrap-icons": "^1.0",
-        "whatwedo/core-bundle": "dev-1.0-dev as 1.0",
-        "whatwedo/table-bundle": "dev-1.0-dev as 1.0",
-        "whatwedo/search-bundle": "dev-3.0-dev as 3.0"
+        "araise/core-bundle": "dev-main as 1.0",
+        "araise/table-bundle": "dev-main as 1.0",
+        "araise/search-bundle": "dev-main as 3.0"
     },
 
     "suggest": {

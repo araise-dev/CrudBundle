@@ -4,4 +4,4 @@ maker:
     # tell MakerBundle that all of your classes live in an
     # Acme namespace, instead of the default App
     # (e.g. Acme\Entity\Article, Acme\Command\MyCommand, etc)
-    root_namespace: 'whatwedo\CrudBundle\Tests\App'
+    root_namespace: 'araise\CrudBundle\Tests\App'

@@ -14,7 +14,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
  *
  * @see http://symfony.com/doc/current/cookbook/bundles/extension.html
  */
-class whatwedoCrudExtension extends Extension
+class araiseCrudExtension extends Extension
 {
     /**
      * @param string[] $configs
@@ -27,16 +27,16 @@ class whatwedoCrudExtension extends Extension
         // Breadcrumbs
         if (isset($config['breadcrumbs'])
             && isset($config['breadcrumbs']['home_text'])) {
-            $container->setParameter('whatwedo_crud.config.breadcrumbs.home.text', $config['breadcrumbs']['home_text']);
+            $container->setParameter('araise_crud.config.breadcrumbs.home.text', $config['breadcrumbs']['home_text']);
         } else {
-            $container->setParameter('whatwedo_crud.config.breadcrumbs.home.text', 'Dashboard');
+            $container->setParameter('araise_crud.config.breadcrumbs.home.text', 'Dashboard');
         }
 
         if (isset($config['breadcrumbs'])
             && isset($config['breadcrumbs']['home_route'])) {
-            $container->setParameter('whatwedo_crud.config.breadcrumbs.home.route', $config['breadcrumbs']['home_route']);
+            $container->setParameter('araise_crud.config.breadcrumbs.home.route', $config['breadcrumbs']['home_route']);
         } else {
-            $container->setParameter('whatwedo_crud.config.breadcrumbs.home.route', 'whatwedo_crud_dashboard');
+            $container->setParameter('araise_crud.config.breadcrumbs.home.route', 'araise_crud_dashboard');
         }
 
         // templates
@@ -48,9 +48,9 @@ class whatwedoCrudExtension extends Extension
         if (isset($config['templates'])) {
             $templates = $config['templates'];
         }
-        $container->setParameter('whatwedo_crud.config.templates', $templates);
-        $container->setParameter('whatwedo_crud.config.template_directory', $config['templateDirectory']);
-        $container->setParameter('whatwedo_crud.config.layout', $config['layout']);
+        $container->setParameter('araise_crud.config.templates', $templates);
+        $container->setParameter('araise_crud.config.template_directory', $config['templateDirectory']);
+        $container->setParameter('araise_crud.config.layout', $config['layout']);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yml');

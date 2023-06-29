@@ -3,8 +3,8 @@
 ## Layout Based Rendering
 
 ```yaml
-whatwedo_crud:
-  templateDirectory: '@whatwedoCrud/Templates'
+araise_crud:
+  templateDirectory: '@araiseCrud/Templates'
 ```
 
 The template path can also be changed individually for each definition class. 
@@ -23,18 +23,18 @@ class PostDefinition extends AbstractDefinition
 
 ## Layout Files
 
-The layout file defines how the crud will be rendered. The default layout file is `@whatwedoCrud/layout/adminlte_layout.html.twig` 
-and can be changed in the config `config/packages/whatwedo_crud.yaml`
+The layout file defines how the crud will be rendered. The default layout file is `@araiseCrud/layout/adminlte_layout.html.twig` 
+and can be changed in the config `config/packages/araise_crud.yaml`
 
 ```yaml
-whatwedo_crud:
+araise_crud:
   layout: 'crud/layout/my_layout.html.twig'
 ```
 
 Like in Symfony Forms, the layout file can be extended or overwritten. New blocks can be added or overwritten. 
 
 ```twig
-{% extends '@whatwedoCrud/layout/adminlte_layout.html.twig' %}
+{% extends '@araiseCrud/layout/adminlte_layout.html.twig' %}
 
 {% block crud_show %}
     my fancy show block
@@ -89,12 +89,12 @@ class PostDefinition extends AbstractDefinition
 
 By default the `block_prefix` is the snake case of the class name. 
 
-| Class                                         | Default Block - Prefix |
-|---------------                                |-----------             |
-|`\whatwedo\CrudBundle\Content\Content`         |`content`               |
-|`\whatwedo\CrudBundle\Content\RelationContent` |`relation_content`      |
-|`\whatwedo\CrudBundle\Content\TwigContent`     |`twig_content`          |
-|`\whatwedo\CrudBundle\Content\Content`         |`content`               | 
+| Class                                        | Default Block - Prefix |
+|----------------------------------------------|------------------------|
+| `\araise\CrudBundle\Content\Content`         | `content`              |
+| `\araise\CrudBundle\Content\RelationContent` | `relation_content`     |
+| `\araise\CrudBundle\Content\TwigContent`     | `twig_content`         |
+| `\araise\CrudBundle\Content\Content`         | `content`              | 
 
 
 

@@ -29,6 +29,8 @@ declare(strict_types=1);
 
 namespace araise\CrudBundle\Form\Type;
 
+use araise\CrudBundle\Enums\Page;
+use araise\CrudBundle\Form\ChoiceLoader\AjaxDoctrineChoiceLoader;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -43,8 +45,6 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Routing\RouterInterface;
-use araise\CrudBundle\Enums\Page;
-use araise\CrudBundle\Form\ChoiceLoader\AjaxDoctrineChoiceLoader;
 
 class EntityAjaxType extends AbstractType
 {
@@ -65,7 +65,7 @@ class EntityAjaxType extends AbstractType
     public function finishView(FormView $view, FormInterface $form, array $options): void
     {
         if ($options['definition'] && $options['definition']::hasCapability(Page::JSONSEARCH)) {
-            $view->vars['attr']['data-whatwedo--core-bundle--select-url-value'] = $this->router->generate(
+            $view->vars['attr']['data-araise--core-bundle--select-url-value'] = $this->router->generate(
                 $options['definition']::getRoute(Page::JSONSEARCH)
             );
         }

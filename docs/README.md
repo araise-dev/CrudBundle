@@ -4,26 +4,12 @@
 ```sh
 symfony new my_project_directory
 ```
-
-As soon as we release the `1.0` version tag you will be able to install the bundle with the following command:
-
 ```sh
-composer require whatwedo/crud-bundle
-```
-
-As of now you still need to add the following to your composer.json and then run `composer update`: 
-
-```json 
-"require": {
-    "whatwedo/core-bundle": "dev-1.0-dev as v1.0.0",
-    "whatwedo/crud-bundle": "dev-1.0-dev as v1.0.0",
-    "whatwedo/search-bundle": "dev-3.0-dev as v3.0.0",
-    "whatwedo/table-bundle": "dev-1.0-dev as v1.0.0",
-}
+composer require araise/crud-bundle
 ```
 
 The crud bundle is currently only translated in German. Be sure you have set the locale to `de` in your `config/packages/translation.yaml`
-or create your own translations. If you do, we recommend opening a Pull Request for us on [GitHub](https://github.com/whatwedo/CrudBundle/pulls) so we can add them to the bundle.
+or create your own translations. If you do, we recommend opening a Pull Request for us on [GitHub](https://github.com/araise-dev/CrudBundle/pulls) so we can add them to the bundle.
 ```yaml
 framework:
     default_locale: de
@@ -34,7 +20,7 @@ the crud bundle in an existing project you can skip this step. Read the full gui
 project.
 
 ```sh
-bin/console whatwedo:crud:setup
+bin/console araise:crud:setup
 ```
 
 To get the forms smoothly running you should add our form theme to your twig configuration.
@@ -43,7 +29,7 @@ Add a new `form_theme` to your `config/packages/twig.yaml` like following:
 ```yaml
 twig:
     form_themes:
-        - '@whatwedoCrud/form_layout.html.twig'
+        - '@araiseCrud/form_layout.html.twig'
 ```
 
 The crud bundle is currently only translated in German. Be sure to have set the locale to `de` in your `config/packages/framework.yaml`
@@ -62,7 +48,7 @@ bin/console make:definition
 ``` 
 
 Now you that have set up the CRUD-Bundle, please follow these instructions to finish the installation of the needed dependencies:
-- [SearchBundle](https://whatwedo.github.io/SearchBundle)
+- [SearchBundle](https://araise-dev.github.io/SearchBundle)
 
 ---
 
@@ -84,27 +70,15 @@ More info about that can be found in the [Templating](templating.md) section of 
 ### Composer
 
 ```
-composer require whatwedo/crud-bundle
+composer require araise/crud-bundle
 ```
-**remove after release**  
-
-The v1 version is still in development,
-so you need to add these lines manually to the `composer.json` `require` to get the version constraint right:
-
-```json
-    "whatwedo/core-bundle": "dev-1.0-dev as v1.0.0",
-    "whatwedo/crud-bundle": "dev-1.0-dev as v1.0.0",
-    "whatwedo/search-bundle": "dev-3.0-dev as v3.0.0",
-    "whatwedo/table-bundle": "dev-1.0-dev as v1.0.0",
-```
-Run `composer update` in your command line.
 
 ### Routing
 Add our routes ```config/routes/wwd_crud.yaml```
 
 ```yaml
-whatwedo_crud_bundle:
-    resource: "@whatwedoCrudBundle/Resources/config/routing.yml"
+araise_crud_bundle:
+    resource: "@araiseCrudBundle/Resources/config/routing.yml"
     prefix: /
 ```
 
@@ -119,7 +93,7 @@ Add a new `form_theme` to your `twig.yaml` like this:
 ```yaml
 twig:
     form_themes:
-        - '@whatwedoCrud/form_layout.html.twig'
+        - '@araiseCrud/form_layout.html.twig'
 ```
 
 To give you full access over the build and look-and-feel of the application, install these dependencies in your project locally.  
@@ -144,7 +118,7 @@ module.exports = {
     content: [
         './assets/**/*.js',
         './templates/**/*.{html,html.twig}',
-        './vendor/whatwedo/**/*.{html,html.twig,js}',
+        './vendor/araise/**/*.{html,html.twig,js}',
         './var/cache/twig/**/*.php',
         './src/Definition/*.php',
     ],
@@ -210,11 +184,11 @@ Import the following styles into the `app.scss`:
 @tailwind components;
 @tailwind utilities;
 
-@import "~@whatwedo/core-bundle/styles/_tailwind.scss";
-@import "~@whatwedo/table-bundle/styles/_tailwind.scss";
+@import "~@araise/core-bundle/styles/_tailwind.scss";
+@import "~@araise/table-bundle/styles/_tailwind.scss";
 ```
 
-It is **important** that you include the @whatwedo styles **after** the tailwind styles.
+It is **important** that you include the @araise styles **after** the tailwind styles.
 
 Run `yarn dev`, it should end with the message `webpack compiled successfully`. 
 
@@ -224,18 +198,18 @@ Run `yarn dev`, it should end with the message `webpack compiled successfully`.
 Our default views extend your `templates/base.html.twig` template. To get the defaults up and running, create the file as follows:
 
 ```twig
-{% extends '@whatwedoCrud/base.html.twig' %}
+{% extends '@araiseCrud/base.html.twig' %}
 ```
 
 If you create your own template without extending ours, be sure to use the same block names and stimulus controllers.
 
 ### Dependencies
 Now you that have set up the CRUD-Bundle, please follow these instructions to finish the installation of the needed dependencies:
-- [SearchBundle](https://whatwedo.github.io/SearchBundle)
+- [SearchBundle](https://araise-dev.github.io/SearchBundle)
 
 Done! 🎉
 
-The whatwedoCrudBundle is fully installed. You should see your dashboard at: http://localhost:8000/dashboard. Now start using it!
+The araiseCrudBundle is fully installed. You should see your dashboard at: http://localhost:8000/dashboard. Now start using it!
 
 ## Use Bundle
 
@@ -256,7 +230,7 @@ In our example we want to create a user management system.
 Use your existing `User.php` entity or create a new one with `php bin/console make:entity`.
 
 Every CRUD managed entity should have a `__toString` method. Don't forget to create a migration or update your database according to the new entities. 
-The crud bundle itself will create two tables for you: `whatwedo_search_index` and `whatwedo_table_filter`. 
+The crud bundle itself will create two tables for you: `araise_search_index` and `araise_table_filter`. 
 
 ### Create a definition
 

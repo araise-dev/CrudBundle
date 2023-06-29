@@ -4,21 +4,6 @@ declare(strict_types=1);
 
 namespace araise\CrudBundle\Content;
 
-use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\Persistence\ManagerRegistry;
-use Doctrine\Persistence\Mapping\ClassMetadataFactory;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
-use Symfony\Component\Form\FormTypeInterface;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\OptionsResolver\Options;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\PropertyAccess\PropertyAccess;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use araise\CoreBundle\Action\Action;
 use araise\CoreBundle\Action\PostAction;
 use araise\CrudBundle\Definition\DefinitionInterface;
@@ -34,6 +19,21 @@ use araise\TableBundle\Extension\FilterExtension;
 use araise\TableBundle\Extension\SearchExtension;
 use araise\TableBundle\Factory\TableFactory;
 use araise\TableBundle\Table\Table;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Persistence\Mapping\ClassMetadataFactory;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\FormTypeInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\OptionsResolver\Options;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\PropertyAccess\PropertyAccess;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use function array_keys;
 use function array_reduce;
 use function array_reverse;
@@ -432,7 +432,7 @@ class RelationContent extends AbstractContent
         $currentURI = $this->getRequest()->getRequestUri();
         if ($this->hasCapability(Page::EDIT)) {
             $actionColumnItems[Page::EDIT->toRoute()] = [
-                'label' => 'whatwedo_crud.edit',
+                'label' => 'araise_crud.edit',
                 'icon' => 'pencil',
                 'route' => $this->getRoute(Page::EDIT),
                 'route_parameters' => fn ($row) => [
@@ -446,7 +446,7 @@ class RelationContent extends AbstractContent
             $showRoute = $this->getRoute(Page::SHOW);
 
             $actionColumnItems[Page::SHOW->toRoute()] = [
-                'label' => 'whatwedo_crud.view',
+                'label' => 'araise_crud.view',
                 'icon' => 'eye',
                 'route' => $showRoute,
                 'route_parameters' => fn ($row) => [
@@ -457,7 +457,7 @@ class RelationContent extends AbstractContent
         }
         if ($this->hasCapability(Page::DELETE)) {
             $actionColumnItems[Page::DELETE->toRoute()] = [
-                'label' => 'whatwedo_crud.delete',
+                'label' => 'araise_crud.delete',
                 'icon' => 'trash',
                 'route' => $this->getRoute(Page::DELETE),
                 'route_parameters' => fn ($row) => [

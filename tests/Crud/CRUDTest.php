@@ -30,11 +30,11 @@ declare(strict_types=1);
 
 namespace araise\CrudBundle\Tests\Crud;
 
-use Doctrine\ORM\EntityManagerInterface;
 use araise\CrudBundle\Enums\Page;
 use araise\CrudBundle\Test\Data\CreateData;
 use araise\CrudBundle\Tests\App\Definition\CompanyDefinition;
 use araise\CrudBundle\Tests\App\Entity\Company;
+use Doctrine\ORM\EntityManagerInterface;
 
 class CRUDTest extends AbstractCrudTest
 {
@@ -72,6 +72,6 @@ class CRUDTest extends AbstractCrudTest
         $testCompany->setTaxIdentificationNumber('TEST tax');
         $em = self::getContainer()->get(EntityManagerInterface::class);
         $em->persist($testCompany);
-        $em->flush($testCompany);
+        $em->flush();
     }
 }

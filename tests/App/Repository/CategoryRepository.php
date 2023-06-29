@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace araise\CrudBundle\Tests\App\Repository;
 
+use araise\CrudBundle\Tests\App\Entity\Category;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use araise\CrudBundle\Tests\App\Entity\Category;
 
 /**
  * @method Category|null find($id, $lockMode = null, $lockVersion = null)

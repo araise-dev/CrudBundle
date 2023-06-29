@@ -29,9 +29,9 @@ declare(strict_types=1);
 
 namespace araise\CrudBundle\Tests;
 
+use araise\CrudBundle\Tests\App\Factory\PersonFactory;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Twig\Environment;
-use araise\CrudBundle\Tests\App\Factory\PersonFactory;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
@@ -46,7 +46,7 @@ class TwigAliasTest extends KernelTestCase
         $twigEnvironment = self::getContainer()->get(Environment::class);
 
         $person = PersonFactory::createOne()->object();
-        $this->assertStringContainsString('#whatwedo_crud_tests_app_entity_person#', $twigEnvironment->render(
+        $this->assertStringContainsString('#araise_crud_tests_app_entity_person#', $twigEnvironment->render(
             'twig/wwd_crud_entity_alias.html.twig',
             [
                 'person' => $person,

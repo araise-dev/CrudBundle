@@ -19,8 +19,8 @@ declare(strict_types=1);
 namespace App\Menu;
 
 use Knp\Menu\ItemInterface;
-use whatwedo\CrudBundle\Builder\DefinitionMenuBuilder;
-use whatwedo\CrudBundle\Definition\FilterDefinition;
+use araise\CrudBundle\Builder\DefinitionMenuBuilder;
+use araise\CrudBundle\Definition\FilterDefinition;
 
 class MenuBuilder extends DefinitionMenuBuilder
 {
@@ -28,7 +28,7 @@ class MenuBuilder extends DefinitionMenuBuilder
     {
         $menu = $this->factory->createItem('');
         $menu->addChild('Dashboard', [
-            self::OPT_ROUTE => 'whatwedo_crud_dashboard',
+            self::OPT_ROUTE => 'araise_crud_dashboard',
             self::OPT_ATTR => [
                 self::OPT_ATTR_ICON => 'house-door',
             ],
@@ -57,7 +57,7 @@ class MenuBuilder extends DefinitionMenuBuilder
 
 ```yml
 parameters:
-    whatwedo_crud.menu_builder.class: App\Menu\MenuBuilder
+    araise_crud.menu_builder.class: App\Menu\MenuBuilder
 ```
 
 ## Usage
@@ -69,7 +69,7 @@ You may want to create a sub navigation item at menu item `Dashboard`. You can d
 ```php
 $menu = $this->factory->createItem('');
 $dashboardMenu = $menu->addChild('Dashboard', [
-    self::OPT_ROUTE => 'whatwedo_crud_dashboard',
+    self::OPT_ROUTE => 'araise_crud_dashboard',
     self::OPT_ATTR => [
         self::OPT_ATTR_ICON => 'house-door',
     ],
@@ -120,5 +120,5 @@ public function createSubMenu(): ItemInterface
 ```
 
 ## Options
-[php-doc-parser(whatwedo/CrudBundle:src/Builder/DefinitionMenuBuilder.php:public const OPT_)]
+[php-doc-parser(araise/CrudBundle:src/Builder/DefinitionMenuBuilder.php:public const OPT_)]
 

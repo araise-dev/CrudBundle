@@ -29,7 +29,6 @@ declare(strict_types=1);
 
 namespace araise\CrudBundle\Normalizer;
 
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer as BaseObjectNormalizer;
 use araise\CrudBundle\Definition\DefinitionInterface;
 
 class ObjectNormalizer extends BaseObjectNormalizer

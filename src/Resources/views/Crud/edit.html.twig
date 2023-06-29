@@ -1,8 +1,8 @@
-{# @var view \whatwedo\CrudBundle\View\DefinitionView #}
+{# @var view \araise\CrudBundle\View\DefinitionView #}
 {% extends 'base.html.twig' %}
 
 {% block main %}
-    {% include '@whatwedoCrud/includes/main/_site_title.html.twig' with {'title':title, 'view': view} only %}
+    {% include '@araiseCrud/includes/main/_site_title.html.twig' with {'title':title, 'view': view} only %}
     {{ form_start(form, { attr: { id: 'crud_main_form', class: 'whatwedo_crud-form whatwedo_crud-form--edit flex-grow' } }) }}
 
     {% if form.vars.errors|length > 0 %}
@@ -12,17 +12,17 @@
     {% endif %}
 
     <div
-        {% if view.definition.hasCapability(constant('whatwedo\\CrudBundle\\Enums\\Page::AJAXFORM')) %}
-            {{ stimulus_controller('whatwedo/crud-bundle/ajax-form') }}
-            data-ajax-url="{{ path(view.definition.getRoute(constant('whatwedo\\CrudBundle\\Enums\\Page::AJAXFORM')), {
+        {% if view.definition.hasCapability(constant('araise\\CrudBundle\\Enums\\Page::AJAXFORM')) %}
+            {{ stimulus_controller('araise/crud-bundle/ajax-form') }}
+            data-ajax-url="{{ path(view.definition.getRoute(constant('araise\\CrudBundle\\Enums\\Page::AJAXFORM')), {
                 'case' : 'edit'
             }) }}"
         {% endif %}
         class="whatwedo_crud-blocks whatwedo_crud-blocks--edit flex flex-wrap gap-4 items-baseline"
     >
-        {% for block in view.blocks(constant('whatwedo\\CrudBundle\\Enums\\Page::EDIT')) %}
+        {% for block in view.blocks(constant('araise\\CrudBundle\\Enums\\Page::EDIT')) %}
             {% block block_definition_single_block %}
-                {{ wwd_crud_render_block(block, view, constant('whatwedo\\CrudBundle\\Enums\\Page::EDIT'), form) }}
+                {{ wwd_crud_render_block(block, view, constant('araise\\CrudBundle\\Enums\\Page::EDIT'), form) }}
             {% endblock %}
         {% endfor %}
 

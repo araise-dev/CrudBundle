@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace araise\CrudBundle\Tests\App\Repository;
 
+use araise\CrudBundle\Tests\App\Entity\Contact;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use araise\CrudBundle\Tests\App\Entity\Contact;
 
 /**
  * @method Contact|null   find($id, $lockMode = null, $lockVersion = null)

@@ -1,14 +1,13 @@
-[![Latest Stable Version](https://poser.pugx.org/whatwedo/crud-bundle/v/stable)](https://packagist.org/packages/whatwedo/crud-bundle)
-[![SymfonyInsight](https://insight.symfony.com/projects/951b0fe4-ec4c-4cbd-b541-ff18aa624886/mini.svg)](https://insight.symfony.com/projects/951b0fe4-ec4c-4cbd-b541-ff18aa624886)
+[![Latest Stable Version](https://poser.pugx.org/araise/crud-bundle/v/stable)](https://packagist.org/packages/araise/crud-bundle)
 
-# whatwedoCrudBundle
+# araiseCrudBundle
 
 This bundle is part of the [araise.dev](https://araise.dev) framework.
 
 
 ## Documentation
 
-[whatwedo.github.io/CrudBundle](https://whatwedo.github.io/CrudBundle/#/)
+[araise-dev.github.io/CrudBundle](https://araise-dev.github.io/CrudBundle/#/)
 
 ## Screenshots
 <img src="https://uploads.whatwedo.io/github/whatwedo/CrudBundle/crud-calendar.png" width="45%"></img> <img src="https://uploads.whatwedo.io/github/whatwedo/CrudBundle/crud-dashboard.png" width="45%"></img> <img src="https://uploads.whatwedo.io/github/whatwedo/CrudBundle/crud-popup-create.png" width="45%"></img> <img src="https://uploads.whatwedo.io/github/whatwedo/CrudBundle/crud-table-subtable.png" width="45%"></img>

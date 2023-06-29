@@ -29,11 +29,11 @@ declare(strict_types=1);
 
 namespace araise\CrudBundle\Controller;
 
+use araise\CrudBundle\Manager\DefinitionManager;
+use araise\TableBundle\Event\ResultRequestEvent;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
-use araise\CrudBundle\Manager\DefinitionManager;
-use araise\TableBundle\Event\ResultRequestEvent;
 
 class RelationController extends AbstractController
 {

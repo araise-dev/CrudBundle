@@ -4,10 +4,6 @@ declare(strict_types=1);
 
 namespace araise\CrudBundle\Twig;
 
-use Symfony\Component\Form\FormView;
-use Twig\Environment;
-use Twig\Extension\AbstractExtension;
-use Twig\TwigFunction;
 use araise\CoreBundle\Action\Action;
 use araise\CoreBundle\Manager\FormatterManager;
 use araise\CrudBundle\Block\Block;
@@ -18,6 +14,10 @@ use araise\CrudBundle\Enums\PageInterface;
 use araise\CrudBundle\Exception\BlockNotFoundException;
 use araise\CrudBundle\Manager\DefinitionManager;
 use araise\CrudBundle\View\DefinitionView;
+use Symfony\Component\Form\FormView;
+use Twig\Environment;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 
 class CrudRenderExtension extends AbstractExtension
 {

@@ -29,8 +29,8 @@ declare(strict_types=1);
 
 namespace araise\CrudBundle\Tests\Crud;
 
-use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use araise\CrudBundle\Test\AbstractCrudTest as BaseAbstractCrudTest;
+use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 
 abstract class AbstractCrudTest extends BaseAbstractCrudTest
 {
