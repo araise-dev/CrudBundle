@@ -2,13 +2,9 @@ name: crudBundle
 
 on:
     push:
-        branches:
-            - 1.0-dev
-            - feature/1.0-dev-tree
+        branches: [ main ]
     pull_request:
-        branches:
-            - 1.0-dev
-            - feature/1.0-dev-tree
+        branches: [ main, develop ]
 
 env:
     DATABASE_URL: mysql://root:root@127.0.0.1:3306/crud_bundle
