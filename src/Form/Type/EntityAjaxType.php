@@ -27,7 +27,7 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace whatwedo\CrudBundle\Form\Type;
+namespace araise\CrudBundle\Form\Type;
 
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManagerInterface;
@@ -43,8 +43,8 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Routing\RouterInterface;
-use whatwedo\CrudBundle\Enums\Page;
-use whatwedo\CrudBundle\Form\ChoiceLoader\AjaxDoctrineChoiceLoader;
+use araise\CrudBundle\Enums\Page;
+use araise\CrudBundle\Form\ChoiceLoader\AjaxDoctrineChoiceLoader;
 
 class EntityAjaxType extends AbstractType
 {

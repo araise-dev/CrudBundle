@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace whatwedo\CrudBundle\Tests;
+namespace araise\CrudBundle\Tests;
 
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
-use whatwedo\CrudBundle\Manager\DefinitionManager;
-use whatwedo\CrudBundle\Tests\App\Manager\UnwantedManager;
+use araise\CrudBundle\Manager\DefinitionManager;
+use araise\CrudBundle\Tests\App\Manager\UnwantedManager;
 
 class WiringTest extends KernelTestCase
 {

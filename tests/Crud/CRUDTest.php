@@ -28,13 +28,13 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace whatwedo\CrudBundle\Tests\Crud;
+namespace araise\CrudBundle\Tests\Crud;
 
 use Doctrine\ORM\EntityManagerInterface;
-use whatwedo\CrudBundle\Enums\Page;
-use whatwedo\CrudBundle\Test\Data\CreateData;
-use whatwedo\CrudBundle\Tests\App\Definition\CompanyDefinition;
-use whatwedo\CrudBundle\Tests\App\Entity\Company;
+use araise\CrudBundle\Enums\Page;
+use araise\CrudBundle\Test\Data\CreateData;
+use araise\CrudBundle\Tests\App\Definition\CompanyDefinition;
+use araise\CrudBundle\Tests\App\Entity\Company;
 
 class CRUDTest extends AbstractCrudTest
 {

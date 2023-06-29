@@ -27,10 +27,10 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace whatwedo\CrudBundle\Tests\Crud;
+namespace araise\CrudBundle\Tests\Crud;
 
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
-use whatwedo\CrudBundle\Test\AbstractCrudTest as BaseAbstractCrudTest;
+use araise\CrudBundle\Test\AbstractCrudTest as BaseAbstractCrudTest;
 
 abstract class AbstractCrudTest extends BaseAbstractCrudTest
 {

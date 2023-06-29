@@ -27,10 +27,10 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace whatwedo\CrudBundle\Normalizer;
+namespace araise\CrudBundle\Normalizer;
 
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer as BaseObjectNormalizer;
-use whatwedo\CrudBundle\Definition\DefinitionInterface;
+use araise\CrudBundle\Definition\DefinitionInterface;
 
 class ObjectNormalizer extends BaseObjectNormalizer
 {

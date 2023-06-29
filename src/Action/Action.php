@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace whatwedo\CrudBundle\Action;
+namespace araise\CrudBundle\Action;
 
-use whatwedo\CoreBundle\Action\Action as BaseAction;
+use araise\CoreBundle\Action\Action as BaseAction;
 
 class Action extends BaseAction
 {

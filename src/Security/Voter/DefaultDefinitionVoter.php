@@ -27,14 +27,14 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace whatwedo\CrudBundle\Security\Voter;
+namespace araise\CrudBundle\Security\Voter;
 
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\TraceableVoter;
 use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
-use whatwedo\CrudBundle\Definition\DefinitionInterface;
-use whatwedo\CrudBundle\Enums\PageInterface;
-use whatwedo\CrudBundle\Manager\DefinitionManager;
+use araise\CrudBundle\Definition\DefinitionInterface;
+use araise\CrudBundle\Enums\PageInterface;
+use araise\CrudBundle\Manager\DefinitionManager;
 
 class DefaultDefinitionVoter implements VoterInterface
 {

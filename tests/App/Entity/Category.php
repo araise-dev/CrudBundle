@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace whatwedo\CrudBundle\Tests\App\Entity;
+namespace araise\CrudBundle\Tests\App\Entity;
 
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;

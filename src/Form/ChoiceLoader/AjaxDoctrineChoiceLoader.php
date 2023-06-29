@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace whatwedo\CrudBundle\Form\ChoiceLoader;
+namespace araise\CrudBundle\Form\ChoiceLoader;
 
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Form\ChoiceList\ArrayChoiceList;

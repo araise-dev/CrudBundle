@@ -27,12 +27,12 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace whatwedo\CrudBundle\Content;
+namespace araise\CrudBundle\Content;
 
 use Symfony\Component\Form\Extension\Core\Type\EnumType;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use whatwedo\CoreBundle\Formatter\EnumFormatter;
+use araise\CoreBundle\Formatter\EnumFormatter;
 
 class EnumContent extends Content
 {

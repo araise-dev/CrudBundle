@@ -27,13 +27,13 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace whatwedo\CrudBundle\Controller;
+namespace araise\CrudBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
-use whatwedo\CrudBundle\Manager\DefinitionManager;
-use whatwedo\TableBundle\Event\ResultRequestEvent;
+use araise\CrudBundle\Manager\DefinitionManager;
+use araise\TableBundle\Event\ResultRequestEvent;
 
 class RelationController extends AbstractController
 {

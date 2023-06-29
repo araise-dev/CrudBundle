@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace whatwedo\CrudBundle\Controller;
+namespace araise\CrudBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use whatwedo\SearchBundle\Manager\SearchManager;
-use whatwedo\SearchBundle\Traits\SearchTrait;
+use araise\SearchBundle\Manager\SearchManager;
+use araise\SearchBundle\Traits\SearchTrait;
 
 class SearchController extends AbstractController
 {

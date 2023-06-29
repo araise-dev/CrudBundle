@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace whatwedo\CrudBundle\Twig;
+namespace araise\CrudBundle\Twig;
 
 use Symfony\Component\Form\FormView;
 use Twig\Environment;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
-use whatwedo\CoreBundle\Action\Action;
-use whatwedo\CoreBundle\Manager\FormatterManager;
-use whatwedo\CrudBundle\Block\Block;
-use whatwedo\CrudBundle\Block\DefinitionBlock;
-use whatwedo\CrudBundle\Content\AbstractContent;
-use whatwedo\CrudBundle\Enums\Page;
-use whatwedo\CrudBundle\Enums\PageInterface;
-use whatwedo\CrudBundle\Exception\BlockNotFoundException;
-use whatwedo\CrudBundle\Manager\DefinitionManager;
-use whatwedo\CrudBundle\View\DefinitionView;
+use araise\CoreBundle\Action\Action;
+use araise\CoreBundle\Manager\FormatterManager;
+use araise\CrudBundle\Block\Block;
+use araise\CrudBundle\Block\DefinitionBlock;
+use araise\CrudBundle\Content\AbstractContent;
+use araise\CrudBundle\Enums\Page;
+use araise\CrudBundle\Enums\PageInterface;
+use araise\CrudBundle\Exception\BlockNotFoundException;
+use araise\CrudBundle\Manager\DefinitionManager;
+use araise\CrudBundle\View\DefinitionView;
 
 class CrudRenderExtension extends AbstractExtension
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace whatwedo\CrudBundle\Tests\App\Enum;
+namespace araise\CrudBundle\Tests\App\Enum;
 
 /*
  * Copyright (c) 2022, whatwedo GmbH

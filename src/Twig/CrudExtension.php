@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace whatwedo\CrudBundle\Twig;
+namespace araise\CrudBundle\Twig;
 
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Security;
@@ -10,9 +10,9 @@ use Twig\Environment;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
-use whatwedo\CrudBundle\Enums\Page;
-use whatwedo\CrudBundle\Enums\PageInterface;
-use whatwedo\CrudBundle\Manager\DefinitionManager;
+use araise\CrudBundle\Enums\Page;
+use araise\CrudBundle\Enums\PageInterface;
+use araise\CrudBundle\Manager\DefinitionManager;
 
 class CrudExtension extends AbstractExtension
 {

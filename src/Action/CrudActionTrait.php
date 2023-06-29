@@ -27,9 +27,9 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace whatwedo\CrudBundle\Action;
+namespace araise\CrudBundle\Action;
 
-use whatwedo\CrudBundle\Enums\Page;
+use araise\CrudBundle\Enums\Page;
 
 trait CrudActionTrait
 {

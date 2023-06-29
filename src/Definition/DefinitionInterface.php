@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace whatwedo\CrudBundle\Definition;
+namespace araise\CrudBundle\Definition;
 
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use whatwedo\CrudBundle\Builder\DefinitionBuilder;
-use whatwedo\CrudBundle\Enums\PageInterface;
-use whatwedo\CrudBundle\Enums\PageModeInterface;
-use whatwedo\CrudBundle\Extension\ExtensionInterface;
-use whatwedo\CrudBundle\View\DefinitionView;
-use whatwedo\TableBundle\Table\Table;
+use araise\CrudBundle\Builder\DefinitionBuilder;
+use araise\CrudBundle\Enums\PageInterface;
+use araise\CrudBundle\Enums\PageModeInterface;
+use araise\CrudBundle\Extension\ExtensionInterface;
+use araise\CrudBundle\View\DefinitionView;
+use araise\TableBundle\Table\Table;
 
 #[Autoconfigure(tags: ['whatwedo_crud.definition'])]
 interface DefinitionInterface

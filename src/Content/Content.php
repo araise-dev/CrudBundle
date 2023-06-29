@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace whatwedo\CrudBundle\Content;
+namespace araise\CrudBundle\Content;
 
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use whatwedo\CoreBundle\Formatter\FormatterInterface;
-use whatwedo\CoreBundle\Manager\FormatterManager;
-use whatwedo\CrudBundle\Definition\DefinitionInterface;
-use whatwedo\CrudBundle\Form\Type\EntityHiddenType;
-use whatwedo\CrudBundle\Formatter\CrudDefaultFormatter;
+use araise\CoreBundle\Formatter\FormatterInterface;
+use araise\CoreBundle\Manager\FormatterManager;
+use araise\CrudBundle\Definition\DefinitionInterface;
+use araise\CrudBundle\Form\Type\EntityHiddenType;
+use araise\CrudBundle\Formatter\CrudDefaultFormatter;
 
 class Content extends AbstractContent
 {
     /**
      * Defines the formatter to be used. Formatters allow you to customize hot the data is being rendered.
-     * Defaults to <code>whatwedo\CrudBundle\Formatter\CrudDefaultFormatter</code>
+     * Defaults to <code>araise\CrudBundle\Formatter\CrudDefaultFormatter</code>
      * Accepts: <code>null|FormatterInterface</code>.
      */
     public const OPT_FORMATTER = 'formatter';

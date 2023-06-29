@@ -27,7 +27,7 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace whatwedo\CrudBundle\Maker;
+namespace araise\CrudBundle\Maker;
 
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
 use Doctrine\Inflector\InflectorFactory;
@@ -53,8 +53,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Util\StringUtil;
 use Symfony\Component\Security\Csrf\CsrfTokenManager;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use whatwedo\CoreBundle\Formatter\DefaultFormatter;
-use whatwedo\CoreBundle\Manager\FormatterManager;
+use araise\CoreBundle\Formatter\DefaultFormatter;
+use araise\CoreBundle\Manager\FormatterManager;
 
 final class MakeDefinition extends AbstractMaker
 {

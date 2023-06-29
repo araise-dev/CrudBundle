@@ -27,7 +27,7 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace whatwedo\CrudBundle\Enums;
+namespace araise\CrudBundle\Enums;
 
 enum BlockSize
 {

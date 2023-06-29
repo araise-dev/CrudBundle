@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace whatwedo\CrudBundle\Tests;
+namespace araise\CrudBundle\Tests;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use whatwedo\CrudBundle\Tests\App\Entity\Category;
-use whatwedo\CrudBundle\Tests\App\Factory\CategoryFactory;
+use araise\CrudBundle\Tests\App\Entity\Category;
+use araise\CrudBundle\Tests\App\Factory\CategoryFactory;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 

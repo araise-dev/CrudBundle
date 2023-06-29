@@ -27,9 +27,9 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace whatwedo\CrudBundle\Action;
+namespace araise\CrudBundle\Action;
 
-use whatwedo\CoreBundle\Action\ModalAction as BaseModalAction;
+use araise\CoreBundle\Action\ModalAction as BaseModalAction;
 
 class ModalAction extends BaseModalAction
 {

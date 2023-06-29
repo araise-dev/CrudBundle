@@ -27,13 +27,13 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace whatwedo\CrudBundle\Tests\Crud;
+namespace araise\CrudBundle\Tests\Crud;
 
-use whatwedo\CrudBundle\Enums\Page;
-use whatwedo\CrudBundle\Test\Data\CreateData;
-use whatwedo\CrudBundle\Test\Data\EditData;
-use whatwedo\CrudBundle\Tests\App\Definition\PersonDefinition;
-use whatwedo\CrudBundle\Tests\App\Factory\PersonFactory;
+use araise\CrudBundle\Enums\Page;
+use araise\CrudBundle\Test\Data\CreateData;
+use araise\CrudBundle\Test\Data\EditData;
+use araise\CrudBundle\Tests\App\Definition\PersonDefinition;
+use araise\CrudBundle\Tests\App\Factory\PersonFactory;
 
 class FormOptionsTest extends AbstractCrudTest
 {

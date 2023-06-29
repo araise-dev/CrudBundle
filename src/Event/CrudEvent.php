@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace whatwedo\CrudBundle\Event;
+namespace araise\CrudBundle\Event;
 
 use Symfony\Contracts\EventDispatcher\Event;
 

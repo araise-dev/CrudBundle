@@ -27,9 +27,9 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace whatwedo\CrudBundle\Action;
+namespace araise\CrudBundle\Action;
 
-use whatwedo\CoreBundle\Action\PostAction as BasePostAction;
+use araise\CoreBundle\Action\PostAction as BasePostAction;
 
 class PostAction extends BasePostAction
 {

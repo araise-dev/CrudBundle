@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace whatwedo\CrudBundle\Tests\App\Repository;
+namespace araise\CrudBundle\Tests\App\Repository;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use whatwedo\CrudBundle\Tests\App\Entity\Person;
+use araise\CrudBundle\Tests\App\Entity\Person;
 
 /**
  * @method Person|null   find($id, $lockMode = null, $lockVersion = null)

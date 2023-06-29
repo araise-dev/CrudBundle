@@ -27,7 +27,7 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace whatwedo\CrudBundle\Extension;
+namespace araise\CrudBundle\Extension;
 
 use WhiteOctober\BreadcrumbsBundle\Model\Breadcrumbs;
 use WhiteOctober\BreadcrumbsBundle\WhiteOctoberBreadcrumbsBundle;

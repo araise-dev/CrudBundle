@@ -27,9 +27,9 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace whatwedo\CrudBundle\Manager;
+namespace araise\CrudBundle\Manager;
 
-use whatwedo\CrudBundle\Block\Block;
+use araise\CrudBundle\Block\Block;
 
 class BlockManager
 {

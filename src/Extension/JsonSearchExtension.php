@@ -27,9 +27,9 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace whatwedo\CrudBundle\Extension;
+namespace araise\CrudBundle\Extension;
 
-use whatwedo\SearchBundle\whatwedoSearchBundle;
+use araise\SearchBundle\whatwedoSearchBundle;
 
 class JsonSearchExtension implements ExtensionInterface
 {

@@ -27,19 +27,19 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace whatwedo\CrudBundle\Definition;
+namespace araise\CrudBundle\Definition;
 
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\RouterInterface;
-use whatwedo\CrudBundle\Builder\DefinitionBuilder;
-use whatwedo\CrudBundle\Enums\Page;
-use whatwedo\CrudBundle\Enums\PageInterface;
-use whatwedo\TableBundle\Entity\Filter;
-use whatwedo\TableBundle\Repository\FilterRepository;
-use whatwedo\TableBundle\Table\Table;
+use araise\CrudBundle\Builder\DefinitionBuilder;
+use araise\CrudBundle\Enums\Page;
+use araise\CrudBundle\Enums\PageInterface;
+use araise\TableBundle\Entity\Filter;
+use araise\TableBundle\Repository\FilterRepository;
+use araise\TableBundle\Table\Table;
 
 class FilterDefinition extends AbstractDefinition
 {

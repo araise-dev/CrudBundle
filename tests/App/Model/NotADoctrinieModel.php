@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace whatwedo\CrudBundle\Tests\App\Model;
+namespace araise\CrudBundle\Tests\App\Model;
 
 class NotADoctrinieModel
 {

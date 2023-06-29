@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace whatwedo\CrudBundle\Tests\App\Definition;
+namespace araise\CrudBundle\Tests\App\Definition;
 
-use whatwedo\CrudBundle\Builder\DefinitionBuilder;
-use whatwedo\CrudBundle\Definition\AbstractDefinition;
-use whatwedo\CrudBundle\Tests\App\Entity\Contact;
-use whatwedo\TableBundle\Table\Table;
+use araise\CrudBundle\Builder\DefinitionBuilder;
+use araise\CrudBundle\Definition\AbstractDefinition;
+use araise\CrudBundle\Tests\App\Entity\Contact;
+use araise\TableBundle\Table\Table;
 
 class ContactDefinition extends AbstractDefinition
 {

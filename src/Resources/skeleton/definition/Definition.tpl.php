@@ -3,9 +3,9 @@
 namespace <?= $namespace; ?>;
 
 use <?= $entity_full_class_name; ?>;
-use whatwedo\CrudBundle\Builder\DefinitionBuilder;
-use whatwedo\CrudBundle\Definition\AbstractDefinition;
-use whatwedo\TableBundle\Table\Table;
+use araise\CrudBundle\Builder\DefinitionBuilder;
+use araise\CrudBundle\Definition\AbstractDefinition;
+use araise\TableBundle\Table\Table;
 
 class <?= $class_name; ?> extends AbstractDefinition
 {

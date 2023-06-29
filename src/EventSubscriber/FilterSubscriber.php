@@ -28,14 +28,14 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace whatwedo\CrudBundle\EventSubscriber;
+namespace araise\CrudBundle\EventSubscriber;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\Security;
-use whatwedo\CrudBundle\Definition\FilterDefinition;
-use whatwedo\CrudBundle\Event\CrudEvent;
-use whatwedo\TableBundle\Entity\Filter;
+use araise\CrudBundle\Definition\FilterDefinition;
+use araise\CrudBundle\Event\CrudEvent;
+use araise\TableBundle\Entity\Filter;
 
 class FilterSubscriber implements EventSubscriberInterface
 {

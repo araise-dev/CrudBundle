@@ -27,7 +27,7 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace whatwedo\CrudBundle\Test\Data;
+namespace araise\CrudBundle\Test\Data;
 
 abstract class AbstractData
 {

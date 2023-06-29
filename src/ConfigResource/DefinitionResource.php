@@ -27,7 +27,7 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace whatwedo\CrudBundle\ConfigResource;
+namespace araise\CrudBundle\ConfigResource;
 
 use Symfony\Component\Config\Resource\ResourceInterface;
 use Symfony\Component\Config\Resource\SelfCheckingResourceInterface;

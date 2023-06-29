@@ -27,12 +27,12 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace whatwedo\CrudBundle\Tests;
+namespace araise\CrudBundle\Tests;
 
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Twig\Environment;
-use whatwedo\CrudBundle\Enums\Page;
-use whatwedo\CrudBundle\Tests\App\Factory\PersonFactory;
+use araise\CrudBundle\Enums\Page;
+use araise\CrudBundle\Tests\App\Factory\PersonFactory;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 

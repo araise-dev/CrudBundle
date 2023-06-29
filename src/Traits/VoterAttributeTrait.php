@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace whatwedo\CrudBundle\Traits;
+namespace araise\CrudBundle\Traits;
 
-use whatwedo\CrudBundle\Enums\Page;
+use araise\CrudBundle\Enums\Page;
 
 trait VoterAttributeTrait
 {

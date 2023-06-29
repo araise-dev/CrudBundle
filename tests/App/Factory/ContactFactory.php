@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace whatwedo\CrudBundle\Tests\App\Factory;
+namespace araise\CrudBundle\Tests\App\Factory;
 
-use whatwedo\CrudBundle\Tests\App\Entity\Contact;
-use whatwedo\CrudBundle\Tests\App\Repository\ContactRepository;
+use araise\CrudBundle\Tests\App\Entity\Contact;
+use araise\CrudBundle\Tests\App\Repository\ContactRepository;
 use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;
 use Zenstruck\Foundry\RepositoryProxy;

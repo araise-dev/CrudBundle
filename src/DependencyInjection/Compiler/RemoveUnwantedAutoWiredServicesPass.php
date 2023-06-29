@@ -27,11 +27,11 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace whatwedo\CrudBundle\DependencyInjection\Compiler;
+namespace araise\CrudBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use whatwedo\CrudBundle\DependencyInjection\IgnoreAutowire;
+use araise\CrudBundle\DependencyInjection\IgnoreAutowire;
 
 class RemoveUnwantedAutoWiredServicesPass implements CompilerPassInterface
 {

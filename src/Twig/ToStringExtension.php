@@ -27,7 +27,7 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace whatwedo\CrudBundle\Twig;
+namespace araise\CrudBundle\Twig;
 
 use Coduo\ToString\StringConverter;
 use Twig\Extension\AbstractExtension;

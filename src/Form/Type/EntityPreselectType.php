@@ -27,7 +27,7 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace whatwedo\CrudBundle\Form\Type;
+namespace araise\CrudBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\HttpFoundation\Request;

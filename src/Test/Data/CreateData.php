@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace whatwedo\CrudBundle\Test\Data;
+namespace araise\CrudBundle\Test\Data;
 
 class CreateData extends AbstractData
 {

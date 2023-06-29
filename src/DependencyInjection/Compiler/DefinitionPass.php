@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace whatwedo\CrudBundle\DependencyInjection\Compiler;
+namespace araise\CrudBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
-use whatwedo\CrudBundle\ConfigResource\DefinitionResource;
-use whatwedo\CrudBundle\Extension\ExtensionInterface;
-use whatwedo\CrudBundle\Manager\DefinitionManager;
+use araise\CrudBundle\ConfigResource\DefinitionResource;
+use araise\CrudBundle\Extension\ExtensionInterface;
+use araise\CrudBundle\Manager\DefinitionManager;
 
 class DefinitionPass implements CompilerPassInterface
 {

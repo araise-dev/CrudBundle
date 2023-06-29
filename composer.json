@@ -1,9 +1,10 @@
 {
-    "name": "whatwedo/crud-bundle",
+    "name": "araise/crud-bundle",
     "type": "symfony-bundle",
     "description": "Very simple CRUD operations",
     "license": "MIT",
-    "homepage": "https://whatwedo.github.io/CrudBundle/#/",
+    "homepage": "https://araise.dev",
+    "minimum-stability": "stable",
     "keywords": [
         "symfony-ux"
     ],
@@ -65,8 +66,8 @@
     },
     "autoload": {
         "psr-4": {
-            "whatwedo\\CrudBundle\\": "src/",
-            "whatwedo\\CrudBundle\\Tests\\": "tests/"
+            "araise\\CrudBundle\\": "src/",
+            "araise\\CrudBundle\\Tests\\": "tests/"
         }
     },
     "config": {

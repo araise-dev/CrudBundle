@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace whatwedo\CrudBundle\Block;
+namespace araise\CrudBundle\Block;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Container\ContainerInterface;
@@ -15,20 +15,20 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Contracts\Service\Attribute\Required;
 use Symfony\Contracts\Service\ServiceSubscriberInterface;
-use whatwedo\CrudBundle\Collection\ContentCollection;
-use whatwedo\CrudBundle\Content\AbstractContent;
-use whatwedo\CrudBundle\Content\Content;
-use whatwedo\CrudBundle\Content\EnumContent;
-use whatwedo\CrudBundle\Content\RelationContent;
-use whatwedo\CrudBundle\Definition\DefinitionInterface;
-use whatwedo\CrudBundle\Enums\BlockSize;
-use whatwedo\CrudBundle\Enums\Page;
-use whatwedo\CrudBundle\Enums\PageInterface;
-use whatwedo\CrudBundle\Exception\BlockNotFoundException;
-use whatwedo\CrudBundle\Manager\ContentManager;
-use whatwedo\CrudBundle\Traits\VisibilityTrait;
-use whatwedo\CrudBundle\Traits\VoterAttributeTrait;
-use whatwedo\CrudBundle\View\DefinitionView;
+use araise\CrudBundle\Collection\ContentCollection;
+use araise\CrudBundle\Content\AbstractContent;
+use araise\CrudBundle\Content\Content;
+use araise\CrudBundle\Content\EnumContent;
+use araise\CrudBundle\Content\RelationContent;
+use araise\CrudBundle\Definition\DefinitionInterface;
+use araise\CrudBundle\Enums\BlockSize;
+use araise\CrudBundle\Enums\Page;
+use araise\CrudBundle\Enums\PageInterface;
+use araise\CrudBundle\Exception\BlockNotFoundException;
+use araise\CrudBundle\Manager\ContentManager;
+use araise\CrudBundle\Traits\VisibilityTrait;
+use araise\CrudBundle\Traits\VoterAttributeTrait;
+use araise\CrudBundle\View\DefinitionView;
 
 #[Autoconfigure(tags: ['whatwedo_crud.block'])]
 class Block implements ServiceSubscriberInterface

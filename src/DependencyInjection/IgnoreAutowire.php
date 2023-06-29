@@ -27,7 +27,7 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace whatwedo\CrudBundle\DependencyInjection;
+namespace araise\CrudBundle\DependencyInjection;
 
 /**
  * Annotation class for @IgnoreAutowire().

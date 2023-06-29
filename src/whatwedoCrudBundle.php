@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace whatwedo\CrudBundle;
+namespace araise\CrudBundle;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
-use whatwedo\CrudBundle\DependencyInjection\Compiler\DefinitionPass;
-use whatwedo\CrudBundle\DependencyInjection\Compiler\RemoveUnwantedAutoWiredServicesPass;
+use araise\CrudBundle\DependencyInjection\Compiler\DefinitionPass;
+use araise\CrudBundle\DependencyInjection\Compiler\RemoveUnwantedAutoWiredServicesPass;
 
 class whatwedoCrudBundle extends Bundle
 {

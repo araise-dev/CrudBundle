@@ -27,7 +27,7 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace whatwedo\CrudBundle\Exception;
+namespace araise\CrudBundle\Exception;
 
 class BlockNotFoundException extends \Exception
 {

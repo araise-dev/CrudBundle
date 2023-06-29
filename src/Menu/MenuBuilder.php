@@ -27,12 +27,12 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace whatwedo\CrudBundle\Menu;
+namespace araise\CrudBundle\Menu;
 
 use Knp\Menu\ItemInterface;
-use whatwedo\CrudBundle\Builder\DefinitionMenuBuilder;
-use whatwedo\CrudBundle\Definition\FilterDefinition;
-use whatwedo\CrudBundle\Enums\Page;
+use araise\CrudBundle\Builder\DefinitionMenuBuilder;
+use araise\CrudBundle\Definition\FilterDefinition;
+use araise\CrudBundle\Enums\Page;
 
 class MenuBuilder extends DefinitionMenuBuilder
 {

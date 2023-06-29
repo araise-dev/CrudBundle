@@ -27,12 +27,12 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace whatwedo\CrudBundle\Security\Voter;
+namespace araise\CrudBundle\Security\Voter;
 
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
-use whatwedo\CrudBundle\Definition\DefinitionInterface;
-use whatwedo\CrudBundle\Exception\DefinitionNotFoundException;
-use whatwedo\CrudBundle\Manager\DefinitionManager;
+use araise\CrudBundle\Definition\DefinitionInterface;
+use araise\CrudBundle\Exception\DefinitionNotFoundException;
+use araise\CrudBundle\Manager\DefinitionManager;
 
 abstract class AbstractDefinitionVoter extends Voter
 {

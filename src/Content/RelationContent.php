@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace whatwedo\CrudBundle\Content;
+namespace araise\CrudBundle\Content;
 
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManagerInterface;
@@ -19,21 +19,21 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
-use whatwedo\CoreBundle\Action\Action;
-use whatwedo\CoreBundle\Action\PostAction;
-use whatwedo\CrudBundle\Definition\DefinitionInterface;
-use whatwedo\CrudBundle\Enums\Page;
-use whatwedo\CrudBundle\Enums\PageInterface;
-use whatwedo\CrudBundle\Enums\PageMode;
-use whatwedo\CrudBundle\Form\Type\EntityAjaxType;
-use whatwedo\CrudBundle\Form\Type\EntityHiddenType;
-use whatwedo\CrudBundle\Manager\DefinitionManager;
-use whatwedo\TableBundle\DataLoader\ArrayDataLoader;
-use whatwedo\TableBundle\DataLoader\DoctrineDataLoader;
-use whatwedo\TableBundle\Extension\FilterExtension;
-use whatwedo\TableBundle\Extension\SearchExtension;
-use whatwedo\TableBundle\Factory\TableFactory;
-use whatwedo\TableBundle\Table\Table;
+use araise\CoreBundle\Action\Action;
+use araise\CoreBundle\Action\PostAction;
+use araise\CrudBundle\Definition\DefinitionInterface;
+use araise\CrudBundle\Enums\Page;
+use araise\CrudBundle\Enums\PageInterface;
+use araise\CrudBundle\Enums\PageMode;
+use araise\CrudBundle\Form\Type\EntityAjaxType;
+use araise\CrudBundle\Form\Type\EntityHiddenType;
+use araise\CrudBundle\Manager\DefinitionManager;
+use araise\TableBundle\DataLoader\ArrayDataLoader;
+use araise\TableBundle\DataLoader\DoctrineDataLoader;
+use araise\TableBundle\Extension\FilterExtension;
+use araise\TableBundle\Extension\SearchExtension;
+use araise\TableBundle\Factory\TableFactory;
+use araise\TableBundle\Table\Table;
 use function array_keys;
 use function array_reduce;
 use function array_reverse;
@@ -50,7 +50,7 @@ class RelationContent extends AbstractContent
 
     /**
      * Defines the form type to be used. Uses the same logic as symfony form types if kept null.
-     * Defaults to <code>whatwedo\CrudBundle\Form\Type\EntityAjaxType</code>
+     * Defaults to <code>araise\CrudBundle\Form\Type\EntityAjaxType</code>
      * Accepts: <code>null|FormTypeInterface</code>.
      */
     public const OPT_FORM_TYPE = 'form_type';

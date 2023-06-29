@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace whatwedo\CrudBundle\EventListener;
+namespace araise\CrudBundle\EventListener;
 
 use Symfony\Component\HttpKernel\Event\ControllerEvent;
-use whatwedo\CrudBundle\Controller\CrudDefinitionControllerInterface;
-use whatwedo\CrudBundle\Definition\DefinitionInterface;
-use whatwedo\CrudBundle\Manager\DefinitionManager;
+use araise\CrudBundle\Controller\CrudDefinitionControllerInterface;
+use araise\CrudBundle\Definition\DefinitionInterface;
+use araise\CrudBundle\Manager\DefinitionManager;
 
 class CrudDefinitionListener
 {

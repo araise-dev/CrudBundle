@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace whatwedo\CrudBundle\Controller;
+namespace araise\CrudBundle\Controller;
 
-use whatwedo\CrudBundle\Definition\DefinitionInterface;
+use araise\CrudBundle\Definition\DefinitionInterface;
 
 interface CrudDefinitionControllerInterface
 {

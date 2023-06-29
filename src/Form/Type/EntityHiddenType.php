@@ -27,7 +27,7 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace whatwedo\CrudBundle\Form\Type;
+namespace araise\CrudBundle\Form\Type;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\AbstractType;
@@ -35,7 +35,7 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use whatwedo\CrudBundle\Form\DataTransformer\EntityToIdTransformer;
+use araise\CrudBundle\Form\DataTransformer\EntityToIdTransformer;
 
 class EntityHiddenType extends AbstractType
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace whatwedo\CrudBundle\Controller;
+namespace araise\CrudBundle\Controller;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NonUniqueResultException;
@@ -21,20 +21,20 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Contracts\Service\Attribute\Required;
 use Twig\Environment;
-use whatwedo\CrudBundle\Definition\DefinitionInterface;
-use whatwedo\CrudBundle\Enums\Page;
-use whatwedo\CrudBundle\Enums\PageInterface;
-use whatwedo\CrudBundle\Enums\PageMode;
-use whatwedo\CrudBundle\Event\CrudEvent;
-use whatwedo\CrudBundle\Manager\DefinitionManager;
-use whatwedo\CrudBundle\View\DefinitionView;
-use whatwedo\TableBundle\DataLoader\DoctrineDataLoader;
-use whatwedo\TableBundle\DataLoader\DoctrineTreeDataLoader;
-use whatwedo\TableBundle\Entity\TreeInterface;
-use whatwedo\TableBundle\Extension\PaginationExtension;
-use whatwedo\TableBundle\Factory\TableFactory;
-use whatwedo\TableBundle\Manager\ExportManager;
-use whatwedo\TableBundle\Table\Table;
+use araise\CrudBundle\Definition\DefinitionInterface;
+use araise\CrudBundle\Enums\Page;
+use araise\CrudBundle\Enums\PageInterface;
+use araise\CrudBundle\Enums\PageMode;
+use araise\CrudBundle\Event\CrudEvent;
+use araise\CrudBundle\Manager\DefinitionManager;
+use araise\CrudBundle\View\DefinitionView;
+use araise\TableBundle\DataLoader\DoctrineDataLoader;
+use araise\TableBundle\DataLoader\DoctrineTreeDataLoader;
+use araise\TableBundle\Entity\TreeInterface;
+use araise\TableBundle\Extension\PaginationExtension;
+use araise\TableBundle\Factory\TableFactory;
+use araise\TableBundle\Manager\ExportManager;
+use araise\TableBundle\Table\Table;
 
 #[AsController]
 class CrudController extends AbstractController implements CrudDefinitionControllerInterface

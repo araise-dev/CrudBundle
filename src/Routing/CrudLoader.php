@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace whatwedo\CrudBundle\Routing;
+namespace araise\CrudBundle\Routing;
 
 use Symfony\Component\Config\Loader\Loader;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
-use whatwedo\CrudBundle\Enums\Page;
-use whatwedo\CrudBundle\Manager\DefinitionManager;
+use araise\CrudBundle\Enums\Page;
+use araise\CrudBundle\Manager\DefinitionManager;
 
 class CrudLoader extends Loader
 {

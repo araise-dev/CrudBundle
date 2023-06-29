@@ -27,27 +27,27 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace whatwedo\CrudBundle\Test;
+namespace araise\CrudBundle\Test;
 
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DomCrawler\Form;
 use Symfony\Component\Routing\RouterInterface;
-use whatwedo\CrudBundle\Definition\DefinitionInterface;
-use whatwedo\CrudBundle\Enums\Page;
-use whatwedo\CrudBundle\Manager\DefinitionManager;
-use whatwedo\CrudBundle\Test\Data\AbstractData;
-use whatwedo\CrudBundle\Test\Data\CreateData;
-use whatwedo\CrudBundle\Test\Data\EditData;
-use whatwedo\CrudBundle\Test\Data\ExportData;
-use whatwedo\CrudBundle\Test\Data\Form\Upload;
-use whatwedo\CrudBundle\Test\Data\IndexData;
-use whatwedo\CrudBundle\Test\Data\ShowData;
-use whatwedo\TableBundle\DataLoader\DoctrineDataLoader;
-use whatwedo\TableBundle\DataLoader\DoctrineTreeDataLoader;
-use whatwedo\TableBundle\Entity\TreeInterface;
-use whatwedo\TableBundle\Factory\TableFactory;
-use whatwedo\TableBundle\Table\Column;
+use araise\CrudBundle\Definition\DefinitionInterface;
+use araise\CrudBundle\Enums\Page;
+use araise\CrudBundle\Manager\DefinitionManager;
+use araise\CrudBundle\Test\Data\AbstractData;
+use araise\CrudBundle\Test\Data\CreateData;
+use araise\CrudBundle\Test\Data\EditData;
+use araise\CrudBundle\Test\Data\ExportData;
+use araise\CrudBundle\Test\Data\Form\Upload;
+use araise\CrudBundle\Test\Data\IndexData;
+use araise\CrudBundle\Test\Data\ShowData;
+use araise\TableBundle\DataLoader\DoctrineDataLoader;
+use araise\TableBundle\DataLoader\DoctrineTreeDataLoader;
+use araise\TableBundle\Entity\TreeInterface;
+use araise\TableBundle\Factory\TableFactory;
+use araise\TableBundle\Table\Column;
 
 abstract class AbstractCrudTest extends WebTestCase
 {

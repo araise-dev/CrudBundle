@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace whatwedo\CrudBundle\Manager;
+namespace araise\CrudBundle\Manager;
 
-use whatwedo\CrudBundle\Definition\DefinitionInterface;
-use whatwedo\CrudBundle\DependencyInjection\Compiler\RemoveUnwantedAutoWiredServicesPass;
+use araise\CrudBundle\Definition\DefinitionInterface;
+use araise\CrudBundle\DependencyInjection\Compiler\RemoveUnwantedAutoWiredServicesPass;
 
 class DefinitionManager
 {
@@ -50,7 +50,7 @@ class DefinitionManager
     /**
      * @throws \InvalidArgumentException
      */
-    public function getDefinitionByClassName(string $class): \whatwedo\CrudBundle\Definition\DefinitionInterface
+    public function getDefinitionByClassName(string $class): \araise\CrudBundle\Definition\DefinitionInterface
     {
         foreach ($this->definitions as $definition) {
             if ($definition::class === $class) {
@@ -61,7 +61,7 @@ class DefinitionManager
         throw new \InvalidArgumentException(sprintf('definition "%s" not found.', $class));
     }
 
-    public function getDefinitionByRoute(string $route): \whatwedo\CrudBundle\Definition\DefinitionInterface
+    public function getDefinitionByRoute(string $route): \araise\CrudBundle\Definition\DefinitionInterface
     {
         // could be changed to use Page-Enum for the matching of the Definition
         if (preg_match('#([\w\_\-]+)\_(\w+)#', $route, $routeMatches)) {

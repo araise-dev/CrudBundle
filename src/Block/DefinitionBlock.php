@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace whatwedo\CrudBundle\Block;
+namespace araise\CrudBundle\Block;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\PropertyAccess\Exception\NoSuchPropertyException;
 use Symfony\Component\PropertyAccess\Exception\UnexpectedTypeException;
 use Symfony\Component\PropertyAccess\PropertyAccess;
-use whatwedo\CrudBundle\Definition\DefinitionInterface;
-use whatwedo\CrudBundle\Manager\DefinitionManager;
+use araise\CrudBundle\Definition\DefinitionInterface;
+use araise\CrudBundle\Manager\DefinitionManager;
 
 class DefinitionBlock extends Block
 {

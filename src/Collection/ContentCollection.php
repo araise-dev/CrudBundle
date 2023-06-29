@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace whatwedo\CrudBundle\Collection;
+namespace araise\CrudBundle\Collection;
 
-use whatwedo\CrudBundle\Content\AbstractContent;
-use whatwedo\CrudBundle\Enums\PageInterface;
+use araise\CrudBundle\Content\AbstractContent;
+use araise\CrudBundle\Enums\PageInterface;
 
 class ContentCollection extends ArrayCollection
 {

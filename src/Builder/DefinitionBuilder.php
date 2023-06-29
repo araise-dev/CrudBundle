@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace whatwedo\CrudBundle\Builder;
+namespace araise\CrudBundle\Builder;
 
-use whatwedo\CrudBundle\Block\Block;
-use whatwedo\CrudBundle\Collection\BlockCollection;
-use whatwedo\CrudBundle\Definition\DefinitionInterface;
-use whatwedo\CrudBundle\Manager\BlockManager;
-use whatwedo\CrudBundle\Manager\DefinitionManager;
+use araise\CrudBundle\Block\Block;
+use araise\CrudBundle\Collection\BlockCollection;
+use araise\CrudBundle\Definition\DefinitionInterface;
+use araise\CrudBundle\Manager\BlockManager;
+use araise\CrudBundle\Manager\DefinitionManager;
 
 class DefinitionBuilder
 {

@@ -27,15 +27,15 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace whatwedo\CrudBundle\Builder;
+namespace araise\CrudBundle\Builder;
 
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
-use whatwedo\CrudBundle\Enums\Page;
-use whatwedo\CrudBundle\Manager\DefinitionManager;
+use araise\CrudBundle\Enums\Page;
+use araise\CrudBundle\Manager\DefinitionManager;
 
 class DefinitionMenuBuilder
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace whatwedo\CrudBundle\Definition;
+namespace araise\CrudBundle\Definition;
 
 use Doctrine\Common\Util\ClassUtils;
 use Doctrine\ORM\EntityManagerInterface;
@@ -19,28 +19,28 @@ use Symfony\Component\Routing\RouterInterface;
 use Symfony\Contracts\Service\Attribute\Required;
 use Symfony\Contracts\Service\ServiceSubscriberInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use whatwedo\CrudBundle\Action\Action;
-use whatwedo\CrudBundle\Action\PostAction;
-use whatwedo\CrudBundle\Action\SubmitAction;
-use whatwedo\CrudBundle\Builder\DefinitionBuilder;
-use whatwedo\CrudBundle\Content\AbstractContent;
-use whatwedo\CrudBundle\Controller\CrudController;
-use whatwedo\CrudBundle\Enums\Page;
-use whatwedo\CrudBundle\Enums\PageInterface;
-use whatwedo\CrudBundle\Enums\PageMode;
-use whatwedo\CrudBundle\Enums\PageModeInterface;
-use whatwedo\CrudBundle\Extension\BreadcrumbsExtension;
-use whatwedo\CrudBundle\Extension\ExtensionInterface;
-use whatwedo\CrudBundle\Extension\JsonSearchExtension;
-use whatwedo\CrudBundle\Manager\BlockManager;
-use whatwedo\CrudBundle\Manager\DefinitionManager;
-use whatwedo\CrudBundle\View\DefinitionView;
-use whatwedo\SearchBundle\Repository\IndexRepository;
-use whatwedo\TableBundle\DataLoader\DoctrineDataLoader;
-use whatwedo\TableBundle\Extension\FilterExtension;
-use whatwedo\TableBundle\Extension\SortExtension;
-use whatwedo\TableBundle\Factory\TableFactory;
-use whatwedo\TableBundle\Table\Table;
+use araise\CrudBundle\Action\Action;
+use araise\CrudBundle\Action\PostAction;
+use araise\CrudBundle\Action\SubmitAction;
+use araise\CrudBundle\Builder\DefinitionBuilder;
+use araise\CrudBundle\Content\AbstractContent;
+use araise\CrudBundle\Controller\CrudController;
+use araise\CrudBundle\Enums\Page;
+use araise\CrudBundle\Enums\PageInterface;
+use araise\CrudBundle\Enums\PageMode;
+use araise\CrudBundle\Enums\PageModeInterface;
+use araise\CrudBundle\Extension\BreadcrumbsExtension;
+use araise\CrudBundle\Extension\ExtensionInterface;
+use araise\CrudBundle\Extension\JsonSearchExtension;
+use araise\CrudBundle\Manager\BlockManager;
+use araise\CrudBundle\Manager\DefinitionManager;
+use araise\CrudBundle\View\DefinitionView;
+use araise\SearchBundle\Repository\IndexRepository;
+use araise\TableBundle\DataLoader\DoctrineDataLoader;
+use araise\TableBundle\Extension\FilterExtension;
+use araise\TableBundle\Extension\SortExtension;
+use araise\TableBundle\Factory\TableFactory;
+use araise\TableBundle\Table\Table;
 use WhiteOctober\BreadcrumbsBundle\Model\Breadcrumbs;
 
 abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscriberInterface
@@ -50,7 +50,7 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
     protected TranslatorInterface $translator;
 
     /**
-     * @var \whatwedo\CoreBundle\Action\Action[]
+     * @var \araise\CoreBundle\Action\Action[]
      */
     protected array $actions = [];
 
@@ -71,7 +71,7 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
 
     public static function getEntity(): string
     {
-        throw new \Exception('\whatwedo\CrudBundle\Definition\AbstractDefinition::getEntity must be implemented');
+        throw new \Exception('\araise\CrudBundle\Definition\AbstractDefinition::getEntity must be implemented');
     }
 
     public static function getEntityTitle(): string
@@ -119,7 +119,7 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
     {
         uasort(
             $this->actions,
-            fn (\whatwedo\CoreBundle\Action\Action $a, \whatwedo\CoreBundle\Action\Action $b) => $a->getOption('priority') <=> $b->getOption('priority')
+            fn (\araise\CoreBundle\Action\Action $a, \araise\CoreBundle\Action\Action $b) => $a->getOption('priority') <=> $b->getOption('priority')
         );
 
         return $this->actions;

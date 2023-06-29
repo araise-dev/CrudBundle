@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace whatwedo\CrudBundle\Block;
+namespace araise\CrudBundle\Block;
 
 use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use whatwedo\CrudBundle\Collection\BlockCollection;
-use whatwedo\CrudBundle\Collection\ContentCollection;
-use whatwedo\CrudBundle\Enums\Page;
-use whatwedo\CrudBundle\Enums\PageInterface;
-use whatwedo\CrudBundle\Manager\BlockManager;
-use whatwedo\CrudBundle\View\DefinitionView;
+use araise\CrudBundle\Collection\BlockCollection;
+use araise\CrudBundle\Collection\ContentCollection;
+use araise\CrudBundle\Enums\Page;
+use araise\CrudBundle\Enums\PageInterface;
+use araise\CrudBundle\Manager\BlockManager;
+use araise\CrudBundle\View\DefinitionView;
 
 #[Autoconfigure(tags: ['whatwedo_crud.block'])]
 class BlockBlock extends Block

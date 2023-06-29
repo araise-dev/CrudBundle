@@ -21,16 +21,16 @@ return [
     Zenstruck\Foundry\ZenstruckFoundryBundle::class => [
         'all' => true,
     ],
-    whatwedo\CoreBundle\whatwedoCoreBundle::class => [
+    araise\CoreBundle\whatwedoCoreBundle::class => [
         'all' => true,
     ],
-    whatwedo\CrudBundle\whatwedoCrudBundle::class => [
+    araise\CrudBundle\whatwedoCrudBundle::class => [
         'all' => true,
     ],
-    whatwedo\TableBundle\whatwedoTableBundle::class => [
+    araise\TableBundle\whatwedoTableBundle::class => [
         'all' => true,
     ],
-    whatwedo\SearchBundle\whatwedoSearchBundle::class => [
+    araise\SearchBundle\whatwedoSearchBundle::class => [
         'all' => true,
     ],
     Symfony\Bundle\MakerBundle\MakerBundle::class => [

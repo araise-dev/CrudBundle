@@ -28,7 +28,7 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace whatwedo\CrudBundle\Content;
+namespace araise\CrudBundle\Content;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace whatwedo\CrudBundle\View;
+namespace araise\CrudBundle\View;
 
 use Doctrine\Common\Annotations\Reader;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
@@ -14,20 +14,20 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\Security;
-use whatwedo\CoreBundle\Action\Action;
-use whatwedo\CrudBundle\Block\Block;
-use whatwedo\CrudBundle\Block\BlockBlock;
-use whatwedo\CrudBundle\Block\DefinitionBlock;
-use whatwedo\CrudBundle\Collection\BlockCollection;
-use whatwedo\CrudBundle\Content\AbstractContent;
-use whatwedo\CrudBundle\Content\Content;
-use whatwedo\CrudBundle\Definition\DefinitionInterface;
-use whatwedo\CrudBundle\Enums\Page;
-use whatwedo\CrudBundle\Enums\PageInterface;
-use whatwedo\CrudBundle\Form\Type\EntityAjaxType;
-use whatwedo\CrudBundle\Form\Type\EntityHiddenType;
-use whatwedo\CrudBundle\Form\Type\EntityPreselectType;
-use whatwedo\CrudBundle\Manager\DefinitionManager;
+use araise\CoreBundle\Action\Action;
+use araise\CrudBundle\Block\Block;
+use araise\CrudBundle\Block\BlockBlock;
+use araise\CrudBundle\Block\DefinitionBlock;
+use araise\CrudBundle\Collection\BlockCollection;
+use araise\CrudBundle\Content\AbstractContent;
+use araise\CrudBundle\Content\Content;
+use araise\CrudBundle\Definition\DefinitionInterface;
+use araise\CrudBundle\Enums\Page;
+use araise\CrudBundle\Enums\PageInterface;
+use araise\CrudBundle\Form\Type\EntityAjaxType;
+use araise\CrudBundle\Form\Type\EntityHiddenType;
+use araise\CrudBundle\Form\Type\EntityPreselectType;
+use araise\CrudBundle\Manager\DefinitionManager;
 
 class DefinitionView
 {

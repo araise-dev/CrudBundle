@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace whatwedo\CrudBundle\Tests\App\Factory;
+namespace araise\CrudBundle\Tests\App\Factory;
 
-use whatwedo\CrudBundle\Tests\App\Entity\Category;
-use whatwedo\CrudBundle\Tests\App\Repository\CategoryRepository;
+use araise\CrudBundle\Tests\App\Entity\Category;
+use araise\CrudBundle\Tests\App\Repository\CategoryRepository;
 use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;
 use Zenstruck\Foundry\RepositoryProxy;

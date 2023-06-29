@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace whatwedo\CrudBundle\Collection;
+namespace araise\CrudBundle\Collection;
 
-use whatwedo\CrudBundle\Block\Block;
-use whatwedo\CrudBundle\Enums\PageInterface;
+use araise\CrudBundle\Block\Block;
+use araise\CrudBundle\Enums\PageInterface;
 
 class BlockCollection extends ArrayCollection
 {

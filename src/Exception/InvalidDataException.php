@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace whatwedo\CrudBundle\Exception;
+namespace araise\CrudBundle\Exception;
 
 class InvalidDataException extends \InvalidArgumentException
 {

@@ -27,9 +27,9 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace whatwedo\CrudBundle\Tests\App\Manager;
+namespace araise\CrudBundle\Tests\App\Manager;
 
-use whatwedo\CrudBundle\DependencyInjection\IgnoreAutowire;
+use araise\CrudBundle\DependencyInjection\IgnoreAutowire;
 
 #[IgnoreAutowire]
 class UnwantedManager

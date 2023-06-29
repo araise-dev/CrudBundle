@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace whatwedo\CrudBundle\Formatter;
+namespace araise\CrudBundle\Formatter;
 
 use Symfony\Component\Routing\RouterInterface;
-use whatwedo\CoreBundle\Formatter\DefaultFormatter;
-use whatwedo\CrudBundle\Enums\Page;
-use whatwedo\CrudBundle\Manager\DefinitionManager;
+use araise\CoreBundle\Formatter\DefaultFormatter;
+use araise\CrudBundle\Enums\Page;
+use araise\CrudBundle\Manager\DefinitionManager;
 
 class CrudDefaultFormatter extends DefaultFormatter
 {

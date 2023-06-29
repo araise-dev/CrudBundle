@@ -27,7 +27,7 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace whatwedo\CrudBundle\Collection;
+namespace araise\CrudBundle\Collection;
 
 class ArrayCollection extends \Doctrine\Common\Collections\ArrayCollection
 {

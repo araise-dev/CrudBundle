@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace whatwedo\CrudBundle\Content;
+namespace araise\CrudBundle\Content;
 
 use Psr\Container\ContainerInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
@@ -13,11 +13,11 @@ use Symfony\Component\PropertyAccess\Exception\UnexpectedTypeException;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Contracts\Service\Attribute\Required;
 use Symfony\Contracts\Service\ServiceSubscriberInterface;
-use whatwedo\CrudBundle\Block\Block;
-use whatwedo\CrudBundle\Definition\DefinitionInterface;
-use whatwedo\CrudBundle\Enums\Page;
-use whatwedo\CrudBundle\Traits\VisibilityTrait;
-use whatwedo\CrudBundle\Traits\VoterAttributeTrait;
+use araise\CrudBundle\Block\Block;
+use araise\CrudBundle\Definition\DefinitionInterface;
+use araise\CrudBundle\Enums\Page;
+use araise\CrudBundle\Traits\VisibilityTrait;
+use araise\CrudBundle\Traits\VoterAttributeTrait;
 
 #[Autoconfigure(tags: ['whatwedo_crud.content'])]
 abstract class AbstractContent implements ServiceSubscriberInterface
