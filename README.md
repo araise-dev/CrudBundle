@@ -1,13 +1,13 @@
 [![Latest Stable Version](https://poser.pugx.org/araise/crud-bundle/v/stable)](https://packagist.org/packages/araise/crud-bundle)
 
-# araiseCrudBundle
+# Docs araise framework
 
 This bundle is part of the [araise.dev](https://araise.dev) framework.
 
 
 ## Documentation
 
-[araise-dev.github.io/CrudBundle](https://araise-dev.github.io/CrudBundle/#/)
+[crud.docs.araise.dev](https://crud.docs.araise.dev/#/)
 
 ## Screenshots
 <img src="https://uploads.whatwedo.io/github/whatwedo/CrudBundle/crud-calendar.png" width="45%"></img> <img src="https://uploads.whatwedo.io/github/whatwedo/CrudBundle/crud-dashboard.png" width="45%"></img> <img src="https://uploads.whatwedo.io/github/whatwedo/CrudBundle/crud-popup-create.png" width="45%"></img> <img src="https://uploads.whatwedo.io/github/whatwedo/CrudBundle/crud-table-subtable.png" width="45%"></img>
