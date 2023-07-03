@@ -55,10 +55,7 @@
         "symfony/runtime": "^5.4|^6.0",
         "phpstan/phpstan": "^1.5",
         "mhujer/breadcrumbs-bundle": "^1.5",
-        "whatwedo/twig-bootstrap-icons": "^1.0",
-        "araise/core-bundle": "dev-main as 1.0",
-        "araise/table-bundle": "dev-main as 1.0",
-        "araise/search-bundle": "dev-main as 3.0"
+        "whatwedo/twig-bootstrap-icons": "^1.0"
     },
 
     "suggest": {
