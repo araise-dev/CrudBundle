@@ -37,7 +37,7 @@
     <script>
         window.$docsify = {
             name: 'araiseCrudBundle',
-            repo: 'araise/CrudBundle',
+            repo: 'araise-dev/CrudBundle',
             logo: '/media/araise-neg.svg',
             loadSidebar: true,
             alias: {
@@ -50,7 +50,7 @@
             },
         };
         window.whatwedoOptions = {
-            githubBase: 'https://raw.githubusercontent.com/%repo%/1.0-dev/%file%',
+            githubBase: 'https://raw.githubusercontent.com/%repo%/main/%file%',
             fullPath: (repo, file) => {
                 return window.whatwedoOptions.githubBase.replace('%repo%', repo).replace('%file%', file);
             }
