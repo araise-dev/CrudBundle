@@ -106,12 +106,17 @@ $this->addDefinition($doctorsMenu, OrderDefinition::class, [
 ```
 
 ### Submenu
-There is also a submenu, which is displayed at the very bottom of the navigation. It is suitable for settings, for example.
+There is also a submenu, which is displayed at the very bottom of the navigation. It is suitable for settings, for example. 
+Here, you can also change the icon of the menu. As shown in the first example above, you don't have to specify the icon though.
 
 ```php
 public function createSubMenu(): ItemInterface
     {
-        $menu = $this->factory->createItem('Settings');
+        $menu = $this->factory->createItem('Settings', [
+            self::OPT_ATTR => [
+                self::OPT_ATTR_ICON => 'gear-wide',
+            ],
+        ]);
         $this->addDefinition($menu, UserSettingsDefinition::class);
 
         return $menu;
