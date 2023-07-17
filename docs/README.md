@@ -47,6 +47,17 @@ bin/console make:entity
 bin/console make:definition
 ``` 
 
+Do not forge to update your database schema:
+```sh
+bin/console doctrine:schema:update --force
+```
+
+The bundles come with 2 default migrations. If you do not want to use them, you can mark them as executed like that:
+```sh
+bin/console doctrine:migrations:version --add araise\\SearchBundle\\Migrations\\Version20220602150539 --no-interaction
+bin/console doctrine:migrations:version --add araise\\TableBundle\\Migrations\\Version20220622145409 --no-interaction
+```
+
 Now you that have set up the CRUD-Bundle, please follow these instructions to finish the installation of the needed dependencies:
 - [SearchBundle](https://araise-dev.github.io/SearchBundle)
 
