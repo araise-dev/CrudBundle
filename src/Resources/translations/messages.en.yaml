@@ -1,0 +1,43 @@
+araise_crud:
+    dashboard: Dashboard
+    hello: Hello
+    add: Add
+    save: Save
+    index: Overview
+    edit: Edit
+    delete: Delete
+    view: View
+    show_all: Show All
+    save_success: Successfully saved.
+    save_error: There was an error while saving. Please check your inputs.
+    delete_success: Entry successfully deleted.
+    delete_error: Entry could not be deleted.
+    search_placeholder: Search ...
+    relation:
+        add: Add
+    actions:
+        delete:
+            confirm_delete: Are you sure you want to delete?
+            yes: Yes
+            no: No
+
+wwd:
+    araise_table_entity_filter:
+        title: Filter
+        title_plural: Filters
+        block:
+            base: Base Configuration
+        property:
+            name: Name
+            description: Description
+            route: Application Location
+            type: Type
+        type:
+            public: Public
+            private: Private
+
+login:
+    title: Login
+    username: Username
+    password: Password
+    submit: Login
