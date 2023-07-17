@@ -52,7 +52,7 @@ class araiseCrudExtension extends Extension
         $container->setParameter('araise_crud.config.template_directory', $config['templateDirectory']);
         $container->setParameter('araise_crud.config.layout', $config['layout']);
 
-        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
     }
 }
