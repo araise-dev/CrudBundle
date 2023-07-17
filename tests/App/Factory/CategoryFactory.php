@@ -31,7 +31,7 @@ final class CategoryFactory extends ModelFactory
     protected function getDefaults(): array
     {
         return [
-            'name' => self::faker()->company(),
+            'name' => 'category_prefix.phpunit'.self::faker()->company(),
         ];
     }
 

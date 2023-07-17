@@ -31,6 +31,7 @@ namespace araise\CrudBundle\Tests\Crud;
 
 use araise\CrudBundle\Test\AbstractCrudTest as BaseAbstractCrudTest;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
+use Symfony\Component\Security\Core\User\UserProviderInterface;
 
 abstract class AbstractCrudTest extends BaseAbstractCrudTest
 {
@@ -42,6 +43,8 @@ abstract class AbstractCrudTest extends BaseAbstractCrudTest
             static::ensureKernelShutdown();
             $this->client = static::createClient();
             $this->client->followRedirects();
+            $admin = self::getContainer()->get(UserProviderInterface::class)->loadUserByIdentifier('admin');
+            $this->client->loginUser($admin);
         }
 
         return $this->client;

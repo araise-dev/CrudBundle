@@ -28,8 +28,9 @@ class PersonDefinition extends AbstractDefinition
 
         $builder
             ->addBlock('base')
-            ->addContent('name', null, [])
-            ->addContent('jobTitle', null, [])
+            ->addContent('name')
+            ->addContent('jobTitle')
+            ->addContent('category')
         ;
     }
 
