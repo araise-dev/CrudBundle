@@ -189,7 +189,7 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
         );
     }
 
-    public function getTitle(mixed $entity = null, ?PageInterface $route = null): string
+    public function getTitle(mixed $entity = null, ?PageInterface $route = null, bool $withEntityTitle = true): string
     {
         $add = $this->translator->trans('araise_crud.add');
         $delete = $this->translator->trans('araise_crud.delete');
@@ -205,10 +205,10 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
 
         return match ($route) {
             Page::INDEX => static::getEntityTitlePlural(),
-            Page::DELETE => $delete,
+            Page::DELETE => $withEntityTitle ? $delete : $extra,
             Page::CREATE => $add,
-            Page::EDIT => $edit,
-            Page::SHOW => $show,
+            Page::EDIT => $withEntityTitle ? $edit : $extra,
+            Page::SHOW => $withEntityTitle ? $show : $extra,
             default => $extra,
         };
     }
@@ -429,11 +429,11 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
 
         if (in_array($route, [Page::EDIT, Page::SHOW], true)) {
             if (static::hasCapability(Page::SHOW)) {
-                $this->getBreadcrumbs()->addRouteItem($this->getTitle($entity, Page::SHOW), static::getRoute(Page::SHOW), [
+                $this->getBreadcrumbs()->addRouteItem($this->getTitle($entity, Page::SHOW, withEntityTitle: false), static::getRoute(Page::SHOW), [
                     'id' => $entity->getId(),
                 ]);
             } else {
-                $this->getBreadcrumbs()->addItem($this->getTitle($entity, Page::SHOW));
+                $this->getBreadcrumbs()->addItem($this->getTitle($entity, Page::SHOW, withEntityTitle: false));
             }
         }
 
