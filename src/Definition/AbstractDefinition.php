@@ -26,6 +26,7 @@ use araise\TableBundle\Extension\FilterExtension;
 use araise\TableBundle\Extension\SortExtension;
 use araise\TableBundle\Factory\TableFactory;
 use araise\TableBundle\Table\Table;
+use Coduo\ToString\StringConverter;
 use Doctrine\Common\Util\ClassUtils;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
@@ -193,14 +194,22 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
         $add = $this->translator->trans('araise_crud.add');
         $delete = $this->translator->trans('araise_crud.delete');
         $edit = $this->translator->trans('araise_crud.edit');
+        $show = $this->translator->trans(static::getEntityTitle());
+        $extra = '';
+        if ($entity) {
+            $extra = (string) (new StringConverter($entity));
+            $delete .= ': '.$extra;
+            $edit .= ': '.$extra;
+            $show .= ': '.$extra;
+        }
 
         return match ($route) {
             Page::INDEX => static::getEntityTitlePlural(),
             Page::DELETE => $delete,
             Page::CREATE => $add,
             Page::EDIT => $edit,
-            Page::SHOW => static::getEntityTitle(),
-            default => (string) $entity,
+            Page::SHOW => $show,
+            default => $extra,
         };
     }
 

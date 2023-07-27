@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}{{ 'login.title' | trans }}{{ parent() }}{% endblock %}
+
 {% block content %}
     <main class="flex justify-center items-center min-h-full">
         <div class="w-full bg-white border-2 border-blue px-8 pt-6 pb-8 m-4 max-w-lg w-full">
