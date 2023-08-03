@@ -1,3 +1,6 @@
 {% if title is defined and title is not empty %}
-<h1 class="mb-6 whatwedo-utility-heading-1">{{ title | trans }}</h1>
+    {% if meta %}
+        <strong class="block mb-1 text-base font-semibold text-neutral-700">{{ meta }}</strong>
+    {% endif %}
+    <h1 class="mb-6 whatwedo-utility-heading-1">{{ title | trans }}</h1>
 {% endif %}
