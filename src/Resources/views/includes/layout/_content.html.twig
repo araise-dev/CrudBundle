@@ -8,7 +8,7 @@
     {% set attr = content.option('attr')|default([])|filter((k,i) => k != 'class') %}
     <div
         id="wwd-crud-block-{{ block.acronym }}-content-{{ contentAcronym }}"
-        class="{% if (not isHiddenType and isFormCase) or not isFormCase %}px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4{% endif %} {{ content.option('attr')['class'] ?? '' }}"
+        class="{% if (not isHiddenType and isFormCase) or not isFormCase %}px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4{% endif %} {{ content.option('attr')['class'] ?? '' }}"
         {{ attr|map((value, attr) => "#{attr}=\"#{value}\"")|join(' ')|raw }}
     >
         <dt class="whatwedo-utility-bold text-neutral-500" id="wwd-crud-block-{{ block.acronym }}-content-{{ contentAcronym }}-label">
