@@ -16,7 +16,7 @@
             'mode' : 'modal'
         }) }}"
     {% endif %}x
-    class="whatwedo_crud-blocks whatwedo_crud-blocks--create h-full flex flex-wrap items-baseline"
+    class="whatwedo_crud-blocks whatwedo_crud-blocks--create h-full flex flex-wrap items-baseline gap-4"
 >
     {% for block in view.blocks(constant('araise\\CrudBundle\\Enums\\Page::CREATE')) %}
         {{ wwd_crud_render_block(block, view, constant('araise\\CrudBundle\\Enums\\Page::CREATE'), form) }}
