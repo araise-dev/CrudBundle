@@ -8,7 +8,7 @@
     {% set attr = content.option('attr')|default([])|filter((k,i) => k != 'class') %}
     <div
         id="wwd-crud-block-{{ block.acronym }}-content-{{ contentAcronym }}"
-        class="{% if (not isHiddenType and isFormCase) or not isFormCase %}px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4{% endif %} {{ content.option('attr')['class'] ?? '' }}"
+        class="{% if (not isHiddenType and isFormCase) or not isFormCase %}px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4{% endif %} {{ content.option('attr')['class'] ?? '' }}"
         {{ attr|map((value, attr) => "#{attr}=\"#{value}\"")|join(' ')|raw }}
     >
         <dt class="whatwedo-utility-bold text-neutral-500" id="wwd-crud-block-{{ block.acronym }}-content-{{ contentAcronym }}-label">
@@ -74,7 +74,7 @@
         {% if createUrl and (content.addVoterAttribute is null or is_granted(content.addVoterAttribute, view.data)) %}
 
         <div
-            class="ml-3 mb-3 {% if not isOnShow %}{{ content.option('attr')['class'] ?? '' }}{% endif %}"
+            class="flex justify-end mb-3 mx-3 {% if not isOnShow %}{{ content.option('attr')['class'] ?? '' }}{% endif %}"
             {% if not isOnShow %}{{ attr|map((value, attr) => "#{attr}=\"#{value}\"")|join(' ')|raw }}{% endif %}
             {{ stimulus_controller('araise/core-bundle/modal-form', { formUrl: createUrl }) }}
         >
