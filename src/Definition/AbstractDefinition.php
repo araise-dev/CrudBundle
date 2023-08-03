@@ -191,6 +191,9 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
 
     public function getTitle(mixed $entity): string
     {
+        if(!$entity) {
+            return '';
+        }
         return (string) (new StringConverter($entity));
     }
 
