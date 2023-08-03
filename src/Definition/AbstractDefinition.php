@@ -386,7 +386,8 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
         if (! $this->hasExtension(JsonSearchExtension::class)) {
             throw new \Exception('either install araise search bundle or override your jsonSearch function in the definition.');
         }
-        $ids = $this->container->get(IndexRepository::class)->search($q, static::getEntity());
+        $metadata = $this->container->get(EntityManagerInterface::class)->getClassMetadata(static::getEntity());
+        $ids = $this->container->get(IndexRepository::class)->search($q, $metadata->getName());
 
         return $this->getRepository()
             ->createQueryBuilder('xxx')
