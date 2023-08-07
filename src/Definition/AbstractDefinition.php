@@ -126,6 +126,9 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
         return $this->actions;
     }
 
+    /**
+     * @deprecated use $table->addBatchAction instead
+     */
     public function addBatchAction(string $acronym, array $options = [], string $type = Action::class): static
     {
         if (! isset($options['voter_attribute'])) {
@@ -136,6 +139,9 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
         return $this;
     }
 
+    /**
+     * @deprecated use $table->removeBatchAction instead
+     */
     public function removeBatchAction(string $acronym): static
     {
         if (isset($this->batchActions[$acronym])) {
