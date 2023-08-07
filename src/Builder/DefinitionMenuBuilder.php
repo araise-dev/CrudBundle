@@ -88,7 +88,7 @@ class DefinitionMenuBuilder
         if ($definitionObject
             && $this->authorizationChecker->isGranted(Page::INDEX, $definitionObject)) {
             if (! $title) {
-                $title = $definitionObject::getEntityTitlePlural();
+                $title = $definitionObject::getEntityTitlePluralTranslation();
             }
 
             if (! isset($options[self::OPT_ROUTE])) {

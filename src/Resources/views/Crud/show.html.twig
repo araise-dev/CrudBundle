@@ -2,7 +2,7 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
-    {% include '@araiseCrud/includes/main/_site_title.html.twig' with {'title':title, 'view': view} only %}
+    {% include '@araiseCrud/includes/main/_site_title.html.twig' with {'title': title, 'meta': meta, 'view': view} only %}
     <div class="whatwedo_crud-blocks whatwedo_crud-blocks--show flex flex-wrap gap-4 items-baseline">
         {% for block in view.blocks(constant('araise\\CrudBundle\\Enums\\Page::SHOW')) %}
             {% block block_definition_single_block %}

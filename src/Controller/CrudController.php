@@ -65,7 +65,7 @@ class CrudController extends AbstractController implements CrudDefinitionControl
         ]);
 
         $table->setOption('definition', $this->getDefinition());
-        $table->setOption('title', $this->getDefinition()->getTitle(route: Page::INDEX));
+        $table->setOption('title', $this->getDefinition()->getLongTitle(route: Page::INDEX));
         $this->getDefinition()->configureTableActions($table);
         $this->getDefinition()->configureTable($table);
         $this->getDefinition()->configureFilters($table);
@@ -85,7 +85,8 @@ class CrudController extends AbstractController implements CrudDefinitionControl
                 [
                     'view' => $this->getDefinition()->createView(Page::INDEX),
                     'table' => $table,
-                    'title' => $this->getDefinition()->getTitle(route: Page::INDEX),
+                    'title' => $this->getDefinition()->getTitle(null),
+                    'meta' => $this->getDefinition()->getMetaTitle(route: Page::INDEX),
                 ]
             )
         );
@@ -106,7 +107,8 @@ class CrudController extends AbstractController implements CrudDefinitionControl
                 Page::SHOW,
                 [
                     'view' => $this->getDefinition()->createView(Page::SHOW, $entity),
-                    'title' => $this->getDefinition()->getTitle($entity, Page::SHOW),
+                    'title' => $this->getDefinition()->getTitle($entity),
+                    'meta' => $this->getDefinition()->getMetaTitle(Page::SHOW),
                     '_route' => Page::SHOW,
                 ],
                 $entity
@@ -179,7 +181,8 @@ class CrudController extends AbstractController implements CrudDefinitionControl
                 Page::EDIT,
                 [
                     'view' => $view,
-                    'title' => $this->getDefinition()->getTitle($entity, Page::EDIT),
+                    'title' => $this->getDefinition()->getTitle($entity),
+                    'meta' => $this->getDefinition()->getMetaTitle(Page::EDIT),
                     'form' => $form->createView(),
                     '_route' => Page::EDIT,
                 ],
@@ -231,7 +234,8 @@ class CrudController extends AbstractController implements CrudDefinitionControl
             $template,
             $this->getDefinition()->getTemplateParameters(Page::CREATE, [
                 'view' => $view,
-                'title' => $this->getDefinition()->getTitle(null, Page::CREATE),
+                'title' => $this->getDefinition()->getTitle(null),
+                'meta' => $this->getDefinition()->getMetaTitle(Page::CREATE),
                 'form' => $form->createView(),
                 '_route' => Page::CREATE,
             ], $entity),
@@ -347,7 +351,8 @@ class CrudController extends AbstractController implements CrudDefinitionControl
         $form = $toRenderPage === Page::CREATE ? $view->getCreateForm() : $view->getEditForm();
         $context = [
             'view' => $view,
-            'title' => $this->getDefinition()->getTitle($data, $toRenderPage),
+            'title' => $this->getDefinition()->getTitle($data),
+            'meta' => $this->getDefinition()->getMetaTitle($toRenderPage),
             'form' => $form->createView(),
             '_route' => $toRenderPage,
         ];
@@ -466,7 +471,7 @@ class CrudController extends AbstractController implements CrudDefinitionControl
                 ->getQuery()
                 ->getSingleResult();
         } catch (NoResultException | NonUniqueResultException $e) {
-            throw new NotFoundHttpException(sprintf('Der gewünschte Datensatz existiert in %s nicht.', $this->getDefinition()->getTitle()));
+            throw new NotFoundHttpException(sprintf('Der gewünschte Datensatz existiert in %s nicht.', $this->getDefinition()->getLongTitle()));
         }
     }
 
