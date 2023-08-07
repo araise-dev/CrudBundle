@@ -159,4 +159,6 @@ interface DefinitionInterface
     public function getSubTableQueryBuilder(object $entity): null|QueryBuilder|array;
 
     public function getSubTableDefinition(object $entity): string|array;
+
+    public function showPrevAndNext(): bool;
 }

@@ -649,6 +649,12 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
 
     public function configureActions(mixed $data): void
     {
+        $dataLoader = $this->container->get(TableFactory::class)->create('index', DoctrineDataLoader::class, [
+            'dataloader_options' => [
+                DoctrineDataLoader::OPT_QUERY_BUILDER => $this->getQueryBuilder(),
+            ],
+        ])->getDataLoader();
+
         if ($this::hasCapability(Page::INDEX)) {
             $this->addAction('index', [
                 'label' => 'araise_crud.index',
@@ -676,6 +682,34 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
 
         if ($data) {
             if ($this::hasCapability(Page::SHOW)) {
+                $prev = $dataLoader->getPrev($data);
+                if ($prev && $this->showPrevAndNext()) {
+                    $this->addAction('prev', [
+                        'label' => 'araise_crud.prev',
+                        'icon' => 'chevron-left',
+                        'visibility' => [Page::SHOW],
+                        'route' => static::getRoute(Page::SHOW),
+                        'route_parameters' => [
+                            'id' => $prev->getId(),
+                        ],
+                        'priority' => 1,
+                        'voter_attribute' => Page::SHOW,
+                    ]);
+                }
+                $next = $dataLoader->getNext($data);
+                if ($next && $this->showPrevAndNext()) {
+                    $this->addAction('next', [
+                        'label' => 'araise_crud.next',
+                        'icon' => 'chevron-right',
+                        'visibility' => [Page::SHOW],
+                        'route' => static::getRoute(Page::SHOW),
+                        'route_parameters' => [
+                            'id' => $next->getId(),
+                        ],
+                        'priority' => 2,
+                        'voter_attribute' => Page::SHOW,
+                    ]);
+                }
                 $this->addAction('view', [
                     'label' => 'araise_crud.view',
                     'icon' => 'eye',
@@ -822,6 +856,11 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
     public function setFormAccessorPrefix(string $formAccessorPrefix): void
     {
         $this->formAccessorPrefix = $formAccessorPrefix;
+    }
+
+    public function showPrevAndNext(): bool
+    {
+        return false;
     }
 
     protected function getDefinitionBuilder(object|array|null $data = null): DefinitionBuilder

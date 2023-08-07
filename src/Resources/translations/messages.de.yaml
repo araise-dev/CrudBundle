@@ -1,4 +1,6 @@
 araise_crud:
+    prev: ""
+    next: ""
     dashboard: Dashboard
     hello: Hallo
     add: Hinzufügen
