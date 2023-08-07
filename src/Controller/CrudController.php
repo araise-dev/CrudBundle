@@ -234,8 +234,8 @@ class CrudController extends AbstractController implements CrudDefinitionControl
             $template,
             $this->getDefinition()->getTemplateParameters(Page::CREATE, [
                 'view' => $view,
-                'title' => $this->getDefinition()->getTitle(null),
-                'meta' => $this->getDefinition()->getMetaTitle(Page::CREATE),
+                'title' => $this->getDefinition()->getLongTitle(null, Page::CREATE),
+                'meta' => $this->getDefinition()->getEntityTitle(),
                 'form' => $form->createView(),
                 '_route' => Page::CREATE,
             ], $entity),
