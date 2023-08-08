@@ -18,6 +18,7 @@ araise_crud:
     relation:
         add: Hinzufügen
     actions:
+        more: Mehr...
         delete:
             confirm_delete: Wirklich löschen?
             yes: Ja
