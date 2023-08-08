@@ -32,14 +32,14 @@ export default class extends Controller {
     activeTab(element) {
         const tabId = element.dataset.tabId;
         const activeContent = this.element.querySelector(`[data-tab-content="${tabId}"]`);
-        const underline = element.querySelector('[data-araise--crud-bundle--tab-target]');
+        const line = element.querySelector('[data-araise--crud-bundle--tab-target]');
 
         element.classList.remove('text-neutral-500');
         element.classList.add('text-neutral-900');
         element.classList.add('active');
 
-        underline.classList.remove('bg-transparent');
-        underline.classList.add('bg-primary-500');
+        line.classList.remove('bg-transparent');
+        line.classList.add('bg-primary-500');
 
         activeContent.classList.remove('hidden');
         activeContent.classList.add('block');
