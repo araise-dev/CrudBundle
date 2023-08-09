@@ -57,11 +57,15 @@ class CrudController extends AbstractController implements CrudDefinitionControl
         if (is_subclass_of($this->getDefinition()::getEntity(), TreeInterface::class)) {
             $dataLoader = DoctrineTreeDataLoader::class;
         }
+        $options = [
+            DoctrineDataLoader::OPT_QUERY_BUILDER => $this->getDefinition()->getQueryBuilder(),
+        ];
+        if ($dataLoader === DoctrineDataLoader::class) {
+            $options[DoctrineDataLoader::OPT_SAVE_LAST_QUERY] = true;
+        }
 
         $table = $tableFactory->create('index', $dataLoader, [
-            'dataloader_options' => [
-                DoctrineDataLoader::OPT_QUERY_BUILDER => $this->getDefinition()->getQueryBuilder(),
-            ],
+            'dataloader_options' => $options,
         ]);
 
         $table->setOption('definition', $this->getDefinition());
