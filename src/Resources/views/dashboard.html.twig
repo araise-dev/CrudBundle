@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Dashboard {{ parent() }}{% endblock %}
+{% block title %}{% with {'title':'Dashboard'|trans} %}{{ parent() }}{% endwith %}{% endblock %}
 
 {% block topbar %}
 {% endblock %}

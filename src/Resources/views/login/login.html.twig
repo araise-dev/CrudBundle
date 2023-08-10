@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ 'login.title' | trans }}{{ parent() }}{% endblock %}
+{% block title %}{% with {'title':'login.title' | trans} %}{{ parent() }}{% endwith %}{% endblock %}
 
 {% block content %}
     <main class="flex justify-center items-center min-h-full">

@@ -25,7 +25,7 @@
     {% endif %}
 
     {# extract icon #}
-    {% set icon = attributes.icon|default('gear-fill') %}
+    {% set icon = attributes.icon|default('gear') %}
     {% set attributes = attributes|filter((v, k) => k != 'icon') %}
 
     {# output #}
