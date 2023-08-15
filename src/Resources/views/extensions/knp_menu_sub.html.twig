@@ -24,6 +24,10 @@
         }) %}
     {% endif %}
 
+    {# extract icon #}
+    {% set icon = attributes.icon|default('gear') %}
+    {% set attributes = attributes|filter((v, k) => k != 'icon') %}
+
     {# output #}
     {% import _self as knp_menu %}
     <{{ htmlElement }}{{ knp_menu.attributes(attributes) }}>
@@ -39,7 +43,7 @@
                 class="{{ classes }}"
                 {{ stimulus_action('araise/crud-bundle/navigation', 'toggle', 'click') }}
             >
-                {{ bootstrap_icon('gear-fill', { 'class': 'text-neutral-600 mr-3 h-4 w-4' }) }}
+                {{ bootstrap_icon(icon, { 'class': 'text-neutral-600 mr-3 h-4 w-4' }) }}
 
                 {{ item.name|trans }}
 

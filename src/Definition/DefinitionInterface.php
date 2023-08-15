@@ -20,9 +20,9 @@ interface DefinitionInterface
 {
     public static function supports(mixed $entity): bool;
 
-    public static function getEntityTitle(): string;
+    public static function getEntityTitleTranslation(): string;
 
-    public static function getEntityTitlePlural(): string;
+    public static function getEntityTitlePluralTranslation(): string;
 
     public static function getAlias(): string;
 
@@ -38,7 +38,7 @@ interface DefinitionInterface
 
     public function getBuilder(): DefinitionBuilder;
 
-    public function getTitle(mixed $entity = null, ?PageInterface $route = null): string;
+    public function getLongTitle(mixed $entity = null, ?PageInterface $route = null): string;
 
     public function getFormAccessorPrefix(): string;
 
@@ -159,4 +159,6 @@ interface DefinitionInterface
     public function getSubTableQueryBuilder(object $entity): null|QueryBuilder|array;
 
     public function getSubTableDefinition(object $entity): string|array;
+
+    public function showPrevAndNext(): bool;
 }

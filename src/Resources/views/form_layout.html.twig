@@ -9,7 +9,9 @@
     {% set widget_errors_class = widget_errors_class|default('border-double border-red-500 bg-red-50 ...') %}
 #}
 {% block widget_attributes %}
-    {% set widget_class = widget_class|default('block w-full shadow-sm whatwedo_core-input') %}
+    {% set class = attr.class|default('') %}
+    {% set attr = attr|filter((v, k) => k != 'class') %}
+    {% set widget_class = widget_class|default('block w-full shadow-sm whatwedo_core-input '~class) %}
     {% set widget_errors_class = widget_errors_class|default('whatwedo-utility-input--error') %}
     {{ parent() }}
 {% endblock widget_attributes %}

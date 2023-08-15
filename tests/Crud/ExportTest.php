@@ -33,8 +33,11 @@ namespace araise\CrudBundle\Tests\Crud;
 use araise\CrudBundle\Enums\Page;
 use araise\CrudBundle\Test\Data\CreateData;
 use araise\CrudBundle\Test\Data\ExportData;
+use araise\CrudBundle\Test\Data\ShowData;
 use araise\CrudBundle\Tests\App\Definition\PersonDefinition;
 use araise\CrudBundle\Tests\App\Factory\PersonFactory;
+use Symfony\Component\BrowserKit\AbstractBrowser;
+use Symfony\Component\DomCrawler\Crawler;
 use Zenstruck\Foundry\Test\Factories;
 
 class ExportTest extends AbstractCrudTest
@@ -52,6 +55,14 @@ class ExportTest extends AbstractCrudTest
             Page::CREATE->name => [
                 [
                     CreateData::new()->setSkip(true),
+                ],
+            ],
+            Page::SHOW->name => [
+                'no-link' => [
+                    ShowData::new()->setAssertCallback(function (Crawler $crawler, AbstractBrowser $browser) {
+                        $text = trim($crawler->filter('#wwd-crud-block-base-content-category-content')->html());
+                        self::assertStringStartsWith('category_prefix.phpunit', $text);
+                    }),
                 ],
             ],
         ];

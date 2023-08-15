@@ -27,6 +27,9 @@ class Person
     #[Assert\NotNull]
     private ?string $jobTitle = null;
 
+    #[ORM\ManyToOne(targetEntity: Category::class)]
+    private ?Category $category = null;
+
     #[Assert\Callback(groups: ['check-not-valid'])]
     public function validate(ExecutionContextInterface $context, $payload)
     {
@@ -64,6 +67,18 @@ class Person
     public function setJobTitle(?string $jobTitle): void
     {
         $this->jobTitle = $jobTitle;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
+
+        return $this;
     }
 
     public function __toString(): string

@@ -57,20 +57,30 @@ class CrudController extends AbstractController implements CrudDefinitionControl
         if (is_subclass_of($this->getDefinition()::getEntity(), TreeInterface::class)) {
             $dataLoader = DoctrineTreeDataLoader::class;
         }
+        $options = [
+            DoctrineDataLoader::OPT_QUERY_BUILDER => $this->getDefinition()->getQueryBuilder(),
+        ];
+        if ($dataLoader === DoctrineDataLoader::class) {
+            $options[DoctrineDataLoader::OPT_SAVE_LAST_QUERY] = true;
+        }
 
         $table = $tableFactory->create('index', $dataLoader, [
-            'dataloader_options' => [
-                DoctrineDataLoader::OPT_QUERY_BUILDER => $this->getDefinition()->getQueryBuilder(),
-            ],
+            'dataloader_options' => $options,
         ]);
 
         $table->setOption('definition', $this->getDefinition());
-        $table->setOption('title', $this->getDefinition()->getTitle(route: Page::INDEX));
+        $table->setOption('title', $this->getDefinition()->getLongTitle(route: Page::INDEX));
         $this->getDefinition()->configureTableActions($table);
         $this->getDefinition()->configureTable($table);
         $this->getDefinition()->configureFilters($table);
         $this->getDefinition()->buildBreadcrumbs(null, Page::INDEX);
         $table->setOption(Table::OPT_SUB_TABLE_LOADER, [$this->getDefinition(), 'getSubTables']);
+
+        // @deprecated: remove after deprecation is removed
+        // @see AbstractDefinition->addBatchActions()
+        foreach ($this->getDefinition()->getBatchActions() as $batchAction) {
+            $table->addBatchAction($batchAction->getAcronym(), $batchAction->getOptions(), $batchAction::class);
+        }
 
         return $this->render(
             $this->getTemplate('index.html.twig'),
@@ -79,7 +89,8 @@ class CrudController extends AbstractController implements CrudDefinitionControl
                 [
                     'view' => $this->getDefinition()->createView(Page::INDEX),
                     'table' => $table,
-                    'title' => $this->getDefinition()->getTitle(route: Page::INDEX),
+                    'title' => $this->getDefinition()->getMetaTitle(route: Page::INDEX),
+                    'meta' => $this->getDefinition()->getMetaTitle(route: Page::INDEX),
                 ]
             )
         );
@@ -100,7 +111,8 @@ class CrudController extends AbstractController implements CrudDefinitionControl
                 Page::SHOW,
                 [
                     'view' => $this->getDefinition()->createView(Page::SHOW, $entity),
-                    'title' => $this->getDefinition()->getTitle($entity, Page::SHOW),
+                    'title' => $this->getDefinition()->getTitle($entity),
+                    'meta' => $this->getDefinition()->getMetaTitle(Page::SHOW),
                     '_route' => Page::SHOW,
                 ],
                 $entity
@@ -173,7 +185,8 @@ class CrudController extends AbstractController implements CrudDefinitionControl
                 Page::EDIT,
                 [
                     'view' => $view,
-                    'title' => $this->getDefinition()->getTitle($entity, Page::EDIT),
+                    'title' => $this->getDefinition()->getTitle($entity),
+                    'meta' => $this->getDefinition()->getMetaTitle(Page::EDIT),
                     'form' => $form->createView(),
                     '_route' => Page::EDIT,
                 ],
@@ -225,7 +238,8 @@ class CrudController extends AbstractController implements CrudDefinitionControl
             $template,
             $this->getDefinition()->getTemplateParameters(Page::CREATE, [
                 'view' => $view,
-                'title' => $this->getDefinition()->getTitle(null, Page::CREATE),
+                'title' => $this->getDefinition()->getLongTitle(null, Page::CREATE),
+                'meta' => $this->getDefinition()->getEntityTitle(),
                 'form' => $form->createView(),
                 '_route' => Page::CREATE,
             ], $entity),
@@ -246,7 +260,7 @@ class CrudController extends AbstractController implements CrudDefinitionControl
             $this->addFlash('success', 'araise_crud.delete_success');
         } catch (\Exception $e) {
             $this->addFlash('error', 'araise_crud.delete_error');
-            $this->container->get(LoggerInterface::class)->warning('Error while deleting: ' . $e->getMessage(), [
+            $this->container->get(LoggerInterface::class)->warning('Error while deleting: '.$e->getMessage(), [
                 'entity' => get_class($entity),
                 'id' => $entity->getId(),
             ]);
@@ -282,7 +296,7 @@ class CrudController extends AbstractController implements CrudDefinitionControl
         );
 
         $response->headers->set('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        $response->headers->set('Content-Disposition', 'attachment; filename="' . $this->definition->getExportFilename() . '"');
+        $response->headers->set('Content-Disposition', 'attachment; filename="'.$this->definition->getExportFilename().'"');
 
         return $response;
     }
@@ -341,7 +355,8 @@ class CrudController extends AbstractController implements CrudDefinitionControl
         $form = $toRenderPage === Page::CREATE ? $view->getCreateForm() : $view->getEditForm();
         $context = [
             'view' => $view,
-            'title' => $this->getDefinition()->getTitle($data, $toRenderPage),
+            'title' => $this->getDefinition()->getTitle($data),
+            'meta' => $this->getDefinition()->getMetaTitle($toRenderPage),
             'form' => $form->createView(),
             '_route' => $toRenderPage,
         ];
@@ -397,7 +412,7 @@ class CrudController extends AbstractController implements CrudDefinitionControl
     protected function dispatchEvent(string $event, mixed $entity): void
     {
         $this->eventDispatcher->dispatch(new CrudEvent($entity), $event);
-        $this->eventDispatcher->dispatch(new CrudEvent($entity), $event . '.' . $this->getDefinition()::getAlias());
+        $this->eventDispatcher->dispatch(new CrudEvent($entity), $event.'.'.$this->getDefinition()::getAlias());
     }
 
     protected function preselectEntities(Request $request, DefinitionView $view, object $entity): void
@@ -434,11 +449,11 @@ class CrudController extends AbstractController implements CrudDefinitionControl
      */
     protected function getTemplate(string $filename): string
     {
-        if ($this->twig->getLoader()->exists($this->getDefinition()->getTemplateDirectory() . '/' . $filename)) {
-            return $this->getDefinition()->getTemplateDirectory() . '/' . $filename;
+        if ($this->twig->getLoader()->exists($this->getDefinition()->getTemplateDirectory().'/'.$filename)) {
+            return $this->getDefinition()->getTemplateDirectory().'/'.$filename;
         }
 
-        return '@araiseCrud/Crud/' . $filename;
+        return '@araiseCrud/Crud/'.$filename;
     }
 
     protected function getDefinition(): DefinitionInterface
@@ -455,12 +470,12 @@ class CrudController extends AbstractController implements CrudDefinitionControl
     {
         try {
             return $this->getDefinition()->getQueryBuilder()
-                ->andWhere($this->getIdentifierColumn() . ' = :id')
+                ->andWhere($this->getIdentifierColumn().' = :id')
                 ->setParameter('id', $request->attributes->getInt('id'))
                 ->getQuery()
                 ->getSingleResult();
         } catch (NoResultException | NonUniqueResultException $e) {
-            throw new NotFoundHttpException(sprintf('Der gewünschte Datensatz existiert in %s nicht.', $this->getDefinition()->getTitle()));
+            throw new NotFoundHttpException(sprintf('Der gewünschte Datensatz existiert in %s nicht.', $this->getDefinition()->getLongTitle()));
         }
     }
 

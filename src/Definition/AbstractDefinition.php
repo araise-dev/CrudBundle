@@ -26,6 +26,7 @@ use araise\TableBundle\Extension\FilterExtension;
 use araise\TableBundle\Extension\SortExtension;
 use araise\TableBundle\Factory\TableFactory;
 use araise\TableBundle\Table\Table;
+use Coduo\ToString\StringConverter;
 use Doctrine\Common\Util\ClassUtils;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
@@ -74,14 +75,14 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
         throw new \Exception('\araise\CrudBundle\Definition\AbstractDefinition::getEntity must be implemented');
     }
 
-    public static function getEntityTitle(): string
+    public static function getEntityTitleTranslation(): string
     {
-        return 'wwd.' . static::getEntityAlias() . '.title';
+        return 'wwd.'.static::getEntityAlias().'.title';
     }
 
-    public static function getEntityTitlePlural(): string
+    public static function getEntityTitlePluralTranslation(): string
     {
-        return 'wwd.' . static::getEntityAlias() . '.title_plural';
+        return 'wwd.'.static::getEntityAlias().'.title_plural';
     }
 
     public function createEntity(Request $request): mixed
@@ -125,6 +126,9 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
         return $this->actions;
     }
 
+    /**
+     * @deprecated use $table->addBatchAction instead
+     */
     public function addBatchAction(string $acronym, array $options = [], string $type = Action::class): static
     {
         if (! isset($options['voter_attribute'])) {
@@ -135,6 +139,9 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
         return $this;
     }
 
+    /**
+     * @deprecated use $table->removeBatchAction instead
+     */
     public function removeBatchAction(string $acronym): static
     {
         if (isset($this->batchActions[$acronym])) {
@@ -164,7 +171,7 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
 
     public function getExportFilename(): string
     {
-        $prefix = $this->translator->trans(static::getEntityTitlePlural());
+        $prefix = $this->translator->trans(static::getEntityTitlePluralTranslation());
         $suffix = date('Y-m-d\TH_i_s');
 
         return sprintf('%s_%s.xlsx', $prefix, $suffix);
@@ -188,20 +195,57 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
         );
     }
 
-    public function getTitle(mixed $entity = null, ?PageInterface $route = null): string
+    public function getTitle(mixed $entity): string
+    {
+        if (!$entity) {
+            return '';
+        }
+        return (string) (new StringConverter($entity));
+    }
+
+    public function getLongTitle(mixed $entity = null, ?PageInterface $route = null, bool $withEntityTitle = true): string
     {
         $add = $this->translator->trans('araise_crud.add');
         $delete = $this->translator->trans('araise_crud.delete');
         $edit = $this->translator->trans('araise_crud.edit');
+        $show = $this->translator->trans(static::getEntityTitleTranslation());
+        $title = '';
+        if ($entity) {
+            $title = (string) (new StringConverter($entity));
+            $delete .= ': '.$title;
+            $edit .= ': '.$title;
+            $show .= ': '.$title;
+        }
 
         return match ($route) {
-            Page::INDEX => static::getEntityTitlePlural(),
+            Page::INDEX => static::getEntityTitlePluralTranslation(),
+            Page::DELETE => $withEntityTitle ? $delete : $title,
+            Page::CREATE => $add,
+            Page::EDIT => $withEntityTitle ? $edit : $title,
+            Page::SHOW => $withEntityTitle ? $show : $title,
+            default => $title,
+        };
+    }
+
+    public function getMetaTitle(PageInterface $route = null)
+    {
+        $add = $this->translator->trans('araise_crud.add');
+        $delete = $this->translator->trans('araise_crud.delete');
+        $edit = $this->translator->trans('araise_crud.edit');
+        $show = $this->translator->trans(static::getEntityTitleTranslation());
+
+        return match ($route) {
+            Page::INDEX => $this->translator->trans(static::getEntityTitlePluralTranslation()),
             Page::DELETE => $delete,
             Page::CREATE => $add,
             Page::EDIT => $edit,
-            Page::SHOW => static::getEntityTitle(),
-            default => (string) $entity,
+            Page::SHOW => $show,
         };
+    }
+
+    public function getEntityTitle()
+    {
+        return $this->translator->trans(static::getEntityTitleTranslation());
     }
 
     public static function getCapabilities(): array
@@ -284,7 +328,7 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
         try {
             $instance = $clazz->newInstance();
         } catch (\Throwable $e) {
-            throw new \RuntimeException('Could not automatically detect relation definition for class ' . $entityClass . '. Please override getJsonSearchUrl() in ' . static::class . ' or make the Entity Constructor argument less.', previous: $e);
+            throw new \RuntimeException('Could not automatically detect relation definition for class '.$entityClass.'. Please override getJsonSearchUrl() in '.static::class.' or make the Entity Constructor argument less.', previous: $e);
         }
         /** @var DefinitionInterface $definition */
         $definition = $this
@@ -297,7 +341,7 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
             ;
         }
         $this->container->get(LoggerInterface::class)
-            ->warning('you need to enable Page::JSONSEARCH Capability on the "' . get_class($definition) . '" definition to allow ajax filtering.')
+            ->warning('you need to enable Page::JSONSEARCH Capability on the "'.get_class($definition).'" definition to allow ajax filtering.')
         ;
 
         return '';
@@ -377,7 +421,8 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
         if (! $this->hasExtension(JsonSearchExtension::class)) {
             throw new \Exception('either install araise search bundle or override your jsonSearch function in the definition.');
         }
-        $ids = $this->container->get(IndexRepository::class)->search($q, static::getEntity());
+        $metadata = $this->container->get(EntityManagerInterface::class)->getClassMetadata(static::getEntity());
+        $ids = $this->container->get(IndexRepository::class)->search($q, $metadata->getName());
 
         return $this->getRepository()
             ->createQueryBuilder('xxx')
@@ -412,37 +457,37 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
 
         if (in_array($route, [Page::INDEX, Page::EDIT, Page::SHOW, Page::CREATE], true)) {
             if (static::hasCapability(Page::INDEX)) {
-                $this->getBreadcrumbs()->addRouteItem(static::getEntityTitlePlural(), static::getRoute(Page::INDEX));
+                $this->getBreadcrumbs()->addRouteItem(static::getEntityTitlePluralTranslation(), static::getRoute(Page::INDEX));
             } else {
-                $this->getBreadcrumbs()->addItem(static::getEntityTitlePlural());
+                $this->getBreadcrumbs()->addItem(static::getEntityTitlePluralTranslation());
             }
         }
 
         if (in_array($route, [Page::EDIT, Page::SHOW], true)) {
             if (static::hasCapability(Page::SHOW)) {
-                $this->getBreadcrumbs()->addRouteItem($this->getTitle($entity, Page::SHOW), static::getRoute(Page::SHOW), [
+                $this->getBreadcrumbs()->addRouteItem($this->getLongTitle($entity, Page::SHOW, withEntityTitle: false), static::getRoute(Page::SHOW), [
                     'id' => $entity->getId(),
                 ]);
             } else {
-                $this->getBreadcrumbs()->addItem($this->getTitle($entity, Page::SHOW));
+                $this->getBreadcrumbs()->addItem($this->getLongTitle($entity, Page::SHOW, withEntityTitle: false));
             }
         }
 
         if ($route === Page::EDIT) {
             if (static::hasCapability(Page::EDIT)) {
-                $this->getBreadcrumbs()->addRouteItem($this->getTitle($entity, Page::EDIT), static::getRoute(Page::EDIT), [
+                $this->getBreadcrumbs()->addRouteItem($this->getLongTitle($entity, Page::EDIT), static::getRoute(Page::EDIT), [
                     'id' => $entity->getId(),
                 ]);
             } else {
-                $this->getBreadcrumbs()->addItem($this->getTitle($entity, Page::EDIT));
+                $this->getBreadcrumbs()->addItem($this->getLongTitle($entity, Page::EDIT));
             }
         }
 
         if ($route === Page::CREATE) {
             if (static::hasCapability(Page::CREATE)) {
-                $this->getBreadcrumbs()->addRouteItem($this->getTitle($entity, Page::CREATE), static::getRoute(Page::CREATE));
+                $this->getBreadcrumbs()->addRouteItem($this->getLongTitle($entity, Page::CREATE), static::getRoute(Page::CREATE));
             } else {
-                $this->getBreadcrumbs()->addItem($this->getTitle($entity, Page::CREATE));
+                $this->getBreadcrumbs()->addItem($this->getLongTitle($entity, Page::CREATE));
             }
         }
     }
@@ -492,7 +537,7 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
 
     public static function getRoute(PageInterface $route): string
     {
-        return static::getRoutePrefix() . '_' . $route->toRoute();
+        return static::getRoutePrefix().'_'.$route->toRoute();
     }
 
     #[Required]
@@ -574,14 +619,14 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
         $definitionManager = $this->container->get(DefinitionManager::class);
         $tables = [];
         foreach ($subQueryBuilders as $i => $subQueryBuilder) {
-            $table = $tableFactory->create('sub_table_' . $entity->getId() . '_' . $i, DoctrineDataLoader::class, [
+            $table = $tableFactory->create('sub_table_'.$entity->getId().'_'.$i, DoctrineDataLoader::class, [
                 'dataloader_options' => [
                     DoctrineDataLoader::OPT_QUERY_BUILDER => $subQueryBuilder,
                 ],
             ]);
             $definition = $definitionManager->getDefinitionByClassName($subTableDefinitions[$i]);
             $table->setOption(Table::OPT_DEFINITION, $definition);
-            $table->setOption(Table::OPT_TITLE, $definition->getTitle(entity: $entity, route: Page::INDEX));
+            $table->setOption(Table::OPT_TITLE, $definition->getLongTitle(entity: $entity, route: Page::INDEX));
             $table->setOption(Table::OPT_THEME, '@araiseTable/tailwind_2_layout_sub_table.html.twig');
             $table->removeExtension(SortExtension::class);
             $table->getPaginationExtension()->setLimit(0);
@@ -604,6 +649,12 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
 
     public function configureActions(mixed $data): void
     {
+        $dataLoader = $this->container->get(TableFactory::class)->create('index', DoctrineDataLoader::class, [
+            'dataloader_options' => [
+                DoctrineDataLoader::OPT_QUERY_BUILDER => $this->getQueryBuilder(),
+            ],
+        ])->getDataLoader();
+
         if ($this::hasCapability(Page::INDEX)) {
             $this->addAction('index', [
                 'label' => 'araise_crud.index',
@@ -631,6 +682,34 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
 
         if ($data) {
             if ($this::hasCapability(Page::SHOW)) {
+                $prev = $dataLoader->getPrev($data);
+                if ($prev && $this->showPrevAndNext()) {
+                    $this->addAction('prev', [
+                        'label' => 'araise_crud.prev',
+                        'icon' => 'chevron-left',
+                        'visibility' => [Page::SHOW],
+                        'route' => static::getRoute(Page::SHOW),
+                        'route_parameters' => [
+                            'id' => $prev->getId(),
+                        ],
+                        'priority' => 1,
+                        'voter_attribute' => Page::SHOW,
+                    ]);
+                }
+                $next = $dataLoader->getNext($data);
+                if ($next && $this->showPrevAndNext()) {
+                    $this->addAction('next', [
+                        'label' => 'araise_crud.next',
+                        'icon' => 'chevron-right',
+                        'visibility' => [Page::SHOW],
+                        'route' => static::getRoute(Page::SHOW),
+                        'route_parameters' => [
+                            'id' => $next->getId(),
+                        ],
+                        'priority' => 2,
+                        'voter_attribute' => Page::SHOW,
+                    ]);
+                }
                 $this->addAction('view', [
                     'label' => 'araise_crud.view',
                     'icon' => 'eye',
@@ -777,6 +856,11 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
     public function setFormAccessorPrefix(string $formAccessorPrefix): void
     {
         $this->formAccessorPrefix = $formAccessorPrefix;
+    }
+
+    public function showPrevAndNext(): bool
+    {
+        return false;
     }
 
     protected function getDefinitionBuilder(object|array|null $data = null): DefinitionBuilder

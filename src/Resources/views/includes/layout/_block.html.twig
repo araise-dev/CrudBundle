@@ -5,8 +5,8 @@
     {# @var content string #}
     {% set attr = block.option('attr')|default([])|filter((k,i) => k != 'class') %}
     {% set block_class = (block.option('size') == constant('araise\\CrudBundle\\Enums\\BlockSize::LARGE') ? 'basis-full sm:mb-0 max-w-full' : 'basis-full sm:basis-3/6-gap') %}
-    <div id="wwd-crud-block-{{ block.acronym }}" class="{{ block_class }} {{ block.option('attr')['class'] ?? '' }}" {{ attr|map((value, attr) => "#{attr}=\"#{value}\"")|join(' ')|raw }}>
-        <div class="bg-white shadow" {{ _macro.renderStimulusController(block.stimulusControllers) }}>
+    <div id="wwd-crud-block-{{ block.acronym }}" class="border-t-2 border-primary-400 shadow {{ block_class }} {{ block.option('attr')['class'] ?? '' }}" {{ attr|map((value, attr) => "#{attr}=\"#{value}\"")|join(' ')|raw }}>
+        <div class="bg-white" {{ _macro.renderStimulusController(block.stimulusControllers) }}>
             {% if block.option('label') or block.option('description') %}
                 <div class="px-4 py-3" {{ stimulus_target('araise/crud-bundle/block', 'title') }}>
                     {% if block.option('label') %}
@@ -41,27 +41,27 @@
     {% set attr = block.option('attr')|default([])|filter((k,i) => k != 'class') %}
     {% set block_block_class = (block.option('size') == constant('araise\\CrudBundle\\Enums\\BlockSize::LARGE') ? '' : 'sm:w-3/6') ~ ' w-full wwd-block-block mb-4' %}
     <div id="wwd-crud-block-{{ block.acronym }}" class="{{ block_block_class }} {{ block.option('attr')['class'] ?? '' }}" {{ attr|map((value, attr) => "#{attr}=\"#{value}\"")|join(' ')|raw }}>
-        <div class="bg-white shadow" {{ _macro.renderStimulusController(block.stimulusControllers) }}>
-        {% if block.option('label') or block.option('description') %}
-            <div class="wwd-crud-block-header px-4 pt-4 sm:px-6" {{ stimulus_target('araise/crud-bundle/block', 'title') }}>
-                {% if block.option('label') %}
-                    <h3 class="whatwedo-utility-heading-3">
-                        {{ block.option('label')|trans }}
-                    </h3>
-                {% endif %}
-                {% if block.option('description') %}
-                    <p class="mt-1 max-w-2xl text-base text-neutral-500">
-                        {{ block.option('description')|trans }}
-                    </p>
-                {% endif %}
+        <div class="bg-white" {{ _macro.renderStimulusController(block.stimulusControllers) }}>
+            {% if block.option('label') or block.option('description') %}
+                <div class="wwd-crud-block-header px-4 pt-4 sm:px-6" {{ stimulus_target('araise/crud-bundle/block', 'title') }}>
+                    {% if block.option('label') %}
+                        <h3 class="whatwedo-utility-heading-3">
+                            {{ block.option('label')|trans }}
+                        </h3>
+                    {% endif %}
+                    {% if block.option('description') %}
+                        <p class="mt-1 max-w-2xl text-base text-neutral-500">
+                            {{ block.option('description')|trans }}
+                        </p>
+                    {% endif %}
+                </div>
+            {% endif %}
+            <div class="wwd-block-block-content{% if block.option('collapsed') %} hidden{% endif %}"
+                {{ stimulus_target('araise/crud-bundle/block', 'block') }}>
+                {% for subBlock in block.blocks(view, page) %}
+                    {{ wwd_crud_render_block(subBlock, view, page, form ?? null) }}
+                {% endfor %}
             </div>
-        {% endif %}
-        <div class="wwd-block-block-content{% if block.option('collapsed') %} hidden{% endif %}"
-            {{ stimulus_target('araise/crud-bundle/block', 'block') }}>
-            {% for subBlock in block.blocks(view, page) %}
-                {{ wwd_crud_render_block(subBlock, view, page, form ?? null) }}
-            {% endfor %}
-        </div>
         </div>
     </div>
 {% endblock %}
@@ -81,7 +81,7 @@
 {% block tab_block %}
     {% set attr = block.option('attr')|default([])|filter((k,i) => k != 'class') %}
     <div
-        class="w-full wwd-block-block bg-white self-start wwd-block-block--tab gap-4 {{ block.option('attr')['class'] ?? '' }}"
+        class="w-full wwd-block-block bg-white self-start wwd-block-block--tab shadow border-t-2 border-primary-400 gap-4 {{ block.option('attr')['class'] ?? '' }}"
         {{ attr|map((value, attr) => "#{attr}=\"#{value}\"")|join(' ')|raw }}
         id="wwd-crud-block-{{ block.acronym }}"
         {{ stimulus_controller('araise/crud-bundle/tab') }}
@@ -89,24 +89,24 @@
         <h2 class="whatwedo-utility-heading-3 px-4 py-3">{{ block.option('label') | trans }}</h2>
 
         <div class="block">
-            <nav class="isolate z-0 flex divide-x divide-neutral-200">
+            <nav class="isolate z-0 flex">
                 {% for subBlock in block.blocks(view, page) %}
                     <a
                         href="#tab-{{ subBlock.acronym }}"
                         data-tab-id="{{ subBlock.acronym }}"
-                        class="text-neutral-500 hover:text-neutral-700 group relative min-w-0 flex-1 bg-white py-3 px-2 text-base font-semibold text-center hover:bg-neutral-50 focus:z-10 rounded-t-lg border"
+                        class="text-neutral-500 hover:text-neutral-700 group relative min-w-0 flex-1 bg-white py-3 px-2 text-base [&.active]:font-semibold text-center transition-colors hover:bg-neutral-50 focus:z-10 border-b [&.active]:border-b-0 [&.active]:border-x [&.active]:first:border-l-0 [&.active]:last:border-r-0"
                         {{ stimulus_target('araise/crud-bundle/tab', 'tab') }}
                         {{ stimulus_action('araise/crud-bundle/tab', 'openTab') }}
                     >
                         <span>{{ subBlock.option('label') | trans }}</span>
-                        <span {{ stimulus_target('araise/crud-bundle/tab', 'underline') }} class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
+                        <span {{ stimulus_target('araise/crud-bundle/tab', 'line') }} class="bg-transparent absolute inset-x-0 top-0 h-0.5"></span>
                     </a>
                 {% endfor %}
             </nav>
         </div>
 
         {% for subBlock in block.blocks(view, page) %}
-            <div class="hidden" data-tab-content="{{ subBlock.acronym }}" {{ stimulus_target('araise/crud-bundle/tab', 'content') }}>
+            <div class="hidden [&>div]:border-t-0 [&>div]:shadow-none" data-tab-content="{{ subBlock.acronym }}" {{ stimulus_target('araise/crud-bundle/tab', 'content') }}>
                 {{ wwd_crud_render_block(subBlock, view, page, form ?? null) }}
             </div>
         {% endfor %}

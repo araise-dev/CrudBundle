@@ -1,14 +1,22 @@
 {% if view is defined and view.actions|length > 0 %}
     <div class="hidden md:flex lg:ml-3 flex space-x-3 justify-end flex-nowrap items-stretch">
-        {% for action in view.actions|slice(0, 2) %}
+        {% set nextAction = view.actions|filter((item, key) => item.acronym == 'next' and key < 3) %}
+        {% set prevAction = view.actions|filter((item, key) => item.acronym == 'prev' and key < 3) %}
+
+        {% set overflow = 3 %}
+        {% set overflow = nextAction ? overflow + 1 : overflow %}
+        {% set overflow = prevAction ? overflow + 1 : overflow %}
+        {% set overflow0 = overflow - 1 %}
+
+        {% for action in view.actions|slice(0, overflow0) %}
             {{ wwd_crud_render_action(action, view) }}
         {% endfor %}
 
-        {% if view.actions|length == 3 %}
-            {% for action in view.actions|slice(2) %}
+        {% if view.actions|length == overflow %}
+            {% for action in view.actions|slice(overflow0) %}
                 {{ wwd_crud_render_action(action, view) }}
             {% endfor %}
-        {% elseif view.actions|length > 2 %}
+        {% elseif view.actions|length > overflow0 %}
             <div
                 {{ stimulus_controller('araise/core-bundle/dropdown') }}
                 class="whatwedo-crud-topbar-actions relative"
@@ -20,14 +28,14 @@
                     {{ bootstrap_icon('info-circle', {
                         class: 'inline mr-2 h-4 w-4'
                     }) }}
-                    <span class="2xl:block">{{ 'Mehr...'|trans }}</span>
+                    <span class="2xl:block">{{ 'araise_crud.actions.more' | trans }}</span>
                 </button>
 
                 <div
                     class="whatwedo-crud-topbar-actions__submenu hidden absolute right-0 top-full flex flex-col mt-2 bg-white py-1 rounded-md shadow-lg z-10"
                     {{ stimulus_target('araise/core-bundle/dropdown', 'menu') }}
                 >
-                    {% for action in view.actions|slice(2, view.actions|length) %}
+                    {% for action in view.actions|slice(overflow0, view.actions|length) %}
                         {{ wwd_crud_render_action(action, view) }}
                     {% endfor %}
                 </div>

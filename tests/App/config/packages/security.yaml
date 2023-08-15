@@ -1,20 +1,35 @@
 security:
     enable_authenticator_manager: true
 
-
+    providers:
+        app_user_provider:
+            memory:
+                users:
+                    # password is test
+                    admin: { password: '$2y$04$y0mp7QJfQEDaP6f3/nyPIOXs578j2DfEgwOK6dXTC2WDOuV1SJEry', roles: ['ROLE_ADMIN'] }
+                    super_admin: { password: '$2y$04$y0mp7QJfQEDaP6f3/nyPIOXs578j2DfEgwOK6dXTC2WDOuV1SJEry', roles: ['ROLE_ADMIN', 'ROLE_SUPER_ADMIN'] }
 
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
+        main:
+            pattern: ^/
+            http_basic: ~
+            lazy: true
+            provider: app_user_provider
 
+    role_hierarchy:
+        ROLE_SUPER_ADMIN: [ ROLE_ADMIN ]
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        - { path: ^/, roles: PUBLIC_ACCESS }
+        - { path: ^/, roles: ROLE_ADMIN }
 
+    access_decision_manager:
+        strategy: unanimous
 
 when@test:
     security:
