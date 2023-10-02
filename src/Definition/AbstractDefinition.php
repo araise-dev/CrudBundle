@@ -75,12 +75,12 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
         throw new \Exception('\araise\CrudBundle\Definition\AbstractDefinition::getEntity must be implemented');
     }
 
-    public static function getEntityTitleTranslation(): string
+    public static function getEntityTitleTranslation($entity = null): string
     {
         return 'wwd.'.static::getEntityAlias().'.title';
     }
 
-    public static function getEntityTitlePluralTranslation(): string
+    public static function getEntityTitlePluralTranslation($entity = null): string
     {
         return 'wwd.'.static::getEntityAlias().'.title_plural';
     }
