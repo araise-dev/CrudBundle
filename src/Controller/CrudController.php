@@ -112,7 +112,7 @@ class CrudController extends AbstractController implements CrudDefinitionControl
                 [
                     'view' => $this->getDefinition()->createView(Page::SHOW, $entity),
                     'title' => $this->getDefinition()->getTitle($entity),
-                    'meta' => $this->getDefinition()->getMetaTitle(Page::SHOW),
+                    'meta' => $this->getDefinition()->getMetaTitle(Page::SHOW, $entity),
                     '_route' => Page::SHOW,
                 ],
                 $entity
@@ -186,7 +186,7 @@ class CrudController extends AbstractController implements CrudDefinitionControl
                 [
                     'view' => $view,
                     'title' => $this->getDefinition()->getTitle($entity),
-                    'meta' => $this->getDefinition()->getMetaTitle(Page::EDIT),
+                    'meta' => $this->getDefinition()->getMetaTitle(Page::EDIT, $entity),
                     'form' => $form->createView(),
                     '_route' => Page::EDIT,
                 ],
@@ -238,8 +238,8 @@ class CrudController extends AbstractController implements CrudDefinitionControl
             $template,
             $this->getDefinition()->getTemplateParameters(Page::CREATE, [
                 'view' => $view,
-                'title' => $this->getDefinition()->getLongTitle(null, Page::CREATE),
-                'meta' => $this->getDefinition()->getEntityTitle(),
+                'title' => $this->getDefinition()->getLongTitle(Page::CREATE, $entity),
+                'meta' => $this->getDefinition()->getEntityTitle($entity),
                 'form' => $form->createView(),
                 '_route' => Page::CREATE,
             ], $entity),
@@ -356,7 +356,7 @@ class CrudController extends AbstractController implements CrudDefinitionControl
         $context = [
             'view' => $view,
             'title' => $this->getDefinition()->getTitle($data),
-            'meta' => $this->getDefinition()->getMetaTitle($toRenderPage),
+            'meta' => $this->getDefinition()->getMetaTitle($toRenderPage, $entity),
             'form' => $form->createView(),
             '_route' => $toRenderPage,
         ];
