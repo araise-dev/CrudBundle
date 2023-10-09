@@ -75,12 +75,12 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
         throw new \Exception('\araise\CrudBundle\Definition\AbstractDefinition::getEntity must be implemented');
     }
 
-    public static function getEntityTitleTranslation($entity = null): string
+    public static function getEntityTitleTranslation(mixed $entity = null): string
     {
         return 'wwd.'.static::getEntityAlias().'.title';
     }
 
-    public static function getEntityTitlePluralTranslation($entity = null): string
+    public static function getEntityTitlePluralTranslation(mixed $entity = null): string
     {
         return 'wwd.'.static::getEntityAlias().'.title_plural';
     }
@@ -195,7 +195,7 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
         );
     }
 
-    public function getTitle(mixed $entity): string
+    public function getTitle(mixed $entity = null): string
     {
         if (!$entity) {
             return '';
@@ -203,12 +203,12 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
         return (string) (new StringConverter($entity));
     }
 
-    public function getLongTitle(mixed $entity = null, ?PageInterface $route = null, bool $withEntityTitle = true): string
+    public function getLongTitle(?PageInterface $route = null, mixed $entity = null, bool $withEntityTitle = true): string
     {
         $add = $this->translator->trans('araise_crud.add');
         $delete = $this->translator->trans('araise_crud.delete');
         $edit = $this->translator->trans('araise_crud.edit');
-        $show = $this->translator->trans(static::getEntityTitleTranslation());
+        $show = $this->translator->trans(static::getEntityTitleTranslation($entity));
         $title = '';
         if ($entity) {
             $title = (string) (new StringConverter($entity));
@@ -218,7 +218,7 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
         }
 
         return match ($route) {
-            Page::INDEX => static::getEntityTitlePluralTranslation(),
+            Page::INDEX => static::getEntityTitlePluralTranslation($entity),
             Page::DELETE => $withEntityTitle ? $delete : $title,
             Page::CREATE => $add,
             Page::EDIT => $withEntityTitle ? $edit : $title,
@@ -227,15 +227,15 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
         };
     }
 
-    public function getMetaTitle(PageInterface $route = null)
+    public function getMetaTitle(PageInterface $route = null, $entity = null)
     {
         $add = $this->translator->trans('araise_crud.add');
         $delete = $this->translator->trans('araise_crud.delete');
         $edit = $this->translator->trans('araise_crud.edit');
-        $show = $this->translator->trans(static::getEntityTitleTranslation());
+        $show = $this->translator->trans(static::getEntityTitleTranslation($entity));
 
         return match ($route) {
-            Page::INDEX => $this->translator->trans(static::getEntityTitlePluralTranslation()),
+            Page::INDEX => $this->translator->trans(static::getEntityTitlePluralTranslation($entity)),
             Page::DELETE => $delete,
             Page::CREATE => $add,
             Page::EDIT => $edit,
@@ -243,9 +243,9 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
         };
     }
 
-    public function getEntityTitle()
+    public function getEntityTitle($entity = null)
     {
-        return $this->translator->trans(static::getEntityTitleTranslation());
+        return $this->translator->trans(static::getEntityTitleTranslation($entity));
     }
 
     public static function getCapabilities(): array
@@ -457,37 +457,37 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
 
         if (in_array($route, [Page::INDEX, Page::EDIT, Page::SHOW, Page::CREATE], true)) {
             if (static::hasCapability(Page::INDEX)) {
-                $this->getBreadcrumbs()->addRouteItem(static::getEntityTitlePluralTranslation(), static::getRoute(Page::INDEX));
+                $this->getBreadcrumbs()->addRouteItem(static::getEntityTitlePluralTranslation($entity), static::getRoute(Page::INDEX));
             } else {
-                $this->getBreadcrumbs()->addItem(static::getEntityTitlePluralTranslation());
+                $this->getBreadcrumbs()->addItem(static::getEntityTitlePluralTranslation($entity));
             }
         }
 
         if (in_array($route, [Page::EDIT, Page::SHOW], true)) {
             if (static::hasCapability(Page::SHOW)) {
-                $this->getBreadcrumbs()->addRouteItem($this->getLongTitle($entity, Page::SHOW, withEntityTitle: false), static::getRoute(Page::SHOW), [
+                $this->getBreadcrumbs()->addRouteItem($this->getLongTitle(Page::SHOW, $entity, withEntityTitle: false), static::getRoute(Page::SHOW), [
                     'id' => $entity->getId(),
                 ]);
             } else {
-                $this->getBreadcrumbs()->addItem($this->getLongTitle($entity, Page::SHOW, withEntityTitle: false));
+                $this->getBreadcrumbs()->addItem($this->getLongTitle(Page::SHOW, $entity, withEntityTitle: false));
             }
         }
 
         if ($route === Page::EDIT) {
             if (static::hasCapability(Page::EDIT)) {
-                $this->getBreadcrumbs()->addRouteItem($this->getLongTitle($entity, Page::EDIT), static::getRoute(Page::EDIT), [
+                $this->getBreadcrumbs()->addRouteItem($this->getLongTitle(Page::EDIT, $entity), static::getRoute(Page::EDIT), [
                     'id' => $entity->getId(),
                 ]);
             } else {
-                $this->getBreadcrumbs()->addItem($this->getLongTitle($entity, Page::EDIT));
+                $this->getBreadcrumbs()->addItem($this->getLongTitle(Page::EDIT, $entity));
             }
         }
 
         if ($route === Page::CREATE) {
             if (static::hasCapability(Page::CREATE)) {
-                $this->getBreadcrumbs()->addRouteItem($this->getLongTitle($entity, Page::CREATE), static::getRoute(Page::CREATE));
+                $this->getBreadcrumbs()->addRouteItem($this->getLongTitle(Page::CREATE, $entity), static::getRoute(Page::CREATE));
             } else {
-                $this->getBreadcrumbs()->addItem($this->getLongTitle($entity, Page::CREATE));
+                $this->getBreadcrumbs()->addItem($this->getLongTitle(Page::CREATE, $entity));
             }
         }
     }
