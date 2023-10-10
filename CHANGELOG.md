@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v1.0.3
+ - Add entity parameter to `getEntityTitle` / `getEntityTitlePlural` methods
+ - Add entity parameter to `getLongTitle` / `getMetaTitle` methods
+
 ## v1.0.1
  - English translation
  - Vote on the default formatter if link to show should be rendered
