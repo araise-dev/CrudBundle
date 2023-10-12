@@ -107,6 +107,15 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
         return $this;
     }
 
+    public function getAction(string $acronym): ?\araise\CoreBundle\Action\Action
+    {
+        if (isset($this->actions[$acronym])) {
+            return $this->actions[$acronym];
+        }
+
+        return null;
+    }
+
     public function removeAction(string $acronym): static
     {
         if (isset($this->actions[$acronym])) {
@@ -149,6 +158,15 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
         }
 
         return $this;
+    }
+
+    public function getBatchAction(string $acronym): ?\araise\CoreBundle\Action\Action
+    {
+        if (isset($this->batchActions[$acronym])) {
+            return $this->batchActions[$acronym];
+        }
+
+        return null;
     }
 
     public function getBatchActions(): array
