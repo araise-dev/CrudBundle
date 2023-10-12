@@ -48,6 +48,8 @@ use Symfony\Component\Routing\RouterInterface;
 
 class EntityAjaxType extends AbstractType
 {
+    public const OPT_JSON_SEARCH_URL = 'json_search_url';
+
     public function __construct(
         protected RouterInterface $router,
         protected EntityManagerInterface $entityManager
@@ -64,10 +66,14 @@ class EntityAjaxType extends AbstractType
 
     public function finishView(FormView $view, FormInterface $form, array $options): void
     {
-        if ($options['definition'] && $options['definition']::hasCapability(Page::JSONSEARCH)) {
-            $view->vars['attr']['data-araise--core-bundle--select-url-value'] = $this->router->generate(
+        $url = $options[self::OPT_JSON_SEARCH_URL];
+        if ($url === null && $options['definition'] && $options['definition']::hasCapability(Page::JSONSEARCH)) {
+            $url = $this->router->generate(
                 $options['definition']::getRoute(Page::JSONSEARCH)
             );
+        }
+        if ($url !== null) {
+            $view->vars['attr']['data-araise--core-bundle--select-url-value'] = $url;
         }
     }
 
@@ -81,6 +87,7 @@ class EntityAjaxType extends AbstractType
         $resolver->setDefaults([
             'pre_set_called' => false,
             'pre_submit_called' => false,
+            self::OPT_JSON_SEARCH_URL => null,
         ]);
         $resolver->setDefault('definition', null);
         $resolver->setDefault('by_reference', function (Options $options, bool $byReference) {
