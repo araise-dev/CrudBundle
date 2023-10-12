@@ -408,6 +408,7 @@ abstract class AbstractCrudTest extends WebTestCase
 
     protected function fillForm(Form $form, $formData)
     {
+        $form->disableValidation();
         foreach ($formData as $field => $value) {
             if ($value instanceof Upload) {
                 $form['form['.$field.']['.$value->getField().']']->upload($value->getPath());
