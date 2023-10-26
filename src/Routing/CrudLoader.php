@@ -13,7 +13,8 @@ use Symfony\Component\Routing\RouteCollection;
 class CrudLoader extends Loader
 {
     // TODO: add patterns to support other versions e.g. ulid as well.
-    private const URL_GENERATOR_ENTITY_KEY_REQUIREMENT_EXPRESSION = '^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$|^\d+$';
+//    private const URL_GENERATOR_ENTITY_KEY_REQUIREMENT_EXPRESSION = '^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$|^\d+$';
+    private const URL_GENERATOR_ENTITY_KEY_REQUIREMENT_EXPRESSION = '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}|\d+';
 
     private bool $isLoaded = false;
 
