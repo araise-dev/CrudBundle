@@ -63,6 +63,11 @@ interface DefinitionInterface
      */
     public static function getCapabilities(): array;
 
+    /**
+     * returns options of this definition.
+     */
+    public function getOptions(): array;
+
     public function getActions(): array;
 
     /**
