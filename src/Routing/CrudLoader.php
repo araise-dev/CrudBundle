@@ -12,6 +12,9 @@ use Symfony\Component\Routing\RouteCollection;
 
 class CrudLoader extends Loader
 {
+    // TODO: add patterns to support other versions e.g. ulid as well.
+    private const URL_GENERATOR_ENTITY_KEY_REQUIREMENT_EXPRESSION = '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}|\d+';
+
     private bool $isLoaded = false;
 
     public function __construct(
@@ -44,11 +47,11 @@ class CrudLoader extends Loader
                             break;
                         case Page::SHOW:
                             $route->setPath($route->getPath().'{id}');
-                            $route->setRequirement('id', '\d+');
+                            $route->setRequirement('id', self::URL_GENERATOR_ENTITY_KEY_REQUIREMENT_EXPRESSION);
                             break;
                         case Page::RELOAD:
                             $route->setPath($route->getPath().'{id}/reload/{block}/{field?}');
-                            $route->setRequirement('id', '\d+');
+                            $route->setRequirement('id', self::URL_GENERATOR_ENTITY_KEY_REQUIREMENT_EXPRESSION);
                             $route->setRequirement('block', '\w+');
                             $route->setRequirement('field', '(\w|\.)+');
                             break;
@@ -63,12 +66,12 @@ class CrudLoader extends Loader
                         case Page::EDIT:
                             $route->setPath($route->getPath().'{id}/edit');
                             $route->setMethods(['GET', 'POST', 'PUT', 'PATCH']);
-                            $route->setRequirement('id', '\d+');
+                            $route->setRequirement('id', self::URL_GENERATOR_ENTITY_KEY_REQUIREMENT_EXPRESSION);
                             break;
                         case Page::DELETE:
                             $route->setPath($route->getPath().'{id}/delete');
                             $route->setMethods(['POST']);
-                            $route->setRequirement('id', '\d+');
+                            $route->setRequirement('id', self::URL_GENERATOR_ENTITY_KEY_REQUIREMENT_EXPRESSION);
                             break;
                         case Page::BATCH:
                             $route->setPath($route->getPath().'batch');
