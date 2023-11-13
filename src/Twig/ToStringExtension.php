@@ -29,7 +29,7 @@ declare(strict_types=1);
 
 namespace araise\CrudBundle\Twig;
 
-use Coduo\ToString\StringConverter;
+use araise\CoreBundle\Util\StringConverter;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
@@ -44,6 +44,6 @@ class ToStringExtension extends AbstractExtension
 
     public function toString(mixed $stuff): string
     {
-        return (string) (new StringConverter($stuff));
+        return StringConverter::toString($stuff);
     }
 }

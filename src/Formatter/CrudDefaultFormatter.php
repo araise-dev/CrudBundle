@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace araise\CrudBundle\Formatter;
 
 use araise\CoreBundle\Formatter\DefaultFormatter;
+use araise\CoreBundle\Util\StringConverter;
 use araise\CrudBundle\Enums\Page;
 use araise\CrudBundle\Manager\DefinitionManager;
-use Coduo\ToString\StringConverter;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Routing\RouterInterface;
 
@@ -31,7 +31,7 @@ class CrudDefaultFormatter extends DefaultFormatter
                         $this->router->generate($definition::getRoute(Page::SHOW), [
                             'id' => $value->getId(),
                         ]),
-                        new StringConverter($value)
+                        StringConverter::toString($value)
                     );
                 }
             } catch (\InvalidArgumentException $e) {
