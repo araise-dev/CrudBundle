@@ -1,5 +1,6 @@
 * Documentation
 ** [Getting Started](/)
+** [Bundle Configuration](bundle-configuration.md)
 ** [View Configuration](view-configuration.md)
 ** [Table Configuration](table-configuration.md)
 ** [Exporting](exporting.md)

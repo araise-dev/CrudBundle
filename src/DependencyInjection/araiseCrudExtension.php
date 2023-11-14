@@ -6,6 +6,7 @@ namespace araise\CrudBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
@@ -14,7 +15,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
  *
  * @see http://symfony.com/doc/current/cookbook/bundles/extension.html
  */
-class araiseCrudExtension extends Extension
+class araiseCrudExtension extends Extension implements PrependExtensionInterface
 {
     /**
      * @param string[] $configs
@@ -51,8 +52,29 @@ class araiseCrudExtension extends Extension
         $container->setParameter('araise_crud.config.templates', $templates);
         $container->setParameter('araise_crud.config.template_directory', $config['templateDirectory']);
         $container->setParameter('araise_crud.config.layout', $config['layout']);
+        $container->setParameter('araise.enable_turbo', $config['enable_turbo']);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+    }
+
+    public function prepend(ContainerBuilder $container): void
+    {
+        if (!$container->hasExtension('araise_table') && !$container->hasExtension('araise_core')) {
+            return;
+        }
+        $configs = $container->getExtensionConfig($this->getAlias());
+
+        foreach (array_reverse($configs) as $config) {
+            if (isset($config['enable_turbo'])) {
+                $container->prependExtensionConfig('araise_table', [
+                    'enable_turbo' => $config['enable_turbo'],
+                ]);
+
+                $container->prependExtensionConfig('araise_core', [
+                    'enable_turbo' => $config['enable_turbo'],
+                ]);
+            }
+        }
     }
 }

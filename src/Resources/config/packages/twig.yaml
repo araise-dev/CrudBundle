@@ -1,0 +1,3 @@
+twig:
+    globals:
+        enable_turbo: "%araise.enable_turbo%"
