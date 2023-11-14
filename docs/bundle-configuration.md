@@ -9,8 +9,8 @@ araise_crud:
 Under the `araise_crud` key you can use any of the following options:
 
 ### `enable_turbo`
-ℹ️ Note: This option comes from the CoreBundle. For more infos on the effects, consult the [docs of the CoreBundle](https://core.docs.araise.dev/#/bundle-configuration).
+ℹ️ Note: If you don't specify this option, it will take the one from the CoreBundle. For more infos on the effects, consult the [docs of the CoreBundle](https://core.docs.araise.dev/#/bundle-configuration).
 
-| Type    | Default | Description                                    |
-|---------|---------|------------------------------------------------|
-| Boolean | `false` | Is used to decide whether turbo is used or not |
+| Type    | Default                                                                        | Description                                    |
+|---------|--------------------------------------------------------------------------------|------------------------------------------------|
+| Boolean | Consult [CoreBundle docs](https://core.docs.araise.dev/#/bundle-configuration) | Is used to decide whether turbo is used or not |

@@ -17,7 +17,7 @@
         {% endblock %}
     {% endblock %}
 </head>
-<body class="{% block body_class %}{% endblock %}" data-turbo="{{ enable_turbo ? 'true' : 'false' }}">
+<body class="{% block body_class %}{% endblock %}" data-turbo="{{ araise_turbo_enabled ? 'true' : 'false' }}">
 {% block content %}
     <div {{ stimulus_controller('araise/crud-bundle/offcanvas') }}>
 

@@ -6,6 +6,7 @@ namespace araise\CrudBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
  * This is the class that validates and merges configuration from your app/config files.
@@ -14,10 +15,17 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  */
 class Configuration implements ConfigurationInterface
 {
+    public function __construct(
+        protected ContainerBuilder $containerBuilder
+    ) {
+    }
+
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('araise_crud');
         $rootNode = $treeBuilder->getRootNode();
+
+        $coreConfig = $this->containerBuilder->getParameter('araise_core.enable_turbo');
 
         $rootNode
             ->children()
@@ -51,7 +59,7 @@ class Configuration implements ConfigurationInterface
                 ->defaultValue('@araiseCrud/layout/adminlte_layout.html.twig')
                 ->end()
                 ->booleanNode('enable_turbo')
-                ->defaultFalse()
+                ->defaultValue($coreConfig)
                 ->end()
             ->end();
 
