@@ -1,6 +1,6 @@
 [![Latest Stable Version](https://poser.pugx.org/araise/crud-bundle/v/stable)](https://packagist.org/packages/araise/crud-bundle)
 
-# Docs araise framework
+# araise CRUD Bundle - Documentation
 
 This bundle is part of the [araise.dev](https://araise.dev) framework.
 
