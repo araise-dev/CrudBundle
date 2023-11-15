@@ -25,6 +25,10 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder('araise_crud');
         $rootNode = $treeBuilder->getRootNode();
 
+        if (!method_exists($rootNode, 'children')) {
+            throw new \RuntimeException('Expected configuration rootNode to have method children()');
+        }
+
         $coreConfig = $this->containerBuilder->getParameter('araise_core.enable_turbo');
 
         $rootNode
