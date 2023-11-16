@@ -87,6 +87,10 @@
                             </div>
                         {% endblock %}
                     {% endblock %}
+
+                    {% block sidebar_profile %}
+                        {% include "@araiseCrud/includes/sidebar/_profile.html.twig" %}
+                    {% endblock %}
                 </div>
 
                 <div class="flex-shrink-0 w-14"></div>
@@ -103,10 +107,7 @@
                 </div>
                 {{ block('sidebar_subnavigation') }}
                 {{ block('sidebar_service') }}
-
-                {% block sidebar_profile %}
-                    {% include "@araiseCrud/includes/sidebar/_profile.html.twig" %}
-                {% endblock %}
+                {{ block('sidebar_profile') }}
             </div>
         </div>
 
@@ -117,8 +118,6 @@
             >
                 <div class="whatwedo_crud-topbar_mobile bg-white px-4 flex md:hidden justify-between items-center">
                     {{ block('logo') }}
-
-                    {{ block('sidebar_profile') }}
                 </div>
 
                 {% block topbar %}

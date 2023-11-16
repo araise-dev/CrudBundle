@@ -1,17 +1,61 @@
-<a href="{% block logout_link %}{% endblock %}" class="whatwedo_crud-profile flex-shrink-0 flex border-t border-neutral-200 p-4">
-    <div class="flex items-center">
+<div
+    class="whatwedo_crud-profile relative flex-shrink-0 flex items-center inline-flex border-t border-neutral-200 p-4"
+    {{ stimulus_controller('araise/core-bundle/dropdown', {'alignment': 'top'}) }}
+>
+
+    <button
+        class="whatwedo_crud-profile__meta flex hover:text-neutral-700 gap-x-2 items-center w-full"
+        {{ stimulus_action('araise/core-bundle/dropdown', 'toggle') |
+        stimulus_action('araise/core-bundle/dropdown', 'close', 'scroll@window') |
+        stimulus_action('araise/core-bundle/dropdown', 'layoutCalculate') |
+        stimulus_action('araise/core-bundle/dropdown', 'layoutCalculate', 'resize@window') }}
+        type="button"
+    >
         <div class="whatwedo_crud-profile__picture">
             <img class="inline-block h-8 w-8 md:h-10 md:w-10 rounded-full"
-                 src="{% block profile_picture %}{% endblock %}" alt=""
+                 src="{{ block('profile_picture') }}" alt=""
                  crossorigin="anonymous" referrerpolicy="no-referrer">
         </div>
-        <div class="whatwedo_crud-profile__meta hidden md:inline-flex ml-3">
-            <p class="text-base font-medium text-neutral-700 group-hover:text-neutral-900">
-                {% block profile_name %}{% endblock %}
-            </p>
-            <p class="text-base font-medium text-neutral-500 group-hover:text-neutral-700">
+        <p class="text-base font-medium text-left text-neutral-900 transition-colors hover:text-neutral-700 grow">
+            {% block profile_name %}whatwedo{% endblock %}
+        </p>
+        {{ bootstrap_icon('chevron-up', { class: 'h-4 w-4', alt: 'Open profile detail'}) }}
+    </button>
+
+    <div
+        {{ stimulus_target('araise/core-bundle/dropdown', 'menu') }}
+        class="z-50 hidden transition duration-300 transform absolute left-0 top-0 w-full md:w-64"
+        data-transition-enter-from="opacity-0 scale-95"
+        data-transition-enter-to="opacity-100 scale-100"
+        data-transition-leave-from="opacity-100 scale-100"
+        data-transition-leave-to="opacity-0 scale-95"
+        tabindex="-1"
+    >
+        <div class="flex flex-col gap-y-2 m-4 -mb-1 px-4 pt-2 pb-3 rounded-sm shadow-md z-10 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+            <div class="border-b">
+                <span class="inline-block whatwedo-utility-paragraph text-sm leading-none mb-2">Angemeldet als</span>
+                <div class="flex whatwedo-utility-bold text-neutral-900 mb-2">
+                    <img class="inline-block h-4 w-4 rounded-full self-center mr-2"
+                         src="{% block profile_picture %}{% endblock %}" alt=""
+                         crossorigin="anonymous" referrerpolicy="no-referrer">
+                    {% block profile_fullname %}welove@test.com{% endblock %}
+                </div>
+            </div>
+
+            <a
+                href="{% block profile_edit_link %}{% endblock %}"
+                class="flex whatwedo-utility-paragraph transition-colors hover:text-neutral-500"
+            >
+                {{ bootstrap_icon('pencil-square', { class: 'h-3 w-3 self-center mr-2', alt: '' }) }}
+                {% block profile_edit_text %}Profil bearbeiten{% endblock %}
+            <a
+                href="{% block logout_link %}{% endblock %}"
+                class="flex whatwedo-utility-paragraph transition-colors hover:text-neutral-500"
+            >
+                {{ bootstrap_icon('box-arrow-right', { class: 'h-3 w-3 self-center mr-2', alt: '' }) }}
                 {% block logout_text %}Logout{% endblock %}
-            </p>
+            </a>
         </div>
     </div>
-</a>
+
+</div>
