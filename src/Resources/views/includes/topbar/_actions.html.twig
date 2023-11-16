@@ -3,7 +3,7 @@
         {% set nextAction = view.actions|filter((item, key) => item.acronym == 'next' and key < 3) %}
         {% set prevAction = view.actions|filter((item, key) => item.acronym == 'prev' and key < 3) %}
 
-        {% set overflow = 3 %}
+        {% set overflow = view.definition.options.actions_overflow is defined ? view.definition.options.actions_overflow : 3 %}
         {% set overflow = nextAction ? overflow + 1 : overflow %}
         {% set overflow = prevAction ? overflow + 1 : overflow %}
         {% set overflow0 = overflow - 1 %}
