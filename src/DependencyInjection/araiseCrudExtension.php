@@ -23,6 +23,7 @@ class araiseCrudExtension extends Extension
 
     /**
      * @param string[] $configs
+     * @throws \Exception
      */
     public function load(array $configs, ContainerBuilder $container): void
     {
@@ -58,7 +59,6 @@ class araiseCrudExtension extends Extension
         $container->setParameter('araise_crud.config.layout', $config['layout']);
 
         $container->setParameter('araise_crud.enable_turbo', $config['enable_turbo']);
-        $container->setParameter('araise.enable_turbo', $config['enable_turbo']);
 
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
