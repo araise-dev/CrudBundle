@@ -75,3 +75,17 @@ In order to properly set the `created_at` field we override it with the current 
 Since we set the `id` to `null`, Doctrine will create a new database entry for this Entity.
 
 In the Brand class we will not set the id to null, because we don't want a duplicate brand in the database.
+
+## Actions Overflow
+In the default configuration araise will create a dropdown named 'more', if you have more than 3 action buttons.
+You can control how many buttons are displayed, before a dropdown is created, by adding the following to your Definition:
+```php
+// src/Definition/ExampleDefinition.php
+
+public function configureDefinition(): void {
+    parent::configureDefinition();
+
+    $this->setOption(self::OPT_ACTIONS_OVERFLOW, 2);
+}
+```
+In this case the CrudBundle will display 2 buttons and the third will be under the 'more' button - hidden in a dropdown. 
