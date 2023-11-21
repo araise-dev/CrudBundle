@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace araise\CrudBundle\Definition;
 
+use araise\CoreBundle\Util\StringConverter;
 use araise\CrudBundle\Action\Action;
 use araise\CrudBundle\Action\PostAction;
 use araise\CrudBundle\Action\SubmitAction;
@@ -26,7 +27,6 @@ use araise\TableBundle\Extension\FilterExtension;
 use araise\TableBundle\Extension\SortExtension;
 use araise\TableBundle\Factory\TableFactory;
 use araise\TableBundle\Table\Table;
-use Coduo\ToString\StringConverter;
 use Doctrine\Common\Util\ClassUtils;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
@@ -252,7 +252,7 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
         if (!$entity) {
             return '';
         }
-        return (string) (new StringConverter($entity));
+        return StringConverter::toString($entity);
     }
 
     public function getLongTitle(?PageInterface $route = null, mixed $entity = null, bool $withEntityTitle = true): string
@@ -263,7 +263,7 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
         $show = $this->translator->trans(static::getEntityTitleTranslation($entity));
         $title = '';
         if ($entity) {
-            $title = (string) (new StringConverter($entity));
+            $title = StringConverter::toString($entity);
             $delete .= ': '.$title;
             $edit .= ': '.$title;
             $show .= ': '.$title;
