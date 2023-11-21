@@ -72,7 +72,7 @@
         {% if block.option('label') %}
             <h2 class="whatwedo-utility-heading-3 mt-3 mb-3">{{ block.option('label') | trans }}</h2>
         {% endif %}
-        <div class="gap-4 md:grid md:grid-cols-{{ block.option('layout_options')['vertically'] }} md:grid-rows-{{ block.option('layout_options')['horizontally'] }}" id="wwd-crud-block-{{ block.acronym }}">
+        <div class="grid gap-4 md:grid-cols-{{ block.option('layout_options')['vertically'] }} md:grid-rows-{{ block.option('layout_options')['horizontally'] }}" id="wwd-crud-block-{{ block.acronym }}">
             {% for subBlock in block.blocks(view, page) %}
                 {{ wwd_crud_render_block(subBlock, view, page, form ?? null) }}
             {% endfor %}
