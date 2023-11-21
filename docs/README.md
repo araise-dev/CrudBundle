@@ -32,14 +32,6 @@ twig:
         - '@araiseCrud/form_layout.html.twig'
 ```
 
-The crud bundle is currently only translated in German. Be sure to have set the locale to `de` in your `config/packages/framework.yaml`
-or create your own translations. Push them to us, and we will add them to the bundle.
-
-```yaml
-framework:
-    default_locale: de
-```
-
 You are now ready to create entities and definitions: 
 
 ```sh
