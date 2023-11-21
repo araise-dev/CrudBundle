@@ -71,3 +71,6 @@ services:
         tags:
             - { name: knp_menu.menu_builder, method: createMainMenu, alias: main }
             - { name: knp_menu.menu_builder, method: createSubMenu, alias: sub }
+
+    araise\CrudBundle\Twig\CrudTurboExtension:
+        arguments: [ "%araise_crud.enable_turbo%" ]

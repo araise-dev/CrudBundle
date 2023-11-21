@@ -14,6 +14,7 @@ export default class extends Controller {
     }
 
     openTab(event) {
+        event.preventDefault();
         this.resetContent();
         this.activeTab(event.currentTarget);
     }
