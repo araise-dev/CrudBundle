@@ -33,13 +33,11 @@ use araise\CoreBundle\Action\PostAction as BasePostAction;
 
 class PostAction extends BasePostAction
 {
-    use CrudActionTrait;
-
     public function __construct(
         protected string $acronym,
         array $options
     ) {
-        $this->setDefaultOptions();
+        $this->defaultOptions[Action::OPT_VISIBILITY] = Action::OPT_DEFAULT_VISIBILITY;
         if (! array_key_exists('confirmation', $options)) {
             $options['confirmation'] = [
                 'label' => 'araise_crud.actions.delete.confirm_delete',

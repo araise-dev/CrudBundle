@@ -33,11 +33,9 @@ use araise\CoreBundle\Action\ModalAction as BaseModalAction;
 
 class ModalAction extends BaseModalAction
 {
-    use CrudActionTrait;
-
     public function __construct(string $acronym, array $options)
     {
-        $this->setDefaultOptions();
+        $this->defaultOptions[Action::OPT_VISIBILITY] = Action::OPT_DEFAULT_VISIBILITY;
         parent::__construct($acronym, $options);
     }
 }
