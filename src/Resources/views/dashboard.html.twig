@@ -21,10 +21,12 @@
             </button>
         </div>
 
-        <div class="bg-neutral-900 text-neutral-200 p-4 md:p-8 !pb-24 !pt-16">
-            <h2 class="whatwedo-utility-heading-2 text-neutral-400 mb-1">{{ 'araise_crud.dashboard' | trans }}</h2>
-            <h1 class="whatwedo-utility-heading-1 text-neutral-100 mb-0">{{ 'araise_crud.hello' | trans }} {{ (username|default(''))|capitalize }} 👋</h1>
-        </div>
+        {% block dashboard_heading %}
+            <div class="bg-neutral-900 text-neutral-200 p-4 md:p-8 !pb-24 !pt-16">
+                <h2 class="whatwedo-utility-heading-2 text-neutral-400 mb-1">{{ 'araise_crud.dashboard' | trans }}</h2>
+                <h1 class="whatwedo-utility-heading-1 text-neutral-100 mb-0">{{ 'araise_crud.hello' | trans }} {{ (username|default(''))|capitalize }} 👋</h1>
+            </div>
+        {% endblock %}
 
         <div class="m-4 md:m-8 !-mt-12 grid grid-cols-1 gap-4 overflow-hidden sm:grid-cols-2 lg:grid-cols-4">
             {% for card in cards|default([]) %}

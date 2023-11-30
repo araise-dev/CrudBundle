@@ -11,7 +11,7 @@
         class="{% if (not isHiddenType and isFormCase) or not isFormCase %}px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4{% endif %} {{ content.option('attr')['class'] ?? '' }}"
         {{ attr|map((value, attr) => "#{attr}=\"#{value}\"")|join(' ')|raw }}
     >
-        <dt class="whatwedo-utility-bold text-neutral-500" id="wwd-crud-block-{{ block.acronym }}-content-{{ contentAcronym }}-label">
+        <dt class="whatwedo-utility-bold text-neutral-500 overflow-hidden truncate" id="wwd-crud-block-{{ block.acronym }}-content-{{ contentAcronym }}-label" title="{{ content.option('label')|trans }}">
             {{ content.option('label')|trans }}
             {% if content.option('help') is not empty %}
                 <span {{ stimulus_controller('araise/crud-bundle/tooltip', { 'title': content.option('help')|trans } ) }}>

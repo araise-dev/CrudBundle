@@ -6,7 +6,7 @@ namespace araise\CrudBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Loader;
+use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 /**
@@ -16,12 +16,18 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
  */
 class araiseCrudExtension extends Extension
 {
+    public function getConfiguration(array $config, ContainerBuilder $container)
+    {
+        return new Configuration($container);
+    }
+
     /**
      * @param string[] $configs
+     * @throws \Exception
      */
     public function load(array $configs, ContainerBuilder $container): void
     {
-        $configuration = new Configuration();
+        $configuration = new Configuration($container);
         $config = $this->processConfiguration($configuration, $configs);
 
         // Breadcrumbs
@@ -52,7 +58,9 @@ class araiseCrudExtension extends Extension
         $container->setParameter('araise_crud.config.template_directory', $config['templateDirectory']);
         $container->setParameter('araise_crud.config.layout', $config['layout']);
 
-        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $container->setParameter('araise_crud.enable_turbo', $config['enable_turbo']);
+
+        $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
     }
 }

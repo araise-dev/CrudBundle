@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace araise\CrudBundle\Definition;
 
+use araise\CoreBundle\Util\StringConverter;
 use araise\CrudBundle\Action\Action;
 use araise\CrudBundle\Action\PostAction;
 use araise\CrudBundle\Action\SubmitAction;
@@ -26,7 +27,6 @@ use araise\TableBundle\Extension\FilterExtension;
 use araise\TableBundle\Extension\SortExtension;
 use araise\TableBundle\Factory\TableFactory;
 use araise\TableBundle\Table\Table;
-use Coduo\ToString\StringConverter;
 use Doctrine\Common\Util\ClassUtils;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
@@ -37,6 +37,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Contracts\Service\Attribute\Required;
@@ -46,9 +47,13 @@ use WhiteOctober\BreadcrumbsBundle\Model\Breadcrumbs;
 
 abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscriberInterface
 {
+    public const OPT_ACTIONS_OVERFLOW = 'actions_overflow';
+
     protected ContainerInterface $container;
 
     protected TranslatorInterface $translator;
+
+    protected array $options = [];
 
     /**
      * @var \araise\CoreBundle\Action\Action[]
@@ -95,6 +100,31 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
         }
 
         return new $className();
+    }
+
+    public function getOptions(): array
+    {
+        return $this->options;
+    }
+
+    public function setOption(string $key, $value): static
+    {
+        $resolver = new OptionsResolver();
+        $this->configureOptions($resolver);
+
+        $this->options[$key] = $value;
+        $this->options = $resolver->resolve($this->options);
+
+        return $this;
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            self::OPT_ACTIONS_OVERFLOW => 3,
+        ]);
+
+        $resolver->setAllowedTypes(self::OPT_ACTIONS_OVERFLOW, ['integer']);
     }
 
     public function addAction(string $acronym, array $options = [], string $type = Action::class): static
@@ -174,6 +204,10 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
         return $this->batchActions;
     }
 
+    public function configureDefinition(): void
+    {
+    }
+
     public function configureView(DefinitionBuilder $builder, mixed $data): void
     {
     }
@@ -218,7 +252,7 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
         if (!$entity) {
             return '';
         }
-        return (string) (new StringConverter($entity));
+        return StringConverter::toString($entity);
     }
 
     public function getLongTitle(?PageInterface $route = null, mixed $entity = null, bool $withEntityTitle = true): string
@@ -229,7 +263,7 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
         $show = $this->translator->trans(static::getEntityTitleTranslation($entity));
         $title = '';
         if ($entity) {
-            $title = (string) (new StringConverter($entity));
+            $title = StringConverter::toString($entity);
             $delete .= ': '.$title;
             $edit .= ': '.$title;
             $show .= ': '.$title;
@@ -888,6 +922,7 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
         if ($cache === null || $data !== null) {
             $builder = $this->container->get(DefinitionBuilder::class);
             $builder->setDefinition($this);
+            $this->configureDefinition();
             $this->configureActions($data);
             $this->configureView($builder, $data);
 
