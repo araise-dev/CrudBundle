@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## v1.0.6
+ - Removed dependency to `coduo/php-to-string`
+ - Added new bundle configuration `enable_turbo` (default `false`)
+ - Added new possibility to configure Definitions. With the `OPT_ACTIONS_OVERFLOW` option you can define how many actions should be visible on the index. The rest will be hidden in an overflow menu.
+ - More documentation and better styling of the documentation
+ - Made access to `OPT_VISIBILITY` on Crud Actions more easy
+ - Added new Twig Block in `views/dashboard.html.twig` to add custom content to the heading (Block name: `dashboard_heading`)
+ - Improved styling generally
+
 ## v1.0.3
  - Add entity parameter to `getEntityTitle` / `getEntityTitlePlural` methods
  - Add entity parameter to `getLongTitle` / `getMetaTitle` methods
