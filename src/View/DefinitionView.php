@@ -19,6 +19,7 @@ use araise\CrudBundle\Form\Type\EntityHiddenType;
 use araise\CrudBundle\Form\Type\EntityPreselectType;
 use araise\CrudBundle\Manager\DefinitionManager;
 use Doctrine\Common\Annotations\Reader;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -27,7 +28,6 @@ use Symfony\Component\Form\FormRegistryInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
-use Symfony\Component\Security\Core\Security;
 
 class DefinitionView
 {
