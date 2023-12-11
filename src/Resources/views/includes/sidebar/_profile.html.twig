@@ -1,3 +1,4 @@
+{% macro profile(name, edit_link = null, name_detail = null, picture_src = null) %}
 <div
     class="whatwedo_crud-profile relative flex-shrink-0 flex items-center inline-flex border-t border-neutral-200 p-4"
     {{ stimulus_controller('araise/core-bundle/dropdown', {'alignment': 'top'}) }}
@@ -12,12 +13,14 @@
         type="button"
     >
         <div class="whatwedo_crud-profile__picture">
-            <img class="inline-block h-8 w-8 md:h-10 md:w-10 rounded-full"
-                 src="{{ block('profile_picture') }}" alt=""
-                 crossorigin="anonymous" referrerpolicy="no-referrer">
+            {% if picture_src %}
+                <img class="inline-block h-8 w-8 md:h-10 md:w-10 rounded-full"
+                     src="{{ picture_src }}" alt=""
+                     crossorigin="anonymous" referrerpolicy="no-referrer">
+            {% endif %}
         </div>
         <p class="text-base font-medium text-left text-neutral-900 transition-colors hover:text-neutral-700 grow">
-            {% block profile_name %}whatwedo{% endblock %}
+            {{ name }}
         </p>
         {{ bootstrap_icon('chevron-up', { class: 'h-4 w-4', alt: 'Open profile detail'}) }}
     </button>
@@ -35,27 +38,35 @@
             <div class="border-b">
                 <span class="inline-block whatwedo-utility-paragraph text-sm leading-none mb-2">Angemeldet als</span>
                 <div class="flex whatwedo-utility-bold text-neutral-900 mb-2">
-                    <img class="inline-block h-4 w-4 rounded-full self-center mr-2"
-                         src="{% block profile_picture %}{% endblock %}" alt=""
-                         crossorigin="anonymous" referrerpolicy="no-referrer">
-                    {% block profile_fullname %}welove@test.com{% endblock %}
+                    {% if picture_src %}
+                        <img class="inline-block h-8 w-8 md:h-10 md:w-10 rounded-full"
+                             src="{{ picture_src }}" alt=""
+                             crossorigin="anonymous" referrerpolicy="no-referrer">
+                    {% endif %}
+                    {{ name_detail ?? name }}
                 </div>
             </div>
 
+            {% if edit_link %}
+                <a
+                    href="{{ edit_link }}"
+                    class="flex whatwedo-utility-paragraph transition-colors hover:text-neutral-500"
+                >
+                    {{ bootstrap_icon('pencil-square', { class: 'h-3 w-3 self-center mr-2', alt: '' }) }}
+                    {{ 'Profil bearbeiten' }}
+                </a>
+            {% endif %}
             <a
-                href="{% block profile_edit_link %}{% endblock %}"
-                class="flex whatwedo-utility-paragraph transition-colors hover:text-neutral-500"
-            >
-                {{ bootstrap_icon('pencil-square', { class: 'h-3 w-3 self-center mr-2', alt: '' }) }}
-                {% block profile_edit_text %}Profil bearbeiten{% endblock %}
-            <a
-                href="{% block logout_link %}{% endblock %}"
+                href="{{ path('app_logout') }}"
                 class="flex whatwedo-utility-paragraph transition-colors hover:text-neutral-500"
             >
                 {{ bootstrap_icon('box-arrow-right', { class: 'h-3 w-3 self-center mr-2', alt: '' }) }}
-                {% block logout_text %}Logout{% endblock %}
+                {{ 'Logout' }}
             </a>
+
         </div>
     </div>
-
 </div>
+{% endmacro %}
+
+{{ '<code>Please use the Macro "profile" to render the profile dropdown. From the file you are already calling.</code>' }}
