@@ -23,6 +23,9 @@ services:
         resource: '../Security'
         public: true
 
+    araise\CrudBundle\Tests\App\Tree\:
+        resource: '../Tree'
+        public: true
 
     gedmo.listener.tree:
         class: Gedmo\Tree\TreeListener
