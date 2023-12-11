@@ -1,9 +1,8 @@
 <?php
 
 declare(strict_types=1);
-
 /*
- * Copyright (c) 2022, whatwedo GmbH
+ * Copyright (c) 2023, whatwedo GmbH
  * All rights reserved
  *
  * Redistribution and use in source and binary forms, with or without
@@ -28,41 +27,20 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace araise\CrudBundle\EventSubscriber;
+namespace araise\CrudBundle\Tests\App\Tree;
 
-use araise\CrudBundle\Definition\FilterDefinition;
-use araise\CrudBundle\Event\CrudEvent;
-use araise\TableBundle\Entity\Filter;
-use Symfony\Bundle\SecurityBundle\Security;
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpFoundation\RequestStack;
+use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
+use Doctrine\ORM\Events;
+use Gedmo\Tree\TreeListener;
 
-class FilterSubscriber implements EventSubscriberInterface
+#[AsDoctrineListener(Events::prePersist)]
+#[AsDoctrineListener(Events::preRemove)]
+#[AsDoctrineListener(Events::preUpdate)]
+#[AsDoctrineListener(Events::onFlush)]
+#[AsDoctrineListener(Events::loadClassMetadata)]
+#[AsDoctrineListener(Events::postPersist)]
+#[AsDoctrineListener(Events::postUpdate)]
+#[AsDoctrineListener(Events::postRemove)]
+class Symfony7TreeListener extends TreeListener
 {
-    public function __construct(
-        protected RequestStack $requestStack,
-        protected Security $security
-    ) {
-    }
-
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            CrudEvent::CREATE_SHOW_PREFIX.'.'.FilterDefinition::getAlias() => [
-                ['createShow', 10],
-            ],
-        ];
-    }
-
-    public function createShow(CrudEvent $event): void
-    {
-        /** @var Filter $filter */
-        $filter = $event->getEntity();
-        $all = $this->requestStack->getMainRequest()?->query->all() ?: [];
-        if (isset($all['filter_path'])) {
-            $filter->setRoute($all['filter_path']);
-            unset($all['filter_path']);
-        }
-        $filter->setConditions($all);
-    }
 }
