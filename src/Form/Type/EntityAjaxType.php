@@ -73,7 +73,7 @@ class EntityAjaxType extends AbstractType
             );
         }
         if ($url !== null) {
-            $view->vars['attr']['data-araise--core-bundle--select-url-value'] = $url;
+            $view->vars['attr']['data-araise--core-bundle--combobox-url-value'] = $url;
         }
     }
 
