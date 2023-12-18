@@ -1,3 +1,5 @@
+{% from "@araiseCrud/includes/sidebar/_profile.html.twig" import profile %}
+
 <!doctype html>
 <html class="h-full bg-neutral-100" lang="{{ app.request.locale }}">
 <head>
@@ -89,7 +91,7 @@
                     {% endblock %}
 
                     {% block sidebar_profile %}
-                        {% include '@araiseCrud/includes/sidebar/_profile.html.twig' %}
+                        {{ profile({name: user|default('Default')}) }}
                     {% endblock %}
                 </div>
 
