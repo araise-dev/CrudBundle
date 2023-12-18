@@ -86,7 +86,7 @@
                         #}
 
                         {% block sidebar_profile %}
-                            {{ profile({name: user|default('Default')}) }}
+                            {{ profile({name: 'User', logout_link: '#'}) }}
                         {% endblock %}
 
                     {% endblock %}
