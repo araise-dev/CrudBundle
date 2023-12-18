@@ -74,7 +74,7 @@
         {% if createUrl and (content.addVoterAttribute is null or is_granted(content.addVoterAttribute, view.data)) %}
 
         <div
-            class="flex justify-end mb-3 mx-3 {% if not isOnShow %}{{ content.option('attr')['class'] ?? '' }}{% endif %}"
+            class="flex justify-end mt-3 mb-3 mx-3 {% if not isOnShow %}{{ content.option('attr')['class'] ?? '' }}{% endif %}"
             {% if not isOnShow %}{{ attr|map((value, attr) => "#{attr}=\"#{value}\"")|join(' ')|raw }}{% endif %}
             {{ stimulus_controller('araise/core-bundle/modal-form', { formUrl: createUrl }) }}
         >

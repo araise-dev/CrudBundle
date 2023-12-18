@@ -20,6 +20,9 @@ araise_crud:
             confirm_delete: Are you sure you want to delete?
             yes: Yes
             no: No
+    profile:
+        logout: Logout
+        edit_link: Edit Profil
 
 wwd:
     araise_table_entity_filter:
