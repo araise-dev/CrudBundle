@@ -56,13 +56,16 @@
                     {{ 'araise_crud.profile.edit_link' | trans }}
                 </a>
             {% endif %}
-            <a
-                href="{{ path('app_logout') }}"
-                class="flex whatwedo-utility-paragraph transition-colors hover:text-neutral-500"
-            >
-                {{ bootstrap_icon('box-arrow-right', { class: 'h-3 w-3 self-center mr-2', alt: '' }) }}
-                {{ 'araise_crud.profile.logout' | trans }}
-            </a>
+
+            {% if data.logout_link|default() %}
+                <a
+                    href="{{ data.logout_link }}"
+                    class="flex whatwedo-utility-paragraph transition-colors hover:text-neutral-500"
+                >
+                    {{ bootstrap_icon('box-arrow-right', { class: 'h-3 w-3 self-center mr-2', alt: '' }) }}
+                    {{ 'araise_crud.profile.logout' | trans }}
+                </a>
+            {% endif %}
 
         </div>
     </div>

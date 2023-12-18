@@ -91,7 +91,10 @@
                     {% endblock %}
 
                     {% block sidebar_profile %}
-                        {{ profile({name: user|default('Default')}) }}
+                        {{ profile({
+                            name: user|default('Default'),
+                            logout_link: path('app_logout')
+                        }) }}
                     {% endblock %}
                 </div>
 
