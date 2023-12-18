@@ -47,7 +47,7 @@
             {% set classes = classes|replace({'bg-white': 'bg-neutral-200'}) %}
         {% endif %}
 
-        {% if matcher.isCurrent(item) or matcher.isAncestor(item, options.matchingDepth) %}
+        {% if matcher.isCurrent(item) or matcher.isAncestor(item, options.matchingDepth) or item.level == '1' %}
             {% set classes = classes ~ ' font-semibold' %}
         {% endif %}
 
