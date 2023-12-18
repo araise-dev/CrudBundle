@@ -1,4 +1,4 @@
-{% macro profile(name, edit_link = null, name_detail = null, picture_src = null) %}
+{% macro profile(data) %}
 <div
     class="whatwedo_crud-profile relative flex-shrink-0 flex items-center inline-flex border-t border-neutral-200 p-4"
     {{ stimulus_controller('araise/core-bundle/dropdown', {'alignment': 'top'}) }}
@@ -13,14 +13,14 @@
         type="button"
     >
         <div class="whatwedo_crud-profile__picture">
-            {% if picture_src %}
+            {% if data.picture_src|default() %}
                 <img class="inline-block h-8 w-8 md:h-10 md:w-10 rounded-full"
-                     src="{{ picture_src }}" alt=""
+                     src="{{ data.picture_src }}" alt=""
                      crossorigin="anonymous" referrerpolicy="no-referrer">
             {% endif %}
         </div>
         <p class="text-base font-medium text-left text-neutral-900 transition-colors hover:text-neutral-700 grow">
-            {{ name }}
+            {{ data.name }}
         </p>
         {{ bootstrap_icon('chevron-up', { class: 'h-4 w-4', alt: 'Open profile detail'}) }}
     </button>
@@ -38,18 +38,18 @@
             <div class="border-b">
                 <span class="inline-block whatwedo-utility-paragraph text-sm leading-none mb-2">Angemeldet als</span>
                 <div class="flex whatwedo-utility-bold text-neutral-900 mb-2">
-                    {% if picture_src %}
+                    {% if data.picture_src|default() %}
                         <img class="inline-block h-8 w-8 md:h-10 md:w-10 rounded-full"
-                             src="{{ picture_src }}" alt=""
+                             src="{{ data.picture_src }}" alt=""
                              crossorigin="anonymous" referrerpolicy="no-referrer">
                     {% endif %}
-                    {{ name_detail ?? name }}
+                    {{ data.name_detail ?? data.name }}
                 </div>
             </div>
 
-            {% if edit_link %}
+            {% if data.edit_link|default() %}
                 <a
-                    href="{{ edit_link }}"
+                    href="{{ data.edit_link }}"
                     class="flex whatwedo-utility-paragraph transition-colors hover:text-neutral-500"
                 >
                     {{ bootstrap_icon('pencil-square', { class: 'h-3 w-3 self-center mr-2', alt: '' }) }}
