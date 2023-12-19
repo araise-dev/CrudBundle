@@ -92,7 +92,7 @@
 
                     {% block sidebar_profile %}
                         {{ profile({
-                            name: user|default('Default'),
+                            name: username|default('Default')|capitalize,
                             logout_link: path('app_logout')
                         }) }}
                     {% endblock %}
