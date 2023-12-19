@@ -34,12 +34,13 @@
             {% endfor %}
         </div>
 
-        <div class="m-4 md:m-8 p-4 bg-white drop-shadow-sm">
-            <p class="whatwedo-utility-paragraph mb-0">
-                {% block dashboard_paragraph %}
-                {% endblock %}
-            </p>
-        </div>
+        {% if block('dashboard_paragraph') is not empty %}
+            <div class="m-4 md:m-8 p-4 bg-white drop-shadow-sm">
+                <p class="whatwedo-utility-paragraph mb-0">
+                    {% block dashboard_paragraph %}{% endblock %}
+                </p>
+            </div>
+        {% endif %}
 
     </div>
 {% endblock %}
