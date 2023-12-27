@@ -12,7 +12,7 @@
             {{ wwd_crud_render_action(action, view) }}
         {% endfor %}
 
-        {% if view.actions|length == overflow %}
+        {% if view.actions|length == overflow0 %}
             {% for action in view.actions|slice(overflow0) %}
                 {{ wwd_crud_render_action(action, view) }}
             {% endfor %}
