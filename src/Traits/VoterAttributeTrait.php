@@ -8,17 +8,17 @@ use araise\CrudBundle\Enums\Page;
 
 trait VoterAttributeTrait
 {
-    public function getShowVoterAttribute(): ?Page
+    public function getShowVoterAttribute(): null|string|Page
     {
         return $this->options['show_voter_attribute'];
     }
 
-    public function getEditVoterAttribute(): ?Page
+    public function getEditVoterAttribute(): null|string|Page
     {
         return $this->options['edit_voter_attribute'];
     }
 
-    public function getCreateVoterAttribute(): ?Page
+    public function getCreateVoterAttribute(): null|string|Page
     {
         return $this->options['create_voter_attribute'];
     }
