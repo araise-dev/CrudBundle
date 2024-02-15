@@ -42,4 +42,7 @@ return [
     Knp\Bundle\MenuBundle\KnpMenuBundle::class => [
         'all' => true,
     ],
+    Symfony\UX\StimulusBundle\StimulusBundle::class => [
+        'all' => true,
+    ],
 ];
