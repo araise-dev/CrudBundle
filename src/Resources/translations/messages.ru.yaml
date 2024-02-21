@@ -1,0 +1,43 @@
+araise_crud:
+    dashboard: Панель
+    hello: Привет
+    add: Добавить
+    save: Сохранить
+    index: Обзор
+    edit: Изменить
+    delete: Удалить
+    view: Просмотреть
+    show_all: Показать всё
+    save_success: Объект сохранён.
+    save_error: Ошибка сохранения. Проверьте введённые данные.
+    delete_success: Объект удалён.
+    delete_error: Не удалось удалить объект.
+    search_placeholder: Искать
+    relation:
+        add: Добавить
+    actions:
+        delete:
+            confirm_delete: Вы уверены что хотите удалить?
+            yes: Да
+            no: Нет
+
+wwd:
+    araise_table_entity_filter:
+        title: Фильтр
+        title_plural: Фильтры
+        block:
+            base: Базовая настройка
+        property:
+            name: Название
+            description: Описание
+            route: Путь в приложении
+            type: Тип
+        type:
+            public: Доступный
+            private: Скрытый
+
+login:
+    title: Вход
+    username: Имя пользователя
+    password: Пароль
+    submit: Войти
