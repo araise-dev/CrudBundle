@@ -16,7 +16,7 @@
     </div>
 
     {% if card.link is defined %}
-        <a href="{{ path(card.link) }}" class="px-8 py-4 bg-neutral-100/60 hover:bg-neutral-100/80 transition-colors">
+        <a href="{{ path(card.link, card.link_parameter|default([])) }}" class="px-8 py-4 bg-neutral-100/60 hover:bg-neutral-100/80 transition-colors">
             <span class="font-semibold text-base text-black">{{ 'wwd.dashboard.to_overview'|trans }}</span>
         </a>
     {% endif %}
