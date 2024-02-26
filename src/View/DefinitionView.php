@@ -131,7 +131,7 @@ class DefinitionView
                 Page::EDIT => Block::OPT_EDIT_VOTER_ATTRIBUTE,
             };
 
-            $blocks->filter(
+            $blocks = $blocks->filter(
                 function (Block $block) use ($attribute) {
                     return $block->getOption($attribute) === null || $this->security->isGranted($block->getOption($attribute), $this->getData());
                 }

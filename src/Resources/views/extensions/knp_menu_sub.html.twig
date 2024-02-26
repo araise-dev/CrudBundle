@@ -1,88 +1,90 @@
 {% extends "@KnpMenu/menu.html.twig" %}
 
 {% block list %}
-    {% set attributes = item.attributes %}
-    {% set htmlElement = 'div' %}
+    {% if item.displayed %}
+        {% set attributes = item.attributes %}
+        {% set htmlElement = 'div' %}
 
-    {% if not item.parent %}
-        {# root element attributes #}
-        {% set attributes = attributes|merge({
-            class: (attributes.class|default(''))|trim,
-            'data-controller': 'araise--crud-bundle--navigation',
-        }) %}
-        {% set htmlElement = 'nav' %}
-    {% else %}
-        {# sub nav attributes #}
-        {% set classes = ' space-y-0.5 p-0' %}
-        {% if not matcher.isAncestor(item, options.matchingDepth) %}
-            {% set classes = ' hidden ' ~ classes %}
-        {% endif %}
-
-        {% set attributes = attributes|merge({
-            class: (attributes.class|default('') ~ classes)|trim,
-            'data-araise--crud-bundle--navigation-target': 'navigation',
-        }) %}
-    {% endif %}
-
-    {# extract icon #}
-    {% set icon = attributes.icon|default('gear') %}
-    {% set attributes = attributes|filter((v, k) => k != 'icon') %}
-
-    {# output #}
-    {% import _self as knp_menu %}
-    <{{ htmlElement }}{{ knp_menu.attributes(attributes) }}>
-        {# add title #}
-        {% if item.name and not item.parent %}
-            {% set classes = 'bg-white text-neutral-900 hover:bg-neutral-100 active:bg-neutral-200 group w-full flex items-center px-3 py-2.5 text-base font-semibold cursor-pointer transition-colors' %}
-
-            {% if matcher.isCurrent(item) %}
-                {% set classes = classes|replace({'bg-white': 'bg-neutral-200'}) %}
+        {% if not item.parent %}
+            {# root element attributes #}
+            {% set attributes = attributes|merge({
+                class: (attributes.class|default(''))|trim,
+                'data-controller': 'araise--crud-bundle--navigation',
+            }) %}
+            {% set htmlElement = 'nav' %}
+        {% else %}
+            {# sub nav attributes #}
+            {% set classes = ' space-y-0.5 p-0' %}
+            {% if not matcher.isAncestor(item, options.matchingDepth) %}
+                {% set classes = ' hidden ' ~ classes %}
             {% endif %}
 
-            <h3
-                class="{{ classes }}"
-                {{ stimulus_action('araise/crud-bundle/navigation', 'toggle', 'click') }}
-            >
-                {{ bootstrap_icon(icon, { 'class': 'text-neutral-600 mr-3 h-4 w-4' }) }}
+            {% set attributes = attributes|merge({
+                class: (attributes.class|default('') ~ classes)|trim,
+                'data-araise--crud-bundle--navigation-target': 'navigation',
+            }) %}
+        {% endif %}
 
-                {{ item.name|trans }}
+        {# extract icon #}
+        {% set icon = attributes.icon|default('gear') %}
+        {% set attributes = attributes|filter((v, k) => k != 'icon') %}
 
-                {% set classes = 'text-neutral-300 ml-auto h-3 w-3 transform group-hover:text-neutral-400 rotate-0 transition-colors ease-in-out duration-150' %}
+        {# output #}
+        {% import _self as knp_menu %}
+        <{{ htmlElement }}{{ knp_menu.attributes(attributes) }}>
+            {# add title #}
+            {% if item.name and not item.parent %}
+                {% set classes = 'bg-white text-neutral-900 hover:bg-neutral-100 active:bg-neutral-200 group w-full flex items-center px-3 py-2.5 text-base font-semibold cursor-pointer transition-colors' %}
 
-                {% if matcher.isAncestor(item, options.matchingDepth) %}
-                    {% set classes = classes|replace({
-                        'rotate-0': 'rotate-90'
-                    }) %}
+                {% if matcher.isCurrent(item) %}
+                    {% set classes = classes|replace({'bg-white': 'bg-neutral-200'}) %}
                 {% endif %}
-                <svg
-                    {{ stimulus_target('araise/crud-bundle/navigation', 'arrow') }}
-                    class="flex-shrink-0 h-3 w-3 text-neutral-600 {{ classes }}"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 8.836 14.036"
+
+                <h3
+                    class="{{ classes }}"
+                    {{ stimulus_action('araise/crud-bundle/navigation', 'toggle', 'click') }}
                 >
-                    <path id="arrow-right" d="M27.65,1.333a.718.718,0,0,1,0-1.1.97.97,0,0,1,1.251,0l7.067,6.238a.717.717,0,0,1,0,1.1L28.9,13.808a.97.97,0,0,1-1.251,0,.718.718,0,0,1,0-1.1l6.487-5.685Z" transform="translate(-27.391)" fill="#4b5563" fill-rule="evenodd"/>
-                </svg>
-            </h3>
-        {% endif %}
+                    {{ bootstrap_icon(icon, { 'class': 'text-neutral-600 mr-3 h-4 w-4' }) }}
 
-        {% set classes = '' %}
-        {% if not matcher.isAncestor(item, options.matchingDepth) %}
-            {% set classes = 'hidden ' ~ classes %}
-        {% endif %}
+                    {{ item.name|trans }}
 
-        {% if not item.parent %}
-            <div
-                class="{{ classes }}"
-                {{ stimulus_target('araise/crud-bundle/navigation', 'navigation') }}
-            >
-        {% endif %}
+                    {% set classes = 'text-neutral-300 ml-auto h-3 w-3 transform group-hover:text-neutral-400 rotate-0 transition-colors ease-in-out duration-150' %}
 
-            {{ block('children') }}
+                    {% if matcher.isAncestor(item, options.matchingDepth) %}
+                        {% set classes = classes|replace({
+                            'rotate-0': 'rotate-90'
+                        }) %}
+                    {% endif %}
+                    <svg
+                        {{ stimulus_target('araise/crud-bundle/navigation', 'arrow') }}
+                        class="flex-shrink-0 h-3 w-3 text-neutral-600 {{ classes }}"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 8.836 14.036"
+                    >
+                        <path id="arrow-right" d="M27.65,1.333a.718.718,0,0,1,0-1.1.97.97,0,0,1,1.251,0l7.067,6.238a.717.717,0,0,1,0,1.1L28.9,13.808a.97.97,0,0,1-1.251,0,.718.718,0,0,1,0-1.1l6.487-5.685Z" transform="translate(-27.391)" fill="#4b5563" fill-rule="evenodd"/>
+                    </svg>
+                </h3>
+            {% endif %}
 
-        {% if not item.parent %}
-            </div>
-        {% endif %}
-    </{{ htmlElement }}>
+            {% set classes = '' %}
+            {% if not matcher.isAncestor(item, options.matchingDepth) %}
+                {% set classes = 'hidden ' ~ classes %}
+            {% endif %}
+
+            {% if not item.parent %}
+                <div
+                    class="{{ classes }}"
+                    {{ stimulus_target('araise/crud-bundle/navigation', 'navigation') }}
+                >
+            {% endif %}
+
+                {{ block('children') }}
+
+            {% if not item.parent %}
+                </div>
+            {% endif %}
+        </{{ htmlElement }}>
+    {% endif %}
 {% endblock %}
 
 {% block item %}

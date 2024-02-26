@@ -36,8 +36,10 @@ public function configureFilters(Table $table)
 {
     parent::configureFilters($table);
     $table->getFilterExtension()
-        ->addFilter('age', 'Age', new NumberFilterType(self::getQueryAlias() . '.age'));
-    // addFilter(acronym, label, FilterType)
+        ->addFilterType('age', 'Age', NumberFilterType::class, [
+            FilterType::OPT_COLUMN => (self::getQueryAlias() . '.age')
+        ]);
+    // addFilterType(acronym, label, FilterType, options)
 }
 ```
 
