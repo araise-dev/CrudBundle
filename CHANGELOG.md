@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## v1.0.8
+ - More documentation and better styling of the documentation
+ - Added new dependency `symfony/stimulus-bundle@^2.0` and allowed `symfony/webpack-encore-bundle@^2.0`
+ - Refactored/Simplified profile in sidebar and dashboard
+ - Improved styling of menus
+ - Changed return type of `VoterAttributeTrait` from `?Page` to `null|string|Page`
+
 ## v1.0.6
  - Removed dependency to `coduo/php-to-string`
  - Added new bundle configuration `enable_turbo` (default `false`)
