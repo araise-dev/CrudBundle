@@ -7,7 +7,7 @@
             }
         },
         "@araise/core-bundle": {
-            "select": {
+            "combobox": {
                 "enabled": true,
                 "fetch": "eager"
             },
