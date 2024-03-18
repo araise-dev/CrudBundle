@@ -1,6 +1,4 @@
 security:
-    enable_authenticator_manager: true
-
     providers:
         app_user_provider:
             memory:

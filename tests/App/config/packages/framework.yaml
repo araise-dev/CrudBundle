@@ -7,8 +7,6 @@ framework:
     router:
         utf8: true
 
-    annotations: true
-
     session:
         handler_id: null
         cookie_secure: auto

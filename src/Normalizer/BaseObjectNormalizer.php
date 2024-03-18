@@ -147,10 +147,7 @@ abstract class BaseObjectNormalizer extends AbstractObjectNormalizer
         return $attribute === $this->discriminatorCache[$cacheKey] ? $this->classDiscriminatorResolver->getTypeForMappedObject($object) : $this->propertyAccessor->getValue($object, $attribute);
     }
 
-    /**
-     * @return void
-     */
-    protected function setAttributeValue(object $object, string $attribute, mixed $value, string $format = null, array $context = [])
+    protected function setAttributeValue(object $object, string $attribute, mixed $value, string $format = null, array $context = []): void
     {
         try {
             $this->propertyAccessor->setValue($object, $attribute, $value);
