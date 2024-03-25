@@ -18,7 +18,6 @@ use araise\CrudBundle\Form\Type\EntityAjaxType;
 use araise\CrudBundle\Form\Type\EntityHiddenType;
 use araise\CrudBundle\Form\Type\EntityPreselectType;
 use araise\CrudBundle\Manager\DefinitionManager;
-use Doctrine\Common\Annotations\Reader;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -48,7 +47,6 @@ class DefinitionView
         protected RouterInterface $router,
         protected RequestStack $requestStack,
         protected AuthorizationCheckerInterface $authorizationChecker,
-        protected Reader $annotationReader,
         protected Security $security,
     ) {
     }
