@@ -14,9 +14,10 @@ use araise\CrudBundle\View\DefinitionView;
 use araise\TableBundle\DataLoader\DoctrineDataLoader;
 use araise\TableBundle\DataLoader\DoctrineTreeDataLoader;
 use araise\TableBundle\Entity\TreeInterface;
+use araise\TableBundle\Exporter\ExporterInterface;
+use araise\TableBundle\Exporter\TableExporter;
 use araise\TableBundle\Extension\PaginationExtension;
 use araise\TableBundle\Factory\TableFactory;
-use araise\TableBundle\Manager\ExportManager;
 use araise\TableBundle\Table\Table;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NonUniqueResultException;
@@ -73,6 +74,7 @@ class CrudController extends AbstractController implements CrudDefinitionControl
         $this->getDefinition()->configureTableActions($table);
         $this->getDefinition()->configureTable($table);
         $this->getDefinition()->configureFilters($table);
+        $this->getDefinition()->configureTableExporter($table);
         $this->getDefinition()->buildBreadcrumbs(null, Page::INDEX);
         $table->setOption(Table::OPT_SUB_TABLE_LOADER, [$this->getDefinition(), 'getSubTables']);
 
@@ -269,7 +271,7 @@ class CrudController extends AbstractController implements CrudDefinitionControl
         return $this->getDefinition()->getRedirect(Page::DELETE, $entity);
     }
 
-    public function exportAction(Request $request, ExportManager $exportManager, TableFactory $tableFactory): Response
+    public function exportAction(Request $request, TableFactory $tableFactory, TableExporter $tableExporter): Response
     {
         $this->denyAccessUnlessGrantedCrud(Page::EXPORT, $this->getDefinition());
 
@@ -282,11 +284,16 @@ class CrudController extends AbstractController implements CrudDefinitionControl
 
         $this->getDefinition()->configureExport($table);
         $this->getDefinition()->configureFilters($table);
+        $this->getDefinition()->configureTableExporter($table);
         if ($request->query->getInt('all', 0) === 1) {
             $table->getExtension(PaginationExtension::class)?->setLimit(0);
         }
-
-        $spreadsheet = $exportManager->createSpreadsheet($table);
+        $exporter = $table->getExporter($request->query->getString('exporter', 'table'));
+        if (!$exporter instanceof ExporterInterface) {
+            $this->addFlash('error', 'araise_crud.export_error');
+            throw new \RuntimeException('No Exporter found.');
+        }
+        $spreadsheet = $exporter->createSpreadsheet($table);
         $writer = new Xlsx($spreadsheet);
         $response = new StreamedResponse();
         $response->setCallback(

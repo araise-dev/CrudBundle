@@ -23,6 +23,7 @@ use araise\CrudBundle\Manager\DefinitionManager;
 use araise\CrudBundle\View\DefinitionView;
 use araise\SearchBundle\Repository\IndexRepository;
 use araise\TableBundle\DataLoader\DoctrineDataLoader;
+use araise\TableBundle\Exporter\TableExporter;
 use araise\TableBundle\Extension\FilterExtension;
 use araise\TableBundle\Extension\SortExtension;
 use araise\TableBundle\Factory\TableFactory;
@@ -218,6 +219,12 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
     public function configureExport(Table $table): void
     {
         $this->configureTable($table);
+    }
+
+    public function configureTableExporter(Table $table): void
+    {
+        $tableExporter = $this->container->get(TableExporter::class);
+        $table->addExporter('table', $tableExporter);
     }
 
     public function getExportFilename(): string
@@ -626,6 +633,7 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
             RequestStack::class,
             LoggerInterface::class,
             TableFactory::class,
+            TableExporter::class,
         ];
     }
 
