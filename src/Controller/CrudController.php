@@ -289,6 +289,9 @@ class CrudController extends AbstractController implements CrudDefinitionControl
             $table->getExtension(PaginationExtension::class)?->setLimit(0);
         }
         $exporter = $table->getExporter($request->query->getString('exporter', 'table'));
+        if (!$exporter && count($table->getExporters()) > 0) {
+            $exporter = $table->getExporter(key($table->getExporters()));
+        }
         if (!$exporter instanceof ExporterInterface) {
             $this->addFlash('error', 'araise_crud.export_error');
             throw new \RuntimeException('No Exporter found.');
