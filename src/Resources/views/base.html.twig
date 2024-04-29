@@ -93,6 +93,7 @@
                     {% block sidebar_profile %}
                         {{ profile({
                             name: username|default('Default')|capitalize,
+                            picture_src: wwd_crud_generate_intiail_avatar(),
                             logout_link: path('app_logout')
                         }) }}
                     {% endblock %}
