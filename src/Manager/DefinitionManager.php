@@ -44,6 +44,10 @@ class DefinitionManager
             }
         }
 
+        if (is_array($entity)) {
+            throw new \InvalidArgumentException('Cannot get a definition for an array');
+        }
+
         throw new \InvalidArgumentException(sprintf('definition for entity "%s" not found.', is_string($entity) ? $entity : $entity::class));
     }
 

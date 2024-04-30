@@ -70,6 +70,13 @@ class DefinitionMenuBuilder
      */
     public const OPT_ATTR_ICON = 'icon';
 
+    /**
+     * Defines the voter attribute of the menu item. If this attribute is not granted to the current menu item will not be added.
+     * Defaults to <code>null</code>.
+     * Accepts: <code>string|object|null</code>.
+     */
+    public const OPT_VOTER_ATTRIBUTE = 'voter_attribute';
+
     protected Request $request;
 
     public function __construct(
@@ -89,6 +96,11 @@ class DefinitionMenuBuilder
             && $this->authorizationChecker->isGranted(Page::INDEX, $definitionObject)) {
             if (! $title) {
                 $title = $definitionObject::getEntityTitlePluralTranslation();
+            }
+
+            if (isset($options[self::OPT_VOTER_ATTRIBUTE])
+            && !$this->authorizationChecker->isGranted($options[self::OPT_VOTER_ATTRIBUTE], $definitionObject)) {
+                return null;
             }
 
             if (! isset($options[self::OPT_ROUTE])) {
