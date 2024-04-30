@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace araise\CrudBundle\Controller;
 
+use araise\CrudBundle\Content\RelationContent;
 use araise\CrudBundle\Definition\DefinitionInterface;
 use araise\CrudBundle\Enums\Page;
 use araise\CrudBundle\Enums\PageInterface;
@@ -281,6 +282,24 @@ class CrudController extends AbstractController implements CrudDefinitionControl
                     DoctrineDataLoader::OPT_QUERY_BUILDER => $this->getDefinition()->getQueryBuilder(),
                 ],
             ]);
+
+        if ($request->query->has('acronym') && $request->query->has('entityId')) {
+            try {
+                $entity = $this->getDefinition()->getQueryBuilder()
+                    ->andWhere($this->getIdentifierColumn().' = :id')
+                    ->setParameter('id', $request->query->getInt('entityId'))
+                    ->getQuery()
+                    ->getSingleResult();
+            } catch (NoResultException | NonUniqueResultException $e) {
+                throw new NotFoundHttpException(sprintf('Der gewünschte Datensatz existiert in %s nicht.', $this->getDefinition()->getLongTitle()));
+            }
+
+            $relationContent = $this->getDefinition()->getContent($request->query->get('acronym'));
+            if ($relationContent instanceof RelationContent) {
+                $table = $relationContent->getTable($entity);
+                $this->setDefinition($table->getOption($table::OPT_DEFINITION));
+            }
+        }
 
         $this->getDefinition()->configureExport($table);
         $this->getDefinition()->configureFilters($table);
