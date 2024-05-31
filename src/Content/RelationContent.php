@@ -6,7 +6,6 @@ namespace araise\CrudBundle\Content;
 
 use araise\CoreBundle\Action\Action;
 use araise\CoreBundle\Action\PostAction;
-use araise\CrudBundle\Definition\AbstractDefinition;
 use araise\CrudBundle\Definition\DefinitionInterface;
 use araise\CrudBundle\Enums\Page;
 use araise\CrudBundle\Enums\PageInterface;
@@ -428,9 +427,7 @@ class RelationContent extends AbstractContent
         $targetDefinition->configureTable($table);
         $targetDefinition->configureTableActions($table);
         $targetDefinition->configureActions(null);
-        if ($targetDefinition instanceof AbstractDefinition) {
-            $targetDefinition->configureTableExporter($table);
-        }
+        $targetDefinition->configureTableExporter($table);
         $table->setOption('title', null); // no h1 for relation content
         $actionColumnItems = [];
         $currentURI = $this->getRequest()->getRequestUri();
