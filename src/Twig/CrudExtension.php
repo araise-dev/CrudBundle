@@ -32,7 +32,7 @@ class CrudExtension extends AbstractExtension
             new TwigFunction('wwd_crud_render_breadcrumbs', [$this, 'renderBreadcrumbs'], [
                 'is_safe' => ['html'],
             ]),
-            new TwigFunction('wwd_crud_generate_intiail_avatar', [$this, 'generateInitialAvatar']),
+            new TwigFunction('wwd_crud_generate_initial_avatar', [$this, 'generateInitialAvatar']),
             new TwigFunction('wwd_crud_entity_path', fn ($entityOrClass, PageInterface $page) => $this->getEntityPath($entityOrClass, $page)),
         ];
     }
