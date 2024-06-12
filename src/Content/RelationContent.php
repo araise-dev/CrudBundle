@@ -552,7 +552,7 @@ class RelationContent extends AbstractContent
 
             $stack[$part] = [
                 '_mapping' => $mapping,
-                'field' => $mapping['mappedBy'] ?: $mapping['inversedBy'],
+                'field' => $mapping['mappedBy'] ?? $mapping['inversedBy'],
                 'path' => implode('.', array_keys($stack)),
             ];
         }
