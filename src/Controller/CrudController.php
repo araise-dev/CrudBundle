@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace araise\CrudBundle\Controller;
 
+use araise\CoreBundle\Exception\FlashBagExecption;
 use araise\CrudBundle\Block\Block;
 use araise\CrudBundle\Content\RelationContent;
 use araise\CrudBundle\Definition\DefinitionInterface;
@@ -171,14 +172,18 @@ class CrudController extends AbstractController implements CrudDefinitionControl
 
         $form = $view->getEditForm();
 
-        $form->handleRequest($request);
+        try {
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted()) {
-            $this->dispatchEvent(CrudEvent::PRE_VALIDATE_PREFIX, $entity);
-            if ($form->isValid()) {
-                return $this->formSubmittedAndValid($entity, $mode, Page::EDIT);
+            if ($form->isSubmitted()) {
+                $this->dispatchEvent(CrudEvent::PRE_VALIDATE_PREFIX, $entity);
+                if ($form->isValid()) {
+                    return $this->formSubmittedAndValid($entity, $mode, Page::EDIT);
+                }
+                throw new FlashBagExecption('error', 'araise_crud.save_error');
             }
-            $this->addFlash('error', 'araise_crud.save_error');
+        } catch (FlashBagExecption $e) {
+            $this->addFlash($e->getFlashType(), $e->getFlashMessage());
         }
 
         $this->definition->buildBreadcrumbs($entity, Page::EDIT);
@@ -221,14 +226,18 @@ class CrudController extends AbstractController implements CrudDefinitionControl
 
         $form = $view->getCreateForm();
 
-        $form->handleRequest($request);
+        try {
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted()) {
-            $this->dispatchEvent(CrudEvent::PRE_VALIDATE_PREFIX, $entity);
-            if ($form->isValid()) {
-                return $this->formSubmittedAndValid($entity, $mode, Page::CREATE);
+            if ($form->isSubmitted()) {
+                $this->dispatchEvent(CrudEvent::PRE_VALIDATE_PREFIX, $entity);
+                if ($form->isValid()) {
+                    return $this->formSubmittedAndValid($entity, $mode, Page::CREATE);
+                }
+                throw new FlashBagExecption('error', 'araise_crud.save_error');
             }
-            $this->addFlash('error', 'araise_crud.save_error');
+        } catch (FlashBagExecption $e) {
+            $this->addFlash($e->getFlashType(), $e->getFlashMessage());
         }
 
         $this->definition->buildBreadcrumbs($entity, Page::CREATE);
@@ -259,15 +268,15 @@ class CrudController extends AbstractController implements CrudDefinitionControl
         try {
             $this->entityManager->remove($entity);
             $this->dispatchEvent(CrudEvent::PRE_DELETE_PREFIX, $entity);
-            $this->entityManager->flush();
+            try {
+                $this->entityManager->flush();
+            } catch (\Exception) {
+                throw new FlashBagExecption('error', 'araise_crud.delete_error');
+            }
             $this->dispatchEvent(CrudEvent::POST_DELETE_PREFIX, $entity);
             $this->addFlash('success', 'araise_crud.delete_success');
-        } catch (\Exception $e) {
-            $this->addFlash('error', 'araise_crud.delete_error');
-            $this->container->get(LoggerInterface::class)->warning('Error while deleting: '.$e->getMessage(), [
-                'entity' => get_class($entity),
-                'id' => $entity->getId(),
-            ]);
+        } catch (FlashBagExecption $e) {
+            $this->addFlash($e->getFlashType(), $e->getFlashMessage());
         }
 
         return $this->getDefinition()->getRedirect(Page::DELETE, $entity);
@@ -329,26 +338,37 @@ class CrudController extends AbstractController implements CrudDefinitionControl
         if ($request->query->getInt('all', 0) === 1) {
             $table->getExtension(PaginationExtension::class)?->setLimit(0);
         }
-        $exporter = $table->getExporter($request->query->getString('exporter', 'table'));
-        if (!$exporter && count($table->getExporters()) > 0) {
-            $exporter = $table->getExporter(key($table->getExporters()));
-        }
-        if (!$exporter instanceof ExporterInterface) {
-            $this->addFlash('error', 'araise_crud.export_error');
-            throw new \RuntimeException('No Exporter found.');
-        }
-        $spreadsheet = $exporter->createSpreadsheet($table);
-        $writer = new Xlsx($spreadsheet);
-        $response = new StreamedResponse();
-        $response->setCallback(
-            function () use ($writer) {
-                $writer->save('php://output');
+
+        try {
+            $exporter = $table->getExporter($request->query->getString('exporter', 'table'));
+            if (!$exporter && count($table->getExporters()) > 0) {
+                $exporter = $table->getExporter(key($table->getExporters()));
             }
-        );
+            if (!$exporter instanceof ExporterInterface) {
+                throw new FlashBagExecption('error', 'araise_crud.export_error', 'No Exporter found.');
+            }
+            $spreadsheet = $exporter->createSpreadsheet($table);
+            $writer = new Xlsx($spreadsheet);
+            $response = new StreamedResponse();
+            $response->setCallback(
+                function () use ($writer) {
+                    $writer->save('php://output');
+                }
+            );
 
-        $response->headers->set('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        $response->headers->set('Content-Disposition', 'attachment; filename="'.$this->definition->getExportFilename().'"');
+            $response->headers->set('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+            $response->headers->set('Content-Disposition', 'attachment; filename="'.$this->definition->getExportFilename().'"');
+        } catch (FlashBagExecption $e) {
+            $this->addFlash($e->getFlashType(), $e->getFlashMessage());
 
+            if (isset($entity) && $entity) {
+                $response = $this->redirectToRoute($this->definition::getRoute(Page::SHOW), [
+                    'id' => $entity->getId(),
+                ]);
+            } else {
+                $response = $this->redirectToRoute($this->definition::getRoute(Page::INDEX));
+            }
+        }
         return $response;
     }
 

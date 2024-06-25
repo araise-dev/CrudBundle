@@ -38,6 +38,9 @@
         "lasserafn/php-initial-avatar-generator": "^4.3"
     },
     "require-dev": {
+        "araise/core-bundle": "dev-develop as 1.1",
+        "araise/table-bundle": "dev-develop as 1.1",
+        "araise/search-bundle": "dev-develop as 3.1",
         "symfony/phpunit-bridge": "^6.4|^7.0",
         "symfony/config": "^6.4|^7.0",
         "symfony/dependency-injection": "^6.4|^7.0",
