@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace araise\CrudBundle\Controller;
 
+use araise\CrudBundle\Block\Block;
 use araise\CrudBundle\Content\RelationContent;
 use araise\CrudBundle\Definition\DefinitionInterface;
 use araise\CrudBundle\Enums\Page;
@@ -283,21 +284,42 @@ class CrudController extends AbstractController implements CrudDefinitionControl
                 ],
             ]);
 
-        if ($request->query->has('acronym') && $request->query->has('entityId')) {
+        if (
+            $request->query->has('definition')
+            && $request->query->has('block')
+            && $request->query->has('content')
+            && $request->query->has('entityId')
+        ) {
+            $exportDefinitionAlias = $request->query->get('definition');
+            $exportBlockAcronym = $request->query->get('block');
+            $exportContentAcronym = $request->query->get('content');
+            $exportEntityId = $request->query->getInt('entityId');
+
+            $definition = $this->definitionManager->getDefinitionByAlias($exportDefinitionAlias);
+            $identifier = sprintf(
+                '%s.%s',
+                $definition::getQueryAlias(),
+                $definition->getQueryBuilder()->getEntityManager()->getClassMetadata($this->getDefinition()::getEntity())->identifier[0]
+            );
+
             try {
-                $entity = $this->getDefinition()->getQueryBuilder()
-                    ->andWhere($this->getIdentifierColumn().' = :id')
-                    ->setParameter('id', $request->query->getInt('entityId'))
+                $entity = $definition->getQueryBuilder()
+                    ->andWhere($identifier.' = :id')
+                    ->setParameter('id', $exportEntityId)
                     ->getQuery()
                     ->getSingleResult();
             } catch (NoResultException | NonUniqueResultException $e) {
                 throw new NotFoundHttpException(sprintf('Der gewünschte Datensatz existiert in %s nicht.', $this->getDefinition()->getLongTitle()));
             }
 
-            $relationContent = $this->getDefinition()->getContent($request->query->get('acronym'));
-            if ($relationContent instanceof RelationContent) {
-                $table = $relationContent->getTable($entity);
-                $this->setDefinition($table->getOption($table::OPT_DEFINITION));
+            $view = $definition->createView(Page::SHOW, $entity);
+            $blocks = $view->getBlocks()->filter(fn (Block $block) => $block->getAcronym() === $exportBlockAcronym);
+            if ($blocks->first() instanceof Block) {
+                $relationContent = $blocks->first()->getContent($exportContentAcronym);
+                if ($relationContent instanceof RelationContent) {
+                    $table = $relationContent->getTable($entity);
+                    $this->setDefinition($table->getOption($table::OPT_DEFINITION));
+                }
             }
         }
 
