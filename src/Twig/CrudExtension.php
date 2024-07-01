@@ -7,6 +7,8 @@ namespace araise\CrudBundle\Twig;
 use araise\CrudBundle\Enums\Page;
 use araise\CrudBundle\Enums\PageInterface;
 use araise\CrudBundle\Manager\DefinitionManager;
+use LasseRafn\InitialAvatarGenerator\InitialAvatar;
+use Psr\Http\Message\StreamInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Environment;
@@ -30,6 +32,7 @@ class CrudExtension extends AbstractExtension
             new TwigFunction('wwd_crud_render_breadcrumbs', [$this, 'renderBreadcrumbs'], [
                 'is_safe' => ['html'],
             ]),
+            new TwigFunction('wwd_crud_generate_initial_avatar', [$this, 'generateInitialAvatar']),
             new TwigFunction('wwd_crud_entity_path', fn ($entityOrClass, PageInterface $page) => $this->getEntityPath($entityOrClass, $page)),
         ];
     }
@@ -50,6 +53,31 @@ class CrudExtension extends AbstractExtension
         }
 
         return '';
+    }
+
+    public function generateInitialAvatar(): ?StreamInterface
+    {
+        if ($user = $this->security->getUser()) {
+            $emailParts = explode('@', $user->getUserIdentifier());
+            $name = $emailParts[0];
+            $nameParts = preg_split('/[^a-zA-Z0-9]+/', $name);
+
+            $firstName = $nameParts[0] ?? null;
+            $lastName = $nameParts[1] ?? null;
+
+            if ($firstName && $lastName) {
+                $name = sprintf('%s %s', $firstName, $lastName);
+            }
+
+            $avatar = new InitialAvatar();
+            return $avatar
+                ->name($name)
+                ->autoFont()
+                ->autoColor()
+                ->generate()->stream('data-url');
+        }
+
+        return null;
     }
 
     public function hasDefinition(mixed $entityOrClass): bool

@@ -6,9 +6,9 @@ namespace araise\CrudBundle\Tests\App\Factory;
 
 use araise\CrudBundle\Tests\App\Entity\Category;
 use araise\CrudBundle\Tests\App\Repository\CategoryRepository;
-use Zenstruck\Foundry\ModelFactory;
-use Zenstruck\Foundry\Proxy;
-use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
+use Zenstruck\Foundry\Persistence\Proxy;
+use Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator;
 
 /**
  * @method static         Category|Proxy createOne(array $attributes = [])
@@ -23,20 +23,20 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static         Category[]|Proxy[] findBy(array $attributes)
  * @method static         Category[]|Proxy[] randomSet(int $number, array $attributes = [])
  * @method static         Category[]|Proxy[] randomRange(int $min, int $max, array $attributes = [])
- * @method static         CategoryRepository|RepositoryProxy repository()
+ * @method static         CategoryRepository|ProxyRepositoryDecorator repository()
  * @method Category|Proxy create($attributes = [])
  */
-final class CategoryFactory extends ModelFactory
+final class CategoryFactory extends PersistentProxyObjectFactory
 {
-    protected function getDefaults(): array
+    public static function class(): string
+    {
+        return Category::class;
+    }
+
+    protected function defaults(): array
     {
         return [
             'name' => 'category_prefix.phpunit'.self::faker()->company(),
         ];
-    }
-
-    protected static function getClass(): string
-    {
-        return Category::class;
     }
 }

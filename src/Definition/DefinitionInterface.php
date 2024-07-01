@@ -107,6 +107,11 @@ interface DefinitionInterface
     public function configureTableActions(Table $table): void;
 
     /**
+     * table configuration.
+     */
+    public function configureTableExporter(Table $table): void;
+
+    /**
      * table export configuration.
      */
     public function configureExport(Table $table): void;

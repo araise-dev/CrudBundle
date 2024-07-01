@@ -6,9 +6,9 @@ namespace araise\CrudBundle\Tests\App\Factory;
 
 use araise\CrudBundle\Tests\App\Entity\Contact;
 use araise\CrudBundle\Tests\App\Repository\ContactRepository;
-use Zenstruck\Foundry\ModelFactory;
-use Zenstruck\Foundry\Proxy;
-use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
+use Zenstruck\Foundry\Persistence\Proxy;
+use Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator;
 
 /**
  * @method static        Contact|Proxy createOne(array $attributes = [])
@@ -23,21 +23,21 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static        Contact[]|Proxy[] findBy(array $attributes)
  * @method static        Contact[]|Proxy[] randomSet(int $number, array $attributes = [])
  * @method static        Contact[]|Proxy[] randomRange(int $min, int $max, array $attributes = [])
- * @method static        ContactRepository|RepositoryProxy repository()
+ * @method static        ContactRepository|ProxyRepositoryDecorator repository()
  * @method Contact|Proxy create($attributes = [])
  */
-final class ContactFactory extends ModelFactory
+final class ContactFactory extends PersistentProxyObjectFactory
 {
-    protected function getDefaults(): array
+    public static function class(): string
+    {
+        return Contact::class;
+    }
+
+    protected function defaults(): array
     {
         return [
             'name' => self::faker()->name(),
             'company' => CompanyFactory::randomOrCreate(),
         ];
-    }
-
-    protected static function getClass(): string
-    {
-        return Contact::class;
     }
 }

@@ -93,6 +93,7 @@
                     {% block sidebar_profile %}
                         {{ profile({
                             name: username|default('Default')|capitalize,
+                            picture_src: wwd_crud_generate_initial_avatar(),
                             logout_link: path('app_logout')
                         }) }}
                     {% endblock %}
@@ -126,7 +127,7 @@
                 </div>
 
                 {% block topbar %}
-                    <nav class="whatwedo_crud-topbar whatwedo-utility-topbar">
+                    <nav class="whatwedo_crud-topbar whatwedo-utility-topbar lg:gap-x-3">
                         {% block hamburger %}
                             <button {{ stimulus_action('araise/crud-bundle/offcanvas', 'showContent') }} type="button" class="inline-flex md:hidden items-center justify-center rounded-md text-neutral-500 hover:text-neutral-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500">
                                 <span class="sr-only">Open sidebar</span>
@@ -162,7 +163,7 @@
                 </div>
 
                 {% block footer %}
-                    <footer class="whatwedo-utility-paragraph text-center mb-2">
+                    <footer class="whatwedo-utility-paragraph text-neutral-700 text-right mb-2 mx-4">
                         <a href="https://github.com/araise-dev/CrudBundle">araise</a> | Made with ♥️ by <a href="https://whatwedo.ch" target="_blank">whatwedo</a>
                     </footer>
                 {% endblock %}

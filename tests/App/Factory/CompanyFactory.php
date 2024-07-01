@@ -6,9 +6,9 @@ namespace araise\CrudBundle\Tests\App\Factory;
 
 use araise\CrudBundle\Tests\App\Entity\Company;
 use araise\CrudBundle\Tests\App\Repository\CompanyRepository;
-use Zenstruck\Foundry\ModelFactory;
-use Zenstruck\Foundry\Proxy;
-use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
+use Zenstruck\Foundry\Persistence\Proxy;
+use Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator;
 
 /**
  * @method static        Company|Proxy createOne(array $attributes = [])
@@ -23,12 +23,17 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static        Company[]|Proxy[] findBy(array $attributes)
  * @method static        Company[]|Proxy[] randomSet(int $number, array $attributes = [])
  * @method static        Company[]|Proxy[] randomRange(int $min, int $max, array $attributes = [])
- * @method static        CompanyRepository|RepositoryProxy repository()
+ * @method static        CompanyRepository|ProxyRepositoryDecorator repository()
  * @method Company|Proxy create($attributes = [])
  */
-final class CompanyFactory extends ModelFactory
+final class CompanyFactory extends PersistentProxyObjectFactory
 {
-    protected function getDefaults(): array
+    public static function class(): string
+    {
+        return Company::class;
+    }
+
+    protected function defaults(): array
     {
         return [
             'name' => self::faker()->company(),
@@ -36,10 +41,5 @@ final class CompanyFactory extends ModelFactory
             'country' => self::faker()->country(),
             'taxIdentificationNumber' => self::faker()->numerify(self::faker()->countryCode().'###.####.###.#.###.##'),
         ];
-    }
-
-    protected static function getClass(): string
-    {
-        return Company::class;
     }
 }

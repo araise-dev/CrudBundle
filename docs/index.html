@@ -79,7 +79,19 @@
     <!-- Source: https://github.com/Leward/mermaid-docsify -->
     <script type="module">
         import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
-        mermaid.initialize({ startOnLoad: true });
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                darkMode: true,
+                primaryColor: '#5b47d1',
+                primaryTextColor: '#ffffff',
+                primaryBorderColor: '#1b1447',
+                lineColor: '#fc00ff',
+                secondaryColor: '#fc00ff',
+                tertiaryColor: '#fc00ff',
+            },
+        });
         window.mermaid = mermaid;
     </script>
     <script src="https://unpkg.com/docsify-mermaid@2.0.0/dist/docsify-mermaid.js"></script>

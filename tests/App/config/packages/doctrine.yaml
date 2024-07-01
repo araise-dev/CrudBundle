@@ -11,6 +11,7 @@ doctrine:
                     collation: utf8mb4_unicode_ci
                 url: '%env(resolve:DATABASE_URL)%'
     orm:
+        enable_lazy_ghost_objects: true
         default_entity_manager: default
         auto_generate_proxy_classes: true
         entity_managers:
@@ -18,6 +19,7 @@ doctrine:
                 connection: default
                 naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
                 auto_mapping: true
+                report_fields_where_declared: true
                 mappings:
                     App:
                         is_bundle: false
