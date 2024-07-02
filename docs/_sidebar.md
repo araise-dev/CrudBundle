@@ -12,6 +12,7 @@
 * Cookbook
 ** [Overview](cookbook/overview.md)
 ** - [Login](cookbook/login.md)
+** - [View Definition](cookbook/view_definition.md)
 ** - [Filters](cookbook/filters.md)
 ** - [Search](cookbook/search.md)
 ** - [Custom Styles](cookbook/custom_styles.md)
