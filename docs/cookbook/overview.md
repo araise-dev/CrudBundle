@@ -6,6 +6,9 @@
     - [How to remove an unwanted filter](cookbook/filters.md#how-to-remove-an-unwanted-filter)
     - [How to predefine often used filters](cookbook/filters.md#how-to-predefine-often-used-filters)
 
+- [View Definition](cookbook/view_definition.md)
+    - [How to prefill a relation field in forms](cookbook/view_definition.md#prefill-field-in-form)
+
 - [Search](cookbook/search.md)
     - [Prerequisites](cookbook/search.md#prerequisites)
     - [Search on Definition](cookbook/search.md#search-on-definition)
