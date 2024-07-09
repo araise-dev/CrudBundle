@@ -45,7 +45,7 @@ class TwigAliasTest extends KernelTestCase
         /** @var Environment $twigEnvironment */
         $twigEnvironment = self::getContainer()->get(Environment::class);
 
-        $person = PersonFactory::createOne()->object();
+        $person = PersonFactory::createOne()->_real();
         $this->assertStringContainsString('#araise_crud_tests_app_entity_person#', $twigEnvironment->render(
             'twig/wwd_crud_entity_alias.html.twig',
             [

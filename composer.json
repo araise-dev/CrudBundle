@@ -48,7 +48,7 @@
         "symfony/validator": "^6.4|^7.0",
         "doctrine/doctrine-bundle": "^2.5",
         "whatwedo/php-coding-standard": "^1.0",
-        "zenstruck/foundry": "^1.16",
+        "zenstruck/foundry": "^2.0",
         "zenstruck/console-test": "^v1.1.0",
         "symfony/translation": "^6.4|^7.0",
         "gedmo/doctrine-extensions": "^3.15",
