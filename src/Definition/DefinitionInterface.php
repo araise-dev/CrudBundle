@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace araise\CrudBundle\Definition;
 
 use araise\CrudBundle\Builder\DefinitionBuilder;
+use araise\CrudBundle\Content\AbstractContent;
 use araise\CrudBundle\Enums\PageInterface;
 use araise\CrudBundle\Enums\PageModeInterface;
 use araise\CrudBundle\Extension\ExtensionInterface;
@@ -109,7 +110,7 @@ interface DefinitionInterface
     /**
      * table configuration.
      */
-    public function configureTableExporter(Table $table): void;
+    public function configureTableExporter(Table $table, ?AbstractContent $content = null): void;
 
     /**
      * table export configuration.
