@@ -427,7 +427,7 @@ class RelationContent extends AbstractContent
         $targetDefinition->configureTable($table);
         $targetDefinition->configureTableActions($table);
         $targetDefinition->configureActions(null);
-        $targetDefinition->configureTableExporter($table);
+        $targetDefinition->configureTableExporter($table, $this);
         $table->setOption('title', null); // no h1 for relation content
         $actionColumnItems = [];
         $currentURI = $this->getRequest()->getRequestUri();

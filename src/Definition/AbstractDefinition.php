@@ -221,8 +221,12 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
         $this->configureTable($table);
     }
 
-    public function configureTableExporter(Table $table): void
+    public function configureTableExporter(Table $table, ?AbstractContent $content = null): void
     {
+        if ($content !== null) {
+            // default add exporters only on main tables
+            return;
+        }
         $tableExporter = $this->container->get(TableExporter::class);
         $table->addExporter('table', $tableExporter);
     }
