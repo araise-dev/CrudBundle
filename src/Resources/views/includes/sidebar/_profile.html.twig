@@ -36,14 +36,14 @@
     >
         <div class="flex flex-col gap-y-2 m-4 -mb-1 px-4 pt-2 pb-3 rounded-sm shadow-md z-10 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
             <div class="border-b">
-                <span class="inline-block whatwedo-utility-paragraph text-sm leading-none mb-2">Angemeldet als</span>
-                <div class="flex whatwedo-utility-bold text-neutral-900 mb-2">
+                <span class="inline-block whatwedo-utility-paragraph text-sm leading-none mb-3">Angemeldet als</span>
+                <div class="flex gap-x-2 items-center whatwedo-utility-bold text-neutral-900 mb-3">
                     {% if data.picture_src|default() %}
-                        <img class="inline-block h-8 w-8 md:h-10 md:w-10 rounded-full"
+                        <img class="inline-block h-6 w-6 md:h-8 md:w-8 rounded-full"
                              src="{{ data.picture_src }}" alt=""
                              crossorigin="anonymous" referrerpolicy="no-referrer">
                     {% endif %}
-                    {{ data.name_detail ?? data.name }}
+                    <span>{{ data.name_detail ?? data.name }}</span>
                 </div>
             </div>
 
