@@ -26,6 +26,8 @@ araise_crud:
     profile:
         logout: Logout
         edit_link: Profil bearbeiten
+        logged_in_as: Angemeldet als
+        picture_alt: Profilbild von %username%
 
 wwd:
     araise_table_entity_filter:
