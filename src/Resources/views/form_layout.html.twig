@@ -13,6 +13,7 @@
     {% set attr = attr|filter((v, k) => k != 'class') %}
     {% set widget_class = widget_class|default('block w-full shadow-sm whatwedo_core-input '~class) %}
     {% set widget_errors_class = widget_errors_class|default('whatwedo-utility-input--error') %}
+
     {{ parent() }}
 {% endblock widget_attributes %}
 
@@ -30,6 +31,16 @@
     {% if type is defined %}
         {%  if type is same as('datetime-local') or type is same as('date') or type is same as('time') %}
             {{ stimulus_controller('araise/core-bundle/datetime', {lang: app.request.locale}) }}
+        {% endif %}
+
+        {% if attr.mask is defined %}
+            {{ stimulus_controller('araise/core-bundle/input-mask', {
+                mask: attr.mask,
+                scale: attr.scale|default(null),
+                radix: attr.radix|default(null),
+                thousandsSeparator: attr.thousandsSeparator|default(null),
+                normalizeZeros: attr.normalizeZeros|default(null)
+            }) }}
         {% endif %}
     {% endif %}
 
@@ -61,6 +72,22 @@
 {%- endblock form_help -%}
 
 {%- block money_widget -%}
+    {#
+    Setting from the Money Formatter:
+    - OPT_DECIMALS: scale
+    - OPT_DECIMAL_SEPARATOR: radix
+    - OPT_THOUSANDS_SEPARATOR: thousandsSeparator
+    #}
+
+    {% set moneyFormatting = {
+        mask: attr.mask|default('Number'),
+        scale: attr.scale|default(2),
+        radix: attr.radix|default('.'),
+        thousandsSeparator: attr.thousandsSeparator|default('\''),
+        normalizeZeros: attr.normalizeZeros|default(false),
+    } %}
+    {% set attr = attr|merge(moneyFormatting) %}
+
     <div class="space-x-4 hidden sm:flex">
         <div class="w-5/6">
             {{ block('form_widget_simple') }}
