@@ -32,7 +32,7 @@
                     {{ form_widget(attribute(form, contentAcronym)) }}
                 </div>
                 {% if attribute(form, contentAcronym).vars.errors|length %}
-                    <div class="help-block">
+                    <div class="whatwedo-utility-error-container help-block">
                         {{ form_errors(attribute(form, contentAcronym)) }}
                     </div>
                 {% endif %}
