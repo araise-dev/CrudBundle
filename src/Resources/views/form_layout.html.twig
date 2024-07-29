@@ -83,7 +83,7 @@
         mask: attr.mask|default('Number'),
         scale: attr.scale|default(2),
         radix: attr.radix|default('.'),
-        thousandsSeparator: attr.thousandsSeparator|default('\''),
+        thousandsSeparator: attr.thousandsSeparator|default(''),
         normalizeZeros: attr.normalizeZeros|default(false),
     } %}
     {% set attr = attr|merge(moneyFormatting) %}
