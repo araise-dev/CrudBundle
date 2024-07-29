@@ -395,17 +395,12 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
             $metadata = $this->container->get(EntityManagerInterface::class)->getClassMetadata($entityClass);
             $clazz = new \ReflectionClass($metadata->name);
         }
-        try {
-            $instance = $clazz->newInstance();
-        } catch (\Throwable $e) {
-            throw new \RuntimeException('Could not automatically detect relation definition for class '.$entityClass.'. Please override getJsonSearchUrl() in '.static::class.' or make the Entity Constructor argument less.', previous: $e);
-        }
         /** @var DefinitionInterface $definition */
         $definition = $this
             ->container->get(DefinitionManager::class)
-            ->getDefinitionByEntity($instance)
+            ->getDefinitionByClassName($clazz::class)
         ;
-        if ($definition::hasCapability(Page::JSONSEARCH)) {
+        if ($definition && $definition::hasCapability(Page::JSONSEARCH)) {
             return $this->container->get(RouterInterface::class)
                 ->generate($definition::getRoute(Page::JSONSEARCH))
             ;
