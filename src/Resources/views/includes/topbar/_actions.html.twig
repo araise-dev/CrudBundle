@@ -1,5 +1,5 @@
 {% if view is defined and view.actions|length > 0 %}
-    <div class="hidden md:flex lg:ms-auto flex space-x-3 justify-end flex-nowrap items-stretch">
+    <div class="hidden md:flex lg:ms-auto flex space-x-3 justify-end flex-nowrap items-start">
         {% set nextAction = view.actions|filter((item, key) => item.acronym == 'next' and key < 3) %}
         {% set prevAction = view.actions|filter((item, key) => item.acronym == 'prev' and key < 3) %}
 
