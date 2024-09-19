@@ -39,7 +39,9 @@
                 scale: attr.scale|default(null),
                 radix: attr.radix|default(null),
                 thousandsSeparator: attr.thousandsSeparator|default(null),
-                normalizeZeros: attr.normalizeZeros|default(null)
+                normalizeZeros: attr.normalizeZeros|default(null),
+                min: attr.min|default(null),
+                max: attr.max|default(null),
             }) }}
         {% endif %}
     {% endif %}
@@ -83,7 +85,7 @@
         mask: attr.mask|default('Number'),
         scale: attr.scale|default(2),
         radix: attr.radix|default('.'),
-        thousandsSeparator: attr.thousandsSeparator|default(''),
+        thousandsSeparator: attr.thousandsSeparator is defined ? attr.thousandsSeparator : '\'',
         normalizeZeros: attr.normalizeZeros|default(false),
     } %}
     {% set attr = attr|merge(moneyFormatting) %}
