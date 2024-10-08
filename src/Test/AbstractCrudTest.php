@@ -122,20 +122,8 @@ abstract class AbstractCrudTest extends WebTestCase
 
     public function indexSortData()
     {
-        $testData = $this->getTestData();
-
-        if (isset($testData[Page::INDEX->name])) {
-            $testData = $testData[Page::INDEX->name];
-        }
-
-        $testData = [
-            [
-                IndexData::new(),
-            ],
-        ];
-
+        $testData = $this->getTestData()[Page::INDEX->name.'-sort'] ?? $this->indexData();
         $sortTestData = [];
-
         $tableFactory = self::getContainer()->get(TableFactory::class);
         $dataLoader = DoctrineDataLoader::class;
         if (is_subclass_of($this->getDefinition()::getEntity(), TreeInterface::class)) {
@@ -156,7 +144,7 @@ abstract class AbstractCrudTest extends WebTestCase
             foreach ($table->getColumns() as $column) {
                 if ($column->getOption(Column::OPT_SORTABLE)) {
                     $sortQueryData = $sortExtension->getOrderParameters($column, 'asc');
-                    foreach ($testData as $testKey => $testItem) {
+                    foreach ($testData as $testItem) {
                         /** @var IndexData $indexData */
                         $indexData = clone $testItem[0];
                         $indexData->setQueryParameters(

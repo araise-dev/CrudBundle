@@ -11,6 +11,7 @@ use araise\CrudBundle\Block\DefinitionBlock;
 use araise\CrudBundle\Collection\BlockCollection;
 use araise\CrudBundle\Content\AbstractContent;
 use araise\CrudBundle\Content\Content;
+use araise\CrudBundle\Definition\AbstractDefinition;
 use araise\CrudBundle\Definition\DefinitionInterface;
 use araise\CrudBundle\Enums\Page;
 use araise\CrudBundle\Enums\PageInterface;
@@ -19,7 +20,6 @@ use araise\CrudBundle\Form\Type\EntityHiddenType;
 use araise\CrudBundle\Form\Type\EntityPreselectType;
 use araise\CrudBundle\Manager\DefinitionManager;
 use Symfony\Bundle\SecurityBundle\Security;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
@@ -199,7 +199,7 @@ class DefinitionView
 
         if ($builder === null) {
             $builder = $this->formFactory->createBuilder(
-                FormType::class,
+                $this->definition->getOptions()[AbstractDefinition::OPT_MAIN_FORM_TYPE],
                 $this->data,
                 $this->definition->getFormOptions(Page::EDIT, $this->data)
             );
@@ -266,7 +266,7 @@ class DefinitionView
 
         if ($builder === null) {
             $builder = $this->formFactory->createBuilder(
-                FormType::class,
+                $this->definition->getOptions()[AbstractDefinition::OPT_MAIN_FORM_TYPE],
                 $this->data,
                 $this->definition->getFormOptions(Page::CREATE, $this->data)
             );

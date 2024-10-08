@@ -51,38 +51,39 @@ All Relation are handled with the [RelationContent](/contents/relation-content.m
 For example to add the books relation the an author entity it would look like this:
 
 ````php
-    $builder
-        ->addBlock( 'base')
-        ->addContent('books')
-    ;
+$builder
+    ->addBlock( 'base')
+    ->addContent('books')
+;
 ````
 Under the hood we recognize the relation and create a [RelationContent](/contents/relation-content.md) for you.
 ````php
-    $builder
-        ->addBlock( 'base')
-        ->addContent('books', RelationContent::class, [
-            'label' => 'Books',
-        ])
-    ;
+$builder
+    ->addBlock( 'base')
+    ->addContent('books', RelationContent::class, [
+        'label' => 'Books',
+    ])
+;
 ````
 
 ### Ajax in Create/Edit
 You can use Ajax on the edit and create pages.
 To do so active the capability on this definition:
 ```php
-    public static function getCapabilities(): array
-    {
-        return array_merge(parent::getCapabilities(), [Page::AJAXFORM]);
-    }
+public static function getCapabilities(): array
+{
+    return array_merge(parent::getCapabilities(), [Page::AJAXFORM]);
+}
 ```
 You also need to choose which fields will trigger an ajax request.
 For example while creating a Book entity we want the authors name prefixed as book name.
 ```php
-    $builder
-        ->addBlock('base')
-        ->addContent('author', null, [
-            Content::OPT_AJAX_FORM_TRIGGER => true,
-        ])
+$builder
+    ->addBlock('base')
+    ->addContent('author', null, [
+        Content::OPT_AJAX_FORM_TRIGGER => true,
+    ])
+;
 ```
 Then override the `ajaxForm` function. For the described example above this coud look something like this:
 ```php

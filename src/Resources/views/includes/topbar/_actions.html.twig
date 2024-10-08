@@ -1,5 +1,5 @@
 {% if view is defined and view.actions|length > 0 %}
-    <div class="hidden md:flex lg:ml-3 flex space-x-3 justify-end flex-nowrap items-stretch">
+    <div class="hidden md:flex lg:ms-auto flex space-x-3 justify-end flex-nowrap items-start">
         {% set nextAction = view.actions|filter((item, key) => item.acronym == 'next' and key < 3) %}
         {% set prevAction = view.actions|filter((item, key) => item.acronym == 'prev' and key < 3) %}
 
@@ -8,21 +8,22 @@
         {% set overflow = prevAction ? overflow + 1 : overflow %}
         {% set overflow0 = overflow - 1 %}
 
-        {% for action in view.actions|slice(0, overflow0) %}
+
+        {% for action in view.actions|filter(a => a.hasOption('actions')) %}
             {{ wwd_crud_render_action(action, view) }}
         {% endfor %}
 
-        {% if view.actions|length == overflow0 %}
-            {% for action in view.actions|slice(overflow0) %}
-                {{ wwd_crud_render_action(action, view) }}
-            {% endfor %}
-        {% elseif view.actions|length > overflow0 %}
+        {% for action in view.actions|filter(a => not a.hasOption('actions'))|slice(0, overflow0) %}
+            {{ wwd_crud_render_action(action, view) }}
+        {% endfor %}
+
+        {% if view.actions|filter(a => not a.hasOption('actions'))|length > overflow0 %}
             <div
                 {{ stimulus_controller('araise/core-bundle/dropdown') }}
                 class="whatwedo-crud-topbar-actions relative"
             >
                 <button
-                    class="whatwedo-crud-button--action-neutral"
+                    class="whatwedo-crud-button--action border-dang"
                     {{ stimulus_action('araise/core-bundle/dropdown', 'toggle') }}
                 >
                     {{ bootstrap_icon('info-circle', {
@@ -36,7 +37,9 @@
                     {{ stimulus_target('araise/core-bundle/dropdown', 'menu') }}
                 >
                     {% for action in view.actions|slice(overflow0, view.actions|length) %}
-                        {{ wwd_crud_render_action(action, view) }}
+                        {% if not action.hasOption('actions') %}
+                            {{ wwd_crud_render_action(action, view) }}
+                        {% endif %}
                     {% endfor %}
                 </div>
             </div>
@@ -62,7 +65,13 @@
             {{ stimulus_target('araise/core-bundle/dropdown', 'menu') }}
         >
             {% for action in view.actions %}
-                {{ wwd_crud_render_action(action, view) }}
+                {% if action.hasOption('actions') %}
+                    {% for dropdownAction in action.getOption('actions') %}
+                        {{ wwd_crud_render_action(dropdownAction, view) }}
+                    {% endfor %}
+                {% else %}
+                    {{ wwd_crud_render_action(action, view) }}
+                {% endif %}
             {% endfor %}
         </div>
     </div>

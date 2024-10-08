@@ -33,6 +33,7 @@ use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ObjectRepository;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -48,6 +49,8 @@ use WhiteOctober\BreadcrumbsBundle\Model\Breadcrumbs;
 abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscriberInterface
 {
     public const OPT_ACTIONS_OVERFLOW = 'actions_overflow';
+
+    public const OPT_MAIN_FORM_TYPE = 'main_form_type';
 
     protected ContainerInterface $container;
 
@@ -104,7 +107,10 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
 
     public function getOptions(): array
     {
-        return $this->options;
+        $resolver = new OptionsResolver();
+        $this->configureOptions($resolver);
+
+        return $this->options = $resolver->resolve($this->options);
     }
 
     public function setOption(string $key, $value): static
@@ -122,9 +128,11 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
     {
         $resolver->setDefaults([
             self::OPT_ACTIONS_OVERFLOW => 3,
+            self::OPT_MAIN_FORM_TYPE => FormType::class,
         ]);
 
         $resolver->setAllowedTypes(self::OPT_ACTIONS_OVERFLOW, ['integer']);
+        $resolver->setAllowedTypes(self::OPT_MAIN_FORM_TYPE, ['string']);
     }
 
     public function addAction(string $acronym, array $options = [], string $type = Action::class): static
@@ -221,8 +229,12 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
         $this->configureTable($table);
     }
 
-    public function configureTableExporter(Table $table): void
+    public function configureTableExporter(Table $table, ?AbstractContent $content = null): void
     {
+        if ($content !== null) {
+            // default add exporters only on main tables
+            return;
+        }
         $tableExporter = $this->container->get(TableExporter::class);
         $table->addExporter('table', $tableExporter);
     }

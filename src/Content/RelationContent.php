@@ -107,6 +107,13 @@ class RelationContent extends AbstractContent
     public const OPT_ADD_VOTER_ATTRIBUTE = 'add_voter_attribute';
 
     /**
+     * Defines whether the add button should be visible or not.
+     * Defaults to <code>[Page::SHOW, Page::EDIT]</code>
+     *  Accepts: <code>array</code>.
+     */
+    public const OPT_ADD_VISIBILITY = 'add_visibility';
+
+    /**
      * Defines a callable which return a create uri for the add button.
      * Defaults to a <code>callable</code> which will generate a uri from the definition.
      * Accepts: <code>callable|null</code>.
@@ -218,6 +225,7 @@ class RelationContent extends AbstractContent
             self::OPT_TABLE_CONFIGURATION => null,
             self::OPT_ROUTE_ADDITION_KEY => $this->definition::getAlias(),
             self::OPT_ADD_VOTER_ATTRIBUTE => Page::EDIT,
+            self::OPT_ADD_VISIBILITY => [Page::SHOW, Page::EDIT],
             self::OPT_CREATE_URL => null,
             self::OPT_RELOAD_URL => null,
             self::OPT_SHOW_TABLE_IN_FORM => false,
@@ -235,6 +243,7 @@ class RelationContent extends AbstractContent
         $resolver->setRequired(self::OPT_RELOAD_URL);
         $resolver->setAllowedTypes(self::OPT_ROUTE_ADDITION_KEY, ['null', 'string']);
         $resolver->setAllowedTypes(self::OPT_ADD_VOTER_ATTRIBUTE, ['string', 'null', 'object']);
+        $resolver->setAllowedTypes(self::OPT_ADD_VISIBILITY, ['array']);
         $resolver->setAllowedTypes(self::OPT_SHOW_TABLE_IN_FORM, 'boolean');
 
         $resolver->setDefault(self::OPT_DEFINITION, function (Options $options) {
@@ -427,6 +436,7 @@ class RelationContent extends AbstractContent
         $targetDefinition->configureTable($table);
         $targetDefinition->configureTableActions($table);
         $targetDefinition->configureActions(null);
+        $targetDefinition->configureTableExporter($table, $this);
         $table->setOption('title', null); // no h1 for relation content
         $actionColumnItems = [];
         $currentURI = $this->getRequest()->getRequestUri();

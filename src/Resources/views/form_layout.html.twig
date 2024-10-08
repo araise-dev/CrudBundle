@@ -13,6 +13,7 @@
     {% set attr = attr|filter((v, k) => k != 'class') %}
     {% set widget_class = widget_class|default('block w-full shadow-sm whatwedo_core-input '~class) %}
     {% set widget_errors_class = widget_errors_class|default('whatwedo-utility-input--error') %}
+
     {{ parent() }}
 {% endblock widget_attributes %}
 
@@ -31,6 +32,18 @@
         {%  if type is same as('datetime-local') or type is same as('date') or type is same as('time') %}
             {{ stimulus_controller('araise/core-bundle/datetime', {lang: app.request.locale}) }}
         {% endif %}
+
+        {% if attr.mask is defined %}
+            {{ stimulus_controller('araise/core-bundle/input-mask', {
+                mask: attr.mask,
+                scale: attr.scale|default(null),
+                radix: attr.radix|default(null),
+                thousandsSeparator: attr.thousandsSeparator|default(null),
+                normalizeZeros: attr.normalizeZeros|default(null),
+                min: attr.min|default(null),
+                max: attr.max|default(null),
+            }) }}
+        {% endif %}
     {% endif %}
 
     {% if choices is defined %}
@@ -44,7 +57,7 @@
     {%- if errors|length > 0 -%}
         <ul>
             {%- for error in errors -%}
-                <li class="mb-2 mt-2 whatwedo-utility-paragraph--error py-3 relative">{{ error.message|trans }}</li>
+                <li class="whatwedo-utility-paragraph--error relative">{{ error.message|trans }}</li>
             {%- endfor -%}
         </ul>
     {%- endif -%}
@@ -61,11 +74,27 @@
 {%- endblock form_help -%}
 
 {%- block money_widget -%}
+    {#
+    Setting from the Money Formatter:
+    - OPT_DECIMALS: scale
+    - OPT_DECIMAL_SEPARATOR: radix
+    - OPT_THOUSANDS_SEPARATOR: thousandsSeparator
+    #}
+
+    {% set moneyFormatting = {
+        mask: attr.mask|default('Number'),
+        scale: attr.scale|default(2),
+        radix: attr.radix|default('.'),
+        thousandsSeparator: attr.thousandsSeparator is defined ? attr.thousandsSeparator : '\'',
+        normalizeZeros: attr.normalizeZeros|default(false),
+    } %}
+    {% set attr = attr|merge(moneyFormatting) %}
+
     <div class="space-x-4 hidden sm:flex">
-        <div class="w-5/6 px-4 py-2">
+        <div class="w-5/6">
             {{ block('form_widget_simple') }}
         </div>
-        <div class="w-1/6 px-4 py-2">
+        <div class="w-1/6 pl-2 py-2">
             {{ money_pattern|form_encode_currency }}
         </div>
     </div>
@@ -74,10 +103,10 @@
 {%- block percent_widget -%}
     {%- set type = type|default('text') -%}
     <div class="space-x-4 hidden sm:flex">
-        <div class="w-5/6 px-4 py-2">
+        <div class="w-5/6">
             {{ block('form_widget_simple') }}
         </div>
-        <div class="w-1/6 px-4 py-2">
+        <div class="w-1/6 pl-2 py-2">
             {% if symbol %} {{ symbol|default('%') }}{% endif %}
         </div>
     </div>

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 /*
- * Copyright (c) 2022, whatwedo GmbH
+ * Copyright (c) 2024, whatwedo GmbH
  * All rights reserved
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,30 +27,24 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace araise\CrudBundle\Tests;
+namespace araise\CrudBundle\Action;
 
-use araise\CrudBundle\Tests\App\Factory\PersonFactory;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use Twig\Environment;
-use Zenstruck\Foundry\Test\Factories;
-use Zenstruck\Foundry\Test\ResetDatabase;
-
-class TwigAliasTest extends KernelTestCase
+class DropdownAction extends Action
 {
-    use Factories;
-    use ResetDatabase;
+    /**
+     * Defines the items of the dropdown as actions.
+     * Defaults to an empty array <code>[]</code>.
+     * Accepts: <code>array</code>.
+     */
+    public const OPT_ACTIONS = 'actions';
 
-    public function testPersonAlias()
-    {
-        /** @var Environment $twigEnvironment */
-        $twigEnvironment = self::getContainer()->get(Environment::class);
-
-        $person = PersonFactory::createOne()->_real();
-        $this->assertStringContainsString('#araise_crud_tests_app_entity_person#', $twigEnvironment->render(
-            'twig/wwd_crud_entity_alias.html.twig',
-            [
-                'person' => $person,
-            ]
-        ));
+    public function __construct(
+        protected string $acronym,
+        array $options
+    ) {
+        unset($this->defaultOptions['route'], $this->defaultOptions['route_parameters']);
+        unset($this->allowedTypes['route'], $this->allowedTypes['route_parameters']);
+        $this->defaultOptions[self::OPT_ACTIONS] = [];
+        parent::__construct($this->acronym, $options);
     }
 }

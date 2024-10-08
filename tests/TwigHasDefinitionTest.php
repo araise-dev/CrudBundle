@@ -49,7 +49,7 @@ class TwigHasDefinitionTest extends KernelTestCase
         $this->assertSame('1', $twigEnvironment->render(
             'twig/wwd_crud_entity_has_definition.html.twig',
             [
-                'person' => PersonFactory::createOne()->object(),
+                'person' => PersonFactory::createOne()->_real(),
             ]
         ));
     }
