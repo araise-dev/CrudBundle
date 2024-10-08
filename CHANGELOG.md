@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## v1.2.0
+ - Removed symfony ^5.4 support
+ - Improved documentation
+ - Introduced `DropdownAction`
+ - Introduced `OPT_ADD_VISIBILITY` on RelationContent to allow for more control over the visibility of the add button
+ - Handle `FlashBagExecption` in `CrudController`. This will allow to show flash messages on exceptions.
+ - Improved exporting on Relations
+ - Added option to change Main Form Type in the definition
+ - Introduced default avatar for users
+ - UX improvements
+
 ## v1.0.8
  - More documentation and better styling of the documentation
  - Added new dependency `symfony/stimulus-bundle@^2.0` and allowed `symfony/webpack-encore-bundle@^2.0`
