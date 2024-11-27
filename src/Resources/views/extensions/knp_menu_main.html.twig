@@ -55,6 +55,10 @@
             class: (item.attributes.class|default('') ~ ' ' ~ classes)|trim,
         }) %}
 
+        {# extract count #}
+        {% set count = attributes.count|default(false) %}
+        {% set attributes = attributes|filter((v, k) => k != 'count') %}
+
         {# add attributes for link/button #}
         {%- if item.hasChildren() %}
             {% set htmlElement = 'button' %}
@@ -69,7 +73,7 @@
             }) %}
         {% endif %}
 
-        {# extract icon #}
+        {# extract icon on sub items #}
         {% set icon = attributes.icon|default(false) %}
         {% set attributes = attributes|filter((v, k) => k != 'icon') %}
 
@@ -104,6 +108,10 @@
                     {% endif %}
 
                     {{ item.label|trans }}
+
+                    {% if count %}
+                        <span class="ml-auto inline-flex items-center rounded-full bg-primary-400 px-1.5 py-0.5 text-xs font-medium text-white">{{ count }}</span>
+                    {% endif %}
 
                     {# if there are children: add caret icon #}
                     {% if item.children|length > 0 %}
