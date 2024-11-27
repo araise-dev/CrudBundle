@@ -37,8 +37,8 @@
             {{ stimulus_controller('araise/core-bundle/input-mask', {
                 mask: attr.mask,
                 scale: attr.scale|default(null),
-                radix: attr.radix|default(null),
-                thousandsSeparator: attr.thousandsSeparator|default(null),
+                radix: attr.radix is defined ? attr.radix : null,
+                thousandsSeparator: attr.thousandsSeparator is defined ? attr.thousandsSeparator : null,
                 normalizeZeros: attr.normalizeZeros|default(null),
                 min: attr.min|default(null),
                 max: attr.max|default(null),
