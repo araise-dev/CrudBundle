@@ -651,7 +651,9 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
 
     public function getPage(): ?PageInterface
     {
-        $exploded = explode('_', $this->container->get(RequestStack::class)->getCurrentRequest()->attributes->get('_route'));
+        /** @var ?Request $request */
+        $request = $this->container->get(RequestStack::class)->getCurrentRequest();
+        $exploded = explode('_', $request?->attributes->get('_route') ?? '');
         $route = end($exploded);
         foreach (Page::cases() as $page) {
             if ($page->toRoute() === $route) {
