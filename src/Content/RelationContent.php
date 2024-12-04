@@ -225,7 +225,7 @@ class RelationContent extends AbstractContent
             self::OPT_TABLE_CONFIGURATION => null,
             self::OPT_ROUTE_ADDITION_KEY => $this->definition::getAlias(),
             self::OPT_ADD_VOTER_ATTRIBUTE => Page::EDIT,
-            self::OPT_ADD_VISIBILITY => [Page::SHOW, Page::EDIT],
+            self::OPT_ADD_VISIBILITY => [Page::SHOW, Page::EDIT, Page::RELOAD],
             self::OPT_CREATE_URL => null,
             self::OPT_RELOAD_URL => null,
             self::OPT_SHOW_TABLE_IN_FORM => false,
