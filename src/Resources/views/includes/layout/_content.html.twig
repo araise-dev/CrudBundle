@@ -11,8 +11,12 @@
         class="{% if (not isHiddenType and isFormCase) or not isFormCase %}px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4{% endif %} {{ content.option('attr')['class'] ?? '' }}"
         {{ attr|map((value, attr) => "#{attr}=\"#{value}\"")|join(' ')|raw }}
     >
-        <dt class="whatwedo-utility-bold text-neutral-500 overflow-hidden truncate" id="wwd-crud-block-{{ block.acronym }}-content-{{ contentAcronym }}-label" title="{{ content.option('label')|trans }}">
-            {{ content.option('label')|trans }}
+        <dt
+            class="whatwedo-utility-bold text-neutral-500 overflow-hidden truncate"
+            id="wwd-crud-block-{{ block.acronym }}-content-{{ contentAcronym }}-label"
+            title="{{ content.option('label')|trans|striptags }}"
+        >
+            {{ content.option('label')|trans|raw }}
             {% if content.option('help') is not empty %}
                 <span {{ stimulus_controller('araise/crud-bundle/tooltip', { 'title': content.option('help')|trans } ) }}>
                     {{ bootstrap_icon('info-circle-fill', {
@@ -64,7 +68,7 @@
         {% endif %}
         {% if content.option('label') %}
             <span class="block whatwedo-utility-bold text-neutral-500 px-4 py-3">
-                {{ content.option('label')|trans }}
+                {{ content.option('label')|trans|raw }}
             </span>
         {% endif %}
 
