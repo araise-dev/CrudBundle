@@ -36,7 +36,7 @@ use araise\CrudBundle\Tests\App\Definition\CompanyDefinition;
 use araise\CrudBundle\Tests\App\Entity\Company;
 use Doctrine\ORM\EntityManagerInterface;
 
-class CRUDTest extends AbstractCrudTest
+class CRUDTest extends AbstractCrudTestBase
 {
     public function getTestData(): array
     {

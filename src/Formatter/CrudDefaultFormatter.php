@@ -9,6 +9,7 @@ use araise\CoreBundle\Util\StringConverter;
 use araise\CrudBundle\Enums\Page;
 use araise\CrudBundle\Manager\DefinitionManager;
 use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Routing\RouterInterface;
 
 class CrudDefaultFormatter extends DefaultFormatter
@@ -31,7 +32,7 @@ class CrudDefaultFormatter extends DefaultFormatter
                         $this->router->generate($definition::getRoute(Page::SHOW), [
                             'id' => $value->getId(),
                         ]),
-                        StringConverter::toString($value)
+                        $this->escapeHTML(StringConverter::toString($value)),
                     );
                 }
             } catch (\InvalidArgumentException $e) {
@@ -40,5 +41,11 @@ class CrudDefaultFormatter extends DefaultFormatter
         }
 
         return parent::getHtml($value);
+    }
+
+    protected function configureOptions(OptionsResolver $resolver): void
+    {
+        parent::configureOptions($resolver);
+        $resolver->setDefault(self::OPT_HTML_SAFE, true);
     }
 }

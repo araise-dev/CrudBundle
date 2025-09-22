@@ -29,11 +29,11 @@ declare(strict_types=1);
 
 namespace araise\CrudBundle\Tests\Crud;
 
-use araise\CrudBundle\Test\AbstractCrudTest as BaseAbstractCrudTest;
+use araise\CrudBundle\Test\AbstractCrudTestBase as BaseAbstractCrudTestBase;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 
-abstract class AbstractCrudTest extends BaseAbstractCrudTest
+abstract class AbstractCrudTestBase extends BaseAbstractCrudTestBase
 {
     protected ?KernelBrowser $client = null;
 

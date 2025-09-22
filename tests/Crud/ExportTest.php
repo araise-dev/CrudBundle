@@ -40,7 +40,7 @@ use Symfony\Component\BrowserKit\AbstractBrowser;
 use Symfony\Component\DomCrawler\Crawler;
 use Zenstruck\Foundry\Test\Factories;
 
-class ExportTest extends AbstractCrudTest
+class ExportTest extends AbstractCrudTestBase
 {
     use Factories;
 
