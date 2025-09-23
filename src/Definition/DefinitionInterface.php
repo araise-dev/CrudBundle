@@ -43,7 +43,7 @@ interface DefinitionInterface
 
     public function getLongTitle(?PageInterface $route = null, mixed $entity = null): string;
 
-    public function getMetaTitle(PageInterface $route = null, $entity = null);
+    public function getMetaTitle(?PageInterface $route = null, $entity = null);
 
     public function getFormAccessorPrefix(): string;
 

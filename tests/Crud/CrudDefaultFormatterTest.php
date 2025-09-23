@@ -13,7 +13,7 @@ use Symfony\Component\BrowserKit\AbstractBrowser;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 
-class CrudDefaultFormatterTest extends AbstractCrudTest
+class CrudDefaultFormatterTest extends AbstractCrudTestBase
 {
     public function getTestData(): array
     {

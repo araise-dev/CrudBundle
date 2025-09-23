@@ -297,7 +297,7 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
         };
     }
 
-    public function getMetaTitle(PageInterface $route = null, $entity = null)
+    public function getMetaTitle(?PageInterface $route = null, $entity = null)
     {
         $add = $this->translator->trans('araise_crud.add');
         $delete = $this->translator->trans('araise_crud.delete');
@@ -381,7 +381,7 @@ abstract class AbstractDefinition implements DefinitionInterface, ServiceSubscri
         return $this->builder ?? throw new \RuntimeException('Please call DefinitionInterface::createView before accessing the builder');
     }
 
-    public function createView(PageInterface $route, object $data = null): DefinitionView
+    public function createView(PageInterface $route, ?object $data = null): DefinitionView
     {
         $this->builder = $this->getDefinitionBuilder($data);
 

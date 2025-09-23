@@ -50,14 +50,14 @@ jobs:
             - name: Install Node.js
               uses: actions/setup-node@v3
               with:
-                  node-version: '16'
+                  node-version: '22'
             - name: Install and build assets
               run: |
                   cd tests/App
                   yarn install
                   yarn dev
             - name: Run test suite on PHP ${{ matrix.php }} and Symfony ${{ matrix.symfony }}
-              run: vendor/bin/simple-phpunit
+              run: vendor/bin/phpunit
             - name: Run ECS
               run: vendor/bin/ecs
             - name: Run PHPStan

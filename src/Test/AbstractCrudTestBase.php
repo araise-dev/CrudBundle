@@ -49,7 +49,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DomCrawler\Form;
 use Symfony\Component\Routing\RouterInterface;
 
-abstract class AbstractCrudTest extends WebTestCase
+abstract class AbstractCrudTestBase extends WebTestCase
 {
     protected ?KernelBrowser $client = null;
 

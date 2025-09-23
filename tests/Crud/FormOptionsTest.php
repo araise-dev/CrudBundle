@@ -35,7 +35,7 @@ use araise\CrudBundle\Test\Data\EditData;
 use araise\CrudBundle\Tests\App\Definition\PersonDefinition;
 use araise\CrudBundle\Tests\App\Factory\PersonFactory;
 
-class FormOptionsTest extends AbstractCrudTest
+class FormOptionsTest extends AbstractCrudTestBase
 {
     public function getTestData(): array
     {
